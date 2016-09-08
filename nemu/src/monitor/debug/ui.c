@@ -16,13 +16,13 @@ char* rl_gets() {
 	if (line_read) {
 		free(line_read);
 		line_read = NULL;
-	}
+	} 
 
 	line_read = readline("(nemu) ");
 
 	if (line_read && *line_read) {
 		add_history(line_read);
-	}
+	} 
 
 	return line_read;
 }
@@ -40,30 +40,45 @@ static int cmd_si(char *args){
 	
 	return 0;
 }
-static int cmd_info(char *args){
 
+static int cmd_info(char *args){
+	if(strcmp(args,"w") == 0){
+		printf("info: w: Command under Construction\n");
+	}
+	else if(strcmp(args,"r") == 0){
+		printf("233\n");
+	}
+	else{
+		printf("%s: No such subcmd\n",args);
+	}
 	return 0;
 }
+
 static int cmd_p(char *args){
 	
 	return 0;
 }
+
 static int cmd_x(char *args){
 
 	return 0;
 }
+
 static int cmd_w(char *args){
 
 	return 0;
 }
+
 static int cmd_d(char *args){
 
 	return 0;
 }
+
 static int cmd_bt(char *args){
 
 	return 0;
 }
+
 static int cmd_help(char *args);
 
 static struct {
@@ -97,10 +112,10 @@ static int cmd_help(char *args) {
 		for(i = 0; i < NR_CMD; i ++) {
 			printf("%s - %s\n", cmd_table[i].name, cmd_table[i].description);
 		}
-	}
-	else {
-		for(i = 0; i < NR_CMD; i ++) {
-			if(strcmp(arg, cmd_table[i].name) == 0) {
+ 	}
+ 	else {
+ 		for(i = 0; i < NR_CMD; i ++) {
+ 			if(strcmp(arg, cmd_table[i].name) == 0) {
 				printf("%s - %s\n", cmd_table[i].name, cmd_table[i].description);
 				return 0;
 			}
