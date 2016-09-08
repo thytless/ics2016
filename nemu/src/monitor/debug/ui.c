@@ -105,7 +105,7 @@ static int cmd_x(char *args){
 		uint32_t *temp;
 	 	for(;i < n;i++){
 			temp = (addr + i * 4);
-			printf("0x%x : \t%x\n",(uint32_t)(addr + i * 4),*temp);
+			printf("0x%x : \t0x%x\n",(uint32_t)(addr + i * 4),*temp);
 		}
 /*	}
 	else
