@@ -43,8 +43,8 @@ static int cmd_si(char *args){
 		return 0;
 	}
 	int steps = atoi(args);
-	if(steps <= 0 || steps > MAX_INSTR_TO_PRINT){
-		printf("si: Too many steps!\n");
+	if(steps <= 0 || steps >= MAX_INSTR_TO_PRINT){
+		printf("si: Invalid step input(should be 1 ~ 9)\n");
 	}
 	else{
 		cpu_exec(steps);
