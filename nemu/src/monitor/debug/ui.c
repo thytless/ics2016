@@ -7,6 +7,7 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 
+#define MAX_INSTR_TO_PRINT 10
 void cpu_exec(uint32_t);
 
 /* We use the `readline' library to provide more flexibility to read from stdin. */
@@ -37,7 +38,17 @@ static int cmd_q(char *args) {
 }
 
 static int cmd_si(char *args){
-	
+	if(args == NULL){
+		cpu_exec(1);
+		return 0;
+	}
+	int steps = atoi(args);
+	if(steps <= 0 || steps > MAX_INSTR_TO_PRINT){
+		printf("si: Too many steps!\n");
+	}
+	else{
+		cpu_exec(steps);
+	}
 	return 0;
 }
 
