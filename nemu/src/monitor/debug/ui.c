@@ -46,7 +46,13 @@ static struct {
 	{ "help", "Display informations about all supported commands", cmd_help },
 	{ "c", "Continue the execution of the program", cmd_c },
 	{ "q", "Exit NEMU", cmd_q },
-
+	{ "si", "Single step execution", cmd_si },
+	{ "info", "Print the running state of the program", cmd_info },
+	{ "p", "Evaluate the expression" , cmd_p },
+	{ "x", "Scan memory" , cmd_x },
+	{ "w", "Set a watchpoint" , cmd_w },
+	{ "d", "Delete a watchpoint" , cmd_d },
+	{ "bt", "Print the stack frame" , cmd_bt },
 	/* TODO: Add more commands */
 
 };
