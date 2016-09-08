@@ -36,6 +36,34 @@ static int cmd_q(char *args) {
 	return -1;
 }
 
+static int cmd_si(char *args){
+	
+	return 0;
+}
+static int cmd_info(char *args){
+
+	return 0;
+}
+static int cmd_p(char *args){
+	
+	return 0;
+}
+static int cmd_x(char *args){
+
+	return 0;
+}
+static int cmd_w(char *args){
+
+	return 0;
+}
+static int cmd_d(char *args){
+
+	return 0;
+}
+static int cmd_bt(char *args){
+
+	return 0;
+}
 static int cmd_help(char *args);
 
 static struct {
@@ -46,13 +74,13 @@ static struct {
 	{ "help", "Display informations about all supported commands", cmd_help },
 	{ "c", "Continue the execution of the program", cmd_c },
 	{ "q", "Exit NEMU", cmd_q },
-//	{ "si", "Single step execution", cmd_si }, //Stage 1
-//	{ "info", "Print the running state of the program", cmd_info }, //Stage 1
-//	{ "p", "Evaluate the expression" , cmd_p }, //Stage 2
-//	{ "x", "Scan memory" , cmd_x }, //Stage 1 (simplified)
-//	{ "w", "Set a watchpoint" , cmd_w }, //Stage 3
-//	{ "d", "Delete a watchpoint" , cmd_d }, //Stage 3
-//	{ "bt", "Print the stack frame" , cmd_bt },//PA2
+	{ "si", "Single step execution", cmd_si }, //Stage 1
+	{ "info", "Print the running state of the program", cmd_info }, //Stage 1
+	{ "p", "Evaluate the expression" , cmd_p }, //Stage 2
+	{ "x", "Scan memory" , cmd_x }, //Stage 1 (simplified)
+	{ "w", "Set a watchpoint" , cmd_w }, //Stage 3
+	{ "d", "Delete a watchpoint" , cmd_d }, //Stage 3
+	{ "bt", "Print the stack frame" , cmd_bt },//PA2
 	/* TODO: Add more commands */
 
 };
