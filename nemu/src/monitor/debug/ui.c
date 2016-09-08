@@ -41,7 +41,7 @@ static int cmd_si(char *args){
 	if(args == NULL){
 		cpu_exec(1);
 		return 0;
-	}
+	} 
 	int steps = atoi(args);
 	if(steps <= 0 || steps >= MAX_INSTR_TO_PRINT){
 		printf("si: Invalid step input(should be 1 ~ 9)\n");
@@ -54,7 +54,7 @@ static int cmd_si(char *args){
 
 static int cmd_info(char *args){
 	if(args == NULL){
-		printf("info: Lack of arguments.Try 'help info'");
+		printf("info: Lack of arguments.Try 'help info'\n");
 		return 0;
 	}
 	if(strcmp(args,"w") == 0){
@@ -85,13 +85,13 @@ static int cmd_p(char *args){
 
 static int cmd_x(char *args){
 	if(args == NULL){
-		printf("x: Lack of arguments");
+		printf("x: Lack of arguments\n");
 		return 0;
 	}
 	int n = atoi(strtok(args," "));
 	uint32_t *addr = (uint32_t *)strtoul(strtok(NULL," "),0,0);
 	if(addr == NULL){
-		printf("x: Lack of arguments");
+		printf("x: Lack of arguments\n");
 		return 0;
 	}
 	if((addr - (uint32_t *)0x100000) > 0 && (addr - (uint32_t *)0x1FFFFF) < 0 ){
