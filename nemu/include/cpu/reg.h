@@ -16,68 +16,19 @@ enum { R_AL, R_CL, R_DL, R_BL, R_AH, R_CH, R_DH, R_BH };
 
 
 typedef struct {
-	struct {
-		uint32_t _32;
-		uint16_t _16;
-		uint8_t _8[2];
+	union{
+		union {
+			uint32_t _32;
+			uint16_t _16h;
+			uint16_t _16;
+			uint16_t _8h;
+			uint8_t _8[2];
 
-	} gpr[8];
+		} gpr[8];
 	
 	/* Do NOT change the order of the GPRs' definitions. */
-	union {
-		uint32_t eax;
-		uint16_t hax;
-		uint16_t ax;
-		uint16_t ha;
-		uint8_t ah;
-		uint8_t al;
-	} ;
-	union {
-		uint32_t ecx;
-		uint16_t hcx;
-		uint16_t cx;
-		uint16_t hc;
-		uint8_t ch;
-		uint8_t cl;
-	} ;
-	union {
-		uint32_t edx;
-		uint16_t hdx;
-		uint16_t dx;
-		uint16_t hd;
-		uint8_t dh;
-		uint8_t dl;
-	} ;
-	union {
-		uint32_t ebx;
-		uint16_t hbx;
-		uint16_t bx;
-		uint16_t hb;
-		uint8_t bh;
-		uint8_t bl;
-	} ;
-	union {
-		uint32_t ebp;
-		uint16_t hbp;
-		uint16_t bp;
-	} ;
-	union {
-		uint32_t esp;
-		uint16_t hsp;
-		uint16_t sp;
-	} ;
-	union {
-		uint32_t esi;
-		uint16_t hsi;
-		uint16_t si;
-	} ;
-	union {
-		uint32_t edi;
-		uint16_t hdi;
-		uint16_t di;
-	} ;
-	//uint32_t eax, ecx, edx, ebx, esp, ebp, esi, edi;
-
+	uint32_t eax, ecx, edx, ebx, esp, ebp, esi, edi;
+	};
 	swaddr_t eip;
 
 } CPU_state;
