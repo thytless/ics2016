@@ -46,7 +46,16 @@ static int cmd_info(char *args){
 		printf("info: w: Command under Construction\n");
 	}
 	else if(strcmp(args,"r") == 0){
-		printf("233\n");
+		extern CPU_state cpu;
+		printf("eax\t\t %x\t %d\n",cpu.eax,cpu.eax);
+		printf("ecx\t\t %x\t %d\n",cpu.ecx,cpu.ecx);
+		printf("edx\t\t %x\t %d\n",cpu.edx,cpu.edx);
+		printf("ebx\t\t %x\t %d\n",cpu.ebx,cpu.ebx);
+		printf("esp\t\t %x\t\n",cpu.esp);
+		printf("ebp\t\t %x\t\n",cpu.ebp);
+		printf("esi\t\t %x\t %d\n",cpu.esi,cpu.esi);
+		printf("edi\t\t %x\t %d\n",cpu.edi,cpu.edi);
+		printf("eip\t\t %x\t\n",cpu.eip);
 	}
 	else{
 		printf("%s: No such subcmd\n",args);
