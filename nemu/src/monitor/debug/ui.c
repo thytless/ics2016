@@ -102,8 +102,10 @@ static int cmd_x(char *args){
 */	
 //	if((addr - (uint32_t *)0x100000) > 0 && (addr - (uint32_t *)0x1FFFFF) < 0 ){
 		int i = 0;
+		uint32_t *temp;
 	 	for(;i < n;i++){
-			printf("0x%x : \t%x\n",(uint32_t)(addr + i * 4),(uint32_t)*(addr + i * 4));
+			temp = (addr + i * 4);
+			printf("0x%x : \t%x\n",(uint32_t)(addr + i * 4),*temp);
 		}
 /*	}
 	else
