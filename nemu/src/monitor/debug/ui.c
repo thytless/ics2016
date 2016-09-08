@@ -75,12 +75,22 @@ static int cmd_info(char *args){
 }
 
 static int cmd_p(char *args){
-	
+	int n = atoi(strtok(args," "));
+	uint32_t *addr = (uint32_t *)strtoul(strtok(NULL," "),0,0);
+
+	if((addr - (uint32_t *)0x100000) > 0 && (addr - (uint32_t *)0x1FFFFF) < 0 ){
+		int i = 0;
+		for(;i < n;i++){
+			printf("0x%x : \t%x\n",(uint32_t)(addr + i * 4),(uint32_t)*(addr + i * 4));
+		}
+	}
+	else
+		printf("0x%x : \tThis access may be unsafe\n",(uint32_t)addr);
 	return 0;
 }
 
 static int cmd_x(char *args){
-
+	
 	return 0;
 }
 
@@ -115,7 +125,7 @@ static struct {
 	{ "x", "Scan memory" , cmd_x }, //Stage 1 (simplified)
 	{ "w", "Set a watchpoint" , cmd_w }, //Stage 3
 	{ "d", "Delete a watchpoint" , cmd_d }, //Stage 3
-	{ "bt", "Print the stack frame" , cmd_bt },//PA2
+	{ "bt", "Print the stack frame chain" , cmd_bt },//PA2
 	/* TODO: Add more commands */
 
 };
