@@ -100,14 +100,15 @@ static int cmd_x(char *args){
 		return 0;
 	}
 */	
-	if((addr - (uint32_t *)0x100000) > 0 && (addr - (uint32_t *)0x1FFFFF) < 0 ){
+//	if((addr - (uint32_t *)0x100000) > 0 && (addr - (uint32_t *)0x1FFFFF) < 0 ){
 		int i = 0;
 	 	for(;i < n;i++){
 			printf("0x%x : \t%x\n",(uint32_t)(addr + i * 4),(uint32_t)*(addr + i * 4));
 		}
-	}
+/*	}
 	else
 		printf("0x%x : \tThis access may be unsafe\n",(uint32_t)addr);
+*/
 	return 0;
 }
 
