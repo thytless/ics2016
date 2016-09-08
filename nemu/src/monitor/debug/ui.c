@@ -53,6 +53,10 @@ static int cmd_si(char *args){
 }
 
 static int cmd_info(char *args){
+	if(args == NULL){
+		printf("info: Lack of arguments.Try 'help info'");
+		return 0;
+	}
 	if(strcmp(args,"w") == 0){
 		printf("info: w: Command under Construction\n");
 	}
@@ -80,11 +84,11 @@ static int cmd_p(char *args){
 }
 
 static int cmd_x(char *args){
-	int n = atoi(strtok(args," "));
-	if(n == 0){
+	if(args == NULL){
 		printf("x: Lack of arguments");
 		return 0;
 	}
+	int n = atoi(strtok(args," "));
 	uint32_t *addr = (uint32_t *)strtoul(strtok(NULL," "),0,0);
 	if(addr == NULL){
 		printf("x: Lack of arguments");
