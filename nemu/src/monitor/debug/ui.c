@@ -95,7 +95,10 @@ static int cmd_x(char *args){
 		return 0;
 	}
 	uint32_t addr = (uint32_t)strtoul(address,0,0);
-	swaddr_read(addr,len);
+	int i = 0;
+	for(;i < len;i++){
+		printf("0x%x : \t 0x%x\n",addr + i * sizeof(uint32_t),swaddr_read(addr + i * sizeof(uint32_t),sizeof(uint32_t)));
+	}
 	return 0;
 }
 
