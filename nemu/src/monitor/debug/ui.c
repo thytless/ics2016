@@ -88,29 +88,14 @@ static int cmd_x(char *args){
 		printf("x: Lack of arguments\n");
 		return 0;
 	} 
-	int n = atoi(strtok(args," "));
+	size_t len = atoi(strtok(args," "));
 	char *address = strtok(NULL," ");
 	if(address == NULL || address[0] == '\0'){
 		printf("x: Lack of arguments\n");
 		return 0;
 	}
-	uint32_t *addr = (uint32_t *)strtoul(address,0,0);
-/*	if(addr == NULL){
-		printf("x: Lack of arguments\n");
-		return 0;
-	}
-*/	
-//	if((addr - (uint32_t *)0x100000) > 0 && (addr - (uint32_t *)0x1FFFFF) < 0 ){
-		int i = 0;
-		uint32_t *temp;
-	 	for(;i < n;i++){
-			temp = (addr + i * 4);
-			printf("0x%x : \t0x%x\n",(uint32_t)(addr + i * 4),*temp);
-		}
-/*	}
-	else
-		printf("0x%x : \tThis access may be unsafe\n",(uint32_t)addr);
-*/
+	uint32_t addr = (uint32_t)strtoul(address,0,0);
+	swaddr_read(addr,len);
 	return 0;
 }
 
