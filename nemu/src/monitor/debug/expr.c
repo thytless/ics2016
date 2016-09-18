@@ -30,7 +30,7 @@ static struct rule {
 	{"^(0[xX])?[0-9a-fA-F]+", HEX},	// hex
 	{"^-?[1-9]\\d*", DECI},			// decimal
 	{"-", '-'},						// substract
-	{"(?<!\\+|-|\\*|/)\\s*\\*", '*'},// multiply
+	{"(?<!\\+|-|\\*|/|\\()\\s*\\*", '*'},// multiply
 	{"/", '/'},						// divide
 	{"\\(", '('},					// left bracket
 	{"\\)", ')'},					// right bracket
@@ -38,7 +38,7 @@ static struct rule {
 									// 32-bit register
 	{"^\\$(?:bx|cx|ax|dx|di|si|bp|sp)", REG16},
 	{"^\\$(?:ah|bh|ch|dh|al|bl|cl|dl)", REG8},
-	{"(?<=\\+|-|\\*|/)\\*", DEREF}	// dereference
+	{"(?<=\\+|-|\\*|/|\\()\\*", DEREF}	// dereference
 									// identifier	
 
 };
