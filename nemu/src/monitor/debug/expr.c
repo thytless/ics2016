@@ -7,10 +7,9 @@
 #include <regex.h>
 
 enum {
-	NOTYPE = 256, PLUS = '+', DEC = '-', MULT = '*', DIV = '/',
-	DEREF, EQ, HEX, DECI,
 	LB = '(', RB = ')',
-	REG32, REG16, REG8
+	NOTYPE = 256, PLUS = '+', DEC = '-', MULT = '*', DIV = '/',
+	DEREF, EQ, HEX, DECI, IDE, REG32, REG16, REG8
 
 	/* TODO: Add more token types */
 
@@ -40,7 +39,7 @@ static struct rule {
 	{"^\\$(?:bx|cx|ax|dx|di|si|bp|sp)", REG16},
 	{"^\\$(?:ah|bh|ch|dh|al|bl|cl|dl)", REG8},
 	{"(?<=\\+|-|\\*|/)\\*", DEREF}	// dereference
-	
+									// identifier	
 
 };
 
@@ -65,10 +64,10 @@ void init_regex() {
 	}
 }
 
-typedef struct token {
+typedef struct token { 
 	int type;
 	char str[32];
-} Token;
+} Token; 
 
 Token tokens[32];
 int nr_token;
@@ -94,11 +93,26 @@ static bool make_token(char *e) {
 				 * to record the token in the array `tokens'. For certain types
 				 * of tokens, some extra actions should be performed.
 				 */
-
+				tokens[nr_token].type = i;
 				switch(rules[i].token_type) {
+					case NOTYPE :
+					case PLUS : 
+					case DEC :
+					case MULT :
+					case DIV :
+					case DEREF :
+					case EQ :
+					case HEX :
+					case DECI :
+					case IDE :
+					case LB :
+					case RB :
+					case REG32 : 
+					case REG16 :
+					case REG8 : if(strcpy(tokens[nr_token].str,substr_start))nr_token++;break;
 					default: panic("please implement me");
 				}
-
+				
 				break;
 			}
 		}
