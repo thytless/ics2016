@@ -97,7 +97,8 @@ static int cmd_x(char *args){
 		printf("x: Lack of arguments\n");
 		return 0;
 	}
-	uint32_t addr = (uint32_t)strtoul(address,0,0);
+	bool success;
+	uint32_t addr = (uint32_t)expr(address,&success);
 	int i = 0;
 	for(;i < len;i++){
 		printf("0x%x : \t 0x%x\n",addr + i * sizeof(uint32_t),swaddr_read(addr + i * sizeof(uint32_t),sizeof(uint32_t)));
