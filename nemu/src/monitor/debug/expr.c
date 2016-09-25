@@ -31,7 +31,7 @@ static struct rule {
 	{"^(0[xX])?[0-9a-fA-F]+", HEX},	// hex
 	{"[0-9]+", DECI},				// decimal
 	{"-", '-'},						// substract
-	{"(?<!\\+|-|\\*|/|\\()\\s*\\*", '*'},// multiply
+	{"\\*", '*'},					// multiply
 	{"/", '/'},						// divide
 	{"\\(", '('},					// left bracket
 	{"\\)", ')'},					// right bracket
@@ -39,7 +39,7 @@ static struct rule {
 									// 32-bit register
 	{"^\\$(?:bx|cx|ax|dx|di|si|bp|sp)", REG16},
 	{"^\\$(?:ah|bh|ch|dh|al|bl|cl|dl)", REG8},
-	{"(?<=\\+|-|\\*|/|\\()\\*", DEREF},	// dereference
+//	{"(?<=\\+|-|\\*|/|\\()\\*", DEREF},	// dereference
 	{"[_a-zA-Z][_0-9a-zA-Z]*", IDE}		// identifier	
 
 };
@@ -77,7 +77,7 @@ int nr_token;
 
 static bool make_token(char *e) {
 	int position = 0;
-	int i;
+	int i,last;
 	regmatch_t pmatch;
 	
 	nr_token = 0;
@@ -97,12 +97,15 @@ static bool make_token(char *e) {
 				 * of tokens, some extra actions should be performed.
 				 */
 				tokens[nr_token].type = i;
+				if(i == MULT)
+					if(last == PLUS || last == SUB || last == MULT || last == DIV || last == LP || last == EQ)
+						i = DEREF;
 				if(strcpy(tokens[nr_token].str,substr_start))
 					nr_token++;
 /*				switch(rules[i].token_type) {
 					case NOTYPE : 
 					case PLUS : 
-					case DEC :
+					case SUB :
 					case MULT :
 					case DIV : 
 					case DEREF :
@@ -112,7 +115,7 @@ static bool make_token(char *e) {
 					case DECI :
 					case IDE :
 					case LP :
-					case RB :
+					case RP :
 					case REG32 : 
 					case REG16 :
 					case REG8 : 
