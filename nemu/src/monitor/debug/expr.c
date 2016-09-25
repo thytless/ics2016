@@ -35,10 +35,10 @@ static struct rule {
 	{"/", '/'},						// divide
 	{"\\(", '('},					// left bracket
 	{"\\)", ')'},					// right bracket
-	{"^\\$e(?:ax|bx|cx|dx|di|si|bp|sp)", REG32},
+	{"\\$e(?:ax|bx|cx|dx|di|si|bp|sp)", REG32},
 									// 32-bit register
-	{"^\\$(?:bx|cx|ax|dx|di|si|bp|sp)", REG16},
-	{"^\\$(?:ah|bh|ch|dh|al|bl|cl|dl)", REG8},
+	{"\\$(?:bx|cx|ax|dx|di|si|bp|sp)", REG16},
+	{"\\$(?:ah|bh|ch|dh|al|bl|cl|dl)", REG8},
 //	{"(?<=\\+|-|\\*|/|\\()\\*", DEREF},	// dereference
 	{"[_a-zA-Z][_0-9a-zA-Z]*", IDE}		// identifier	
 
