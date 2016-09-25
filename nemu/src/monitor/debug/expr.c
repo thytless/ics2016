@@ -77,7 +77,7 @@ int nr_token;
 
 static bool make_token(char *e) {
 	int position = 0;
-	int i,last = 0;
+	int i;
 	regmatch_t pmatch;
 	
 	nr_token = 0;
@@ -99,33 +99,8 @@ static bool make_token(char *e) {
 				if(i == NOTYPE)
 					continue;
 				tokens[nr_token].type = i;
-				if(i == MULT)
-					if(e == substr_start || last == PLUS || last == SUB || last == MULT || last == DIV || last == LP || last == EQ)
-						i = DEREF;
-				if(strncpy(tokens[nr_token].str,substr_start,substr_len)){
-					last = i;
-					nr_token++;
-				} 
-/*				switch(rules[i].token_type) {
-					case NOTYPE : 
-					case PLUS : 
-					case SUB :
-					case MULT :
-					case DIV : 
-					case DEREF :
-					case EQ : 
-					case HEX_S : 
-					case HEX :
-					case DECI :
-					case IDE :
-					case LP :
-					case RP :
-					case REG32 : 
-					case REG16 :
-					case REG8 : 
-					default: panic("please implement me");
-				}
-*/				
+				strncpy(tokens[nr_token].str,substr_start,substr_len);
+				nr_token++;
 				break;
 			}
 		}
@@ -148,8 +123,18 @@ uint32_t expr(char *e, bool *success) {
 	int i = 0;
 	/* TODO: Insert codes to evaluate the expression. */
 	Log("Log : eval(0,%d)",nr_token);
-	for(;i <= nr_token;i++)
+	for(;i <= nr_token;i++){
+		if(tokens[i].type == MULT){
+			if(i == 0)
+				tokens[i].type = DEREF;
+			else{
+				int t = tokens[i - 1].type;
+				if(t == PLUS || t == SUB || t == MULT || t == DIV || t == LP || t == EQ)
+					tokens[i].type = DEREF;	
+			}
+		}
 		Log("%d : %s \n",i,tokens[i].str);
+	}
 	ret = eval(0,nr_token);
 	printf("%s = %d\n",e,ret);
 	
