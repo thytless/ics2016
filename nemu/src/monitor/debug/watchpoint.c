@@ -52,9 +52,11 @@ void free_wp(WP *wp){
 		printf("Invalid watchpoint\n");
 		return;
 	}
-	while(pre != NULL && pre -> next != wp)
-		pre = pre -> next;
-	if(pre == NULL){
+	while(p != NULL && p != wp){
+		pre = p;
+		p = p -> next;
+	}
+	if(p != wp && p == NULL){
 		printf("watchpoint %d is not working\n",wp -> NO);
 		return;
 	}

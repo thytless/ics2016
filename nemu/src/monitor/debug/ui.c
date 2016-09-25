@@ -135,12 +135,14 @@ static int cmd_d(char *args){
 	if(n >= 0 && n <= 31){
 		WP* wp = get_head();
 		while(wp != NULL){
-			if(wp -> NO == n)
+			if(wp -> NO == n){
 				free_wp(wp);
+				break;
+			}
 			wp = wp -> next;
 		}
 		if(wp == NULL)
-			printf("Watchpoint %d is not working",n);
+			printf("Watchpoint %d is not working\n",n);
 	}
 	else
 		printf("Invalid argument : %s\n",args);
