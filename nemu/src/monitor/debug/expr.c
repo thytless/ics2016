@@ -271,18 +271,21 @@ int eval(int p,int q){
 							if(disp == q)
 								break;
 							//parented
-						}
+					 	}
 						disp++;
 						dtype = tokens[disp].type;	
-					}
+					} 
 					if(dtype == PLUS){
 						Log("Log : eval(%d,%d) + eval(%d,%d)",p,disp - 1,disp + 1,q);
 						return eval(p,disp - 1) + eval(disp + 1,q);
 					}
-					else if(dtype == SUB)
+					else if(dtype == SUB){
+						Log("Log : eval(%d,%d) - eval(%d,%d)",p,disp - 1,disp + 1,q);
 						return eval(p,disp - 1) - eval(disp + 1,q);
+					}
 						//no plus or sub or parented
 					else{
+
 						disp = p;
 						dtype = tokens[disp].type;
 						while(disp <= q && dtype != MULT && dtype != DIV){
@@ -291,10 +294,10 @@ int eval(int p,int q){
 								while(!check_parentheses(disp,t))
 									t++;
 								disp = t;
-							}
+							}	
 							disp++;
 							dtype = tokens[disp].type;
-						}
+						}		
 						if(dtype == MULT){
 							Log("Log : eval(%d,%d) * eval(%d,%d)",p,disp - 1,disp + 1,q);
 							return eval(p,disp - 1) * eval(disp + 1,q);
@@ -304,11 +307,11 @@ int eval(int p,int q){
 						else{
 							Log("c");
 							return eval(p + 1,q - 1);
-						}
-					}	
+							}
+						}	
+					}
 				}
-		 	}
-		}
+			}
  		}
 	
 	Log("Unknown error");
