@@ -82,7 +82,7 @@ static int cmd_p(char *args){
 	bool success = true;
 	expr(args,&success);
 	if(!success)
-		printf("Making tokens failed\n");
+		panic("Making tokens failed\n");
 	return 0;
 }
 
