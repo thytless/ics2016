@@ -60,9 +60,11 @@ void free_wp(WP *wp){
 		printf("watchpoint %d is not working\n",wp -> NO);
 		return;
 	}
-	pre -> next = wp -> next;
+	if(wp == head)
+		head = head -> next;
+	else
+		pre -> next = wp -> next;
 	wp -> next = NULL;
-	
 	p = free_;
 	while(p != NULL && wp -> NO > p -> NO){
 		pre = p;
