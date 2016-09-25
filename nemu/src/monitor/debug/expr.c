@@ -27,7 +27,7 @@ static struct rule {
 	{" +",	NOTYPE},				// spaces
 	{"\\+", PLUS},					// plus
 	{"==", EQ},						// equal
-	{"0[xX][0-9a-fA-F]+", HEX},		// hex
+	{"^0[xX][0-9a-fA-F]+", HEX},	// hex
 	{"[0-9]+", DECI},				// decimal
 	{"-", SUB},						// substract
 	{"\\*", MULT},					// multiply
