@@ -89,7 +89,7 @@ static bool make_token(char *e) {
 				char *substr_start = e + position;
 				int substr_len = pmatch.rm_eo;
 
-				Log("match rules[%d] = \"%s\" at position %d with len %d: %.*s", i, rules[i].regex, position, substr_len, substr_len, substr_start);
+		//		Log("match rules[%d] = \"%s\" at position %d with len %d: %.*s", i, rules[i].regex, position, substr_len, substr_len, substr_start);
 				position += substr_len;
 
 				/* TODO:  Now a new token is recognized with rules[i]. Add codes
@@ -122,7 +122,7 @@ uint32_t expr(char *e, bool *success) {
 	int ret;
 	int i = 0;
 	/* TODO: Insert codes to evaluate the expression. */
-	Log("Log : eval(0,%d)",nr_token);
+//	Log("Log : eval(0,%d)",nr_token);
 	for(;i <= nr_token;i++){
 		if(tokens[i].type == MULT){
 			if(i == 0)
@@ -133,7 +133,7 @@ uint32_t expr(char *e, bool *success) {
 					tokens[i].type = DEREF;	
 			}
 		}
-		Log("%d : %s \n",i,tokens[i].str);
+	//	Log("%d : %s \n",i,tokens[i].str);
 	}
 	ret = eval(0,nr_token);
 	printf("%s = %d\n",e,ret);
@@ -239,7 +239,7 @@ int eval(int p,int q){
 				while(!check_parentheses(p,pa))
 					pa++;
 				if(pa == q){
-					Log("deparent");
+			//		Log("deparent");
 					return eval(p + 1,q - 1);
 				}
 			}
@@ -249,7 +249,7 @@ int eval(int p,int q){
 			if(leq == q || leq == p){
 				Log("Syntax error : bad equal sign");	
 				return -1;	
-			}
+			} 
 			else if(leq != -1)
 				return (eval(p,leq - 1) == eval(leq + 1,q) ? 1 : 0);
 			//no equal sign
@@ -272,17 +272,17 @@ int eval(int p,int q){
 							if(disp == p)
 								break;
 							//parented
-					 	}
+				 	 	}
 						disp--;
 						if(disp >= p)
 							dtype = tokens[disp].type;	
-					} 
+				 	} 
 					if(dtype == PLUS){
-						Log("Log : eval(%d,%d) + eval(%d,%d)",p,disp - 1,disp + 1,q);
+				//		Log("Log : eval(%d,%d) + eval(%d,%d)",p,disp - 1,disp + 1,q);
 						return eval(p,disp - 1) + eval(disp + 1,q);
-					}
+				 	}
 					else if(dtype == SUB){
-						Log("Log : eval(%d,%d) - eval(%d,%d)",p,disp - 1,disp + 1,q);
+				//		Log("Log : eval(%d,%d) - eval(%d,%d)",p,disp - 1,disp + 1,q);
 						return eval(p,disp - 1) - eval(disp + 1,q);
 					}
 						//no plus or sub or parented
@@ -295,13 +295,13 @@ int eval(int p,int q){
 								while(!check_parentheses(t,disp))
 									t--;
 								disp = t;
-							}	
+				 			}	
 							disp--;
 							if(disp >= p)
 								dtype = tokens[disp].type;
 						}		
 						if(dtype == MULT){
-							Log("Log : eval(%d,%d) * eval(%d,%d)",p,disp - 1,disp + 1,q);
+				//			Log("Log : eval(%d,%d) * eval(%d,%d)",p,disp - 1,disp + 1,q);
 							return eval(p,disp - 1) * eval(disp + 1,q);
 						}
 						else if(dtype == DIV)
