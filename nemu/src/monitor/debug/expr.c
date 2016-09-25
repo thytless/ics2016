@@ -96,8 +96,9 @@ static bool make_token(char *e) {
 				 * to record the token in the array `tokens'. For certain types
 				 * of tokens, some extra actions should be performed.
 				 */
-				if(i != NOTYPE)
-					tokens[nr_token].type = i;
+				if(i == NOTYPE)
+					continue;
+				tokens[nr_token].type = i;
 				if(i == MULT)
 					if(last == PLUS || last == SUB || last == MULT || last == DIV || last == LP || last == EQ)
 						i = DEREF;
