@@ -106,7 +106,7 @@ static bool make_token(char *e) {
 					last = i;
 					nr_token++;
 				} 
-/*				sw itch(rules[i].token_type) {
+/*				switch(rules[i].token_type) {
 					case NOTYPE : 
 					case PLUS : 
 					case SUB :
