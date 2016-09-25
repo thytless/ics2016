@@ -142,6 +142,7 @@ uint32_t expr(char *e, bool *success) {
 	}
 	int ret;
 	/* TODO: Insert codes to evaluate the expression. */
+	Log("Log : eval(0,%d)\n",nr_token);
 	ret = eval(0,nr_token);
 	printf("%s = %d\n",e,ret);
 	
@@ -260,8 +261,10 @@ int eval(int p,int q){
 					disp++;
 					dtype = tokens[disp].type;	
 				}
-				if(dtype == PLUS)
+				if(dtype == PLUS){
+					Log("Log : eval(%d,%d) + eval(%d,%d)",p,disp - 1,disp + 1,q);
 					return eval(p,disp - 1) + eval(disp + 1,q);
+				}
 				else if(dtype == SUB)
 					return eval(p,disp - 1) - eval(disp + 1,q);
 				//no plus or sub
