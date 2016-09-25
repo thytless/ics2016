@@ -133,8 +133,14 @@ static int cmd_w(char *args){
 static int cmd_d(char *args){
 	int n = atoi(args);
 	if(n >= 0 && n <= 31){
-		WP* pool = get_pool(); 
-		free_wp(&pool[n]);
+		WP* wp = get_head();
+		while(wp != NULL){
+			if(wp -> NO == n)
+				free_wp(wp);
+			wp = wp -> next;
+		}
+		if(wp == NULL)
+			printf("Watchpoint %d is not working",n);
 	}
 	else
 		printf("Invalid argument : %s\n",args);
