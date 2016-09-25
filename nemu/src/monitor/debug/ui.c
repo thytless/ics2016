@@ -91,7 +91,9 @@ static int cmd_info(char *args){
 
 static int cmd_p(char *args){
 	bool success = true;
-	expr(args,&success);
+	int value;
+	value = expr(args,&success);
+	printf("%s = %d",args,value);
 	if(!success)
 		panic("Making tokens failed\n");
 	return 0;

@@ -136,7 +136,7 @@ uint32_t expr(char *e, bool *success) {
 	//	Log("%d : %s \n",i,tokens[i].str);
 	}
 	ret = eval(0,nr_token);
-	printf("%s = %d\n",e,ret);
+//	printf("%s = %d\n",e,ret);
 	
 //	panic("please implement me");
 	return ret;
