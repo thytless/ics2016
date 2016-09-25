@@ -233,12 +233,22 @@ int eval(int p,int q){
 			Log("Parentheses do not match.");
 			return -1;
 		}
-		else{
+		else{ 
+			if(tokens[p].type == LP && tokens[q].type == RP){
+				int pa = p;
+				while(!check_parentheses(p,pa))
+					pa++;
+				if(pa == q){
+					Log("deparent");
+					return eval(p + 1,q - 1);
+				}
+			}
+			//deparent (a+b) -> a+b
 			int leq = last_eq(p,q);
 			assert(leq == -1 || ( leq >= p && leq <= q));
 			if(leq == q || leq == p){
 				Log("Syntax error : bad equal sign");	
-				return -1;
+				return -1;	
 			}
 			else if(leq != -1)
 				return (eval(p,leq - 1) == eval(leq + 1,q) ? 1 : 0);
@@ -247,9 +257,8 @@ int eval(int p,int q){
 				if(tokens[p].type == DEREF && tokens[p + 1].type == LP && tokens[q].type){
 					swaddr_t addr = (swaddr_t)eval(p + 2,q - 1);
 					return swaddr_read(addr,1);
-				}
+					}
 				else{
-					Log("a");
 					disp = p;
 					dtype = tokens[disp].type;
 					while(disp <= q && dtype != PLUS && dtype != SUB){
@@ -258,8 +267,10 @@ int eval(int p,int q){
 							while(!check_parentheses(disp,t))
 								t++;
 							disp = t;
+							//ignore Parentheses
 							if(disp == q)
 								break;
+							//parented
 						}
 						disp++;
 						dtype = tokens[disp].type;	
@@ -270,9 +281,8 @@ int eval(int p,int q){
 					}
 					else if(dtype == SUB)
 						return eval(p,disp - 1) - eval(disp + 1,q);
-						//no plus or sub
+						//no plus or sub or parented
 					else{
-						Log("b");
 						disp = p;
 						dtype = tokens[disp].type;
 						while(disp <= q && dtype != MULT && dtype != DIV){
@@ -297,9 +307,10 @@ int eval(int p,int q){
 						}
 					}	
 				}
-			}
+		 	}
 		}
-	}
+ 		}
+	
 	Log("Unknown error");
 	return -1;
 }
