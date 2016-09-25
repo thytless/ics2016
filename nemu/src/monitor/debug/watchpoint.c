@@ -80,3 +80,7 @@ void free_wp(WP *wp){
 WP* get_head(){
 	return head;
 }
+
+WP*	get_pool(){
+	return wp_pool;
+}
