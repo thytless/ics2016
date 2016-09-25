@@ -259,9 +259,11 @@ int eval(int p,int q){
 					return swaddr_read(addr,1);
 					}
 				else{
+					Log("a");
 					disp = p;
 					dtype = tokens[disp].type;
 					while(disp <= q && dtype != PLUS && dtype != SUB){
+						dtype = tokens[disp].type;	
 						if(dtype == LP){
 							int t = disp;
 							while(!check_parentheses(disp,t))
@@ -273,7 +275,6 @@ int eval(int p,int q){
 							//parented
 					 	}
 						disp++;
-						dtype = tokens[disp].type;	
 					} 
 					if(dtype == PLUS){
 						Log("Log : eval(%d,%d) + eval(%d,%d)",p,disp - 1,disp + 1,q);
@@ -285,7 +286,7 @@ int eval(int p,int q){
 					}
 						//no plus or sub or parented
 					else{
-
+						Log("d");
 						disp = p;
 						dtype = tokens[disp].type;
 						while(disp <= q && dtype != MULT && dtype != DIV){
