@@ -126,7 +126,7 @@ static int cmd_w(char *args){
 	bool success;
 	strcpy(nwp -> expr,args);
 	nwp -> old_value = expr(args,&success);
-	printf("Watchpint %d: %s = %d \n",nwp -> NO,args,nwp -> old_value);
+	printf("Watchpoint %d: %s = %d \n",nwp -> NO,args,nwp -> old_value);
 	return 0;
 }
 
