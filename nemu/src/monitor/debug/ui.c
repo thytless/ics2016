@@ -63,9 +63,9 @@ static int cmd_info(char *args){
 			printf("No working watchpoints\n");
 			return 0;
 		}
-		printf("Watchpoint\tvalue\texpr\n");
+		printf("Watchpoint\tvalue\t\texpr\n");
 		while(info != NULL){
-			printf("    %d\t\t%d\t%s\n",info->NO,info->old_value,info->expr);
+			printf("    %d\t\t%d\t\t%s\n",info->NO,info->old_value,info->expr);
 			info = info -> next;
 		}
 		return 0;
