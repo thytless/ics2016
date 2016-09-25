@@ -79,7 +79,10 @@ static int cmd_info(char *args){
 }
 
 static int cmd_p(char *args){
-
+	bool success = true;
+	expr(args,&success);
+	if(!success)
+		printf("Making tokens failed\n");
 	return 0;
 }
 
