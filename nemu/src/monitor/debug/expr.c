@@ -244,12 +244,12 @@ int eval(int p,int q){
 				return (eval(p,leq - 1) == eval(leq + 1,q) ? 1 : 0);
 			//no equal sign
 			else{
-				Log("this way");
 				if(tokens[p].type == DEREF && tokens[p + 1].type == LP && tokens[q].type){
 					swaddr_t addr = (swaddr_t)eval(p + 2,q - 1);
 					return swaddr_read(addr,1);
 				}
 				else{
+					Log("a");
 					disp = p;
 					dtype = tokens[disp].type;
 					while(disp <= q && dtype != PLUS && dtype != SUB){
@@ -272,24 +272,29 @@ int eval(int p,int q){
 						return eval(p,disp - 1) - eval(disp + 1,q);
 						//no plus or sub
 					else{
+						Log("b");
 						disp = p;
 						dtype = tokens[disp].type;
-						if(dtype == LP){
-						int t = disp;
-						while(!check_parentheses(disp,t))
-							t++;
-							disp = t;
-						}
 						while(disp <= q && dtype != MULT && dtype != DIV){
+							if(dtype == LP){
+								int t = disp;
+								while(!check_parentheses(disp,t))
+									t++;
+								disp = t;
+							}
 							disp++;
 							dtype = tokens[disp].type;
 						}
-						if(dtype == MULT)
+						if(dtype == MULT){
+							Log("Log : eval(%d,%d) * eval(%d,%d)",p,disp - 1,disp + 1,q);
 							return eval(p,disp - 1) * eval(disp + 1,q);
+						}
 						else if(dtype == DIV)
 							return eval(p,disp - 1) / eval(disp + 1,q);
-						else
+						else{
+							Log("c");
 							return eval(p + 1,q - 1);
+						}
 					}	
 				}
 			}
