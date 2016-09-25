@@ -29,7 +29,9 @@ char* rl_gets() {
 }
 
 static int cmd_c(char *args) {
+	printf("Continuing.");
 	cpu_exec(-1);
+
 	return 0;
 }
 
@@ -129,7 +131,13 @@ static int cmd_w(char *args){
 }
 
 static int cmd_d(char *args){
-
+	int n = atoi(args);
+	if(n >= 0 && n <= 31){
+		WP* head = get_head();
+		free_wp(&head[n]);
+	}
+	else
+		printf("Invalid argument : %s\n",args);
 	return 0;
 }
 
