@@ -29,13 +29,11 @@ WP* new_wp(){
 		return NULL;
 	}
 	free_ = free_ -> next;
-	Log("ok1");
 	p = head;
 	while(p != NULL && nwp -> NO > p -> NO){
 		pre = p;
 		p = p -> next;
 	}
-	Log("ok2");
 	if(p == head){
 		nwp -> next = head;
 		head = nwp;
@@ -44,7 +42,6 @@ WP* new_wp(){
 		nwp -> next = p;
 		pre -> next = nwp;
 	}
-	Log("okc");
 	return nwp;
 }
 

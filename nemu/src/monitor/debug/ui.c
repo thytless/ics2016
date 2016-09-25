@@ -110,8 +110,11 @@ static int cmd_w(char *args){
 	WP *nwp = new_wp();
 	bool success;
 	strcpy(nwp -> expr,args);
+	Log("ok1");
 	printf("watchpint %d",nwp -> NO);
+	Log("ok2");
 	nwp -> old_value = expr(args,&success);
+	Log("ok3");
 	return 0;
 }
 
