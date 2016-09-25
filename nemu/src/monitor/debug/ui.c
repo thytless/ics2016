@@ -58,7 +58,18 @@ static int cmd_info(char *args){
 		return 0;
 	}
 	if(strcmp(args,"w") == 0){
-		printf("info: w: Command under Construction\n");
+		WP *info = get_head();
+		if(info == NULL){
+			printf("No working watchpoints\n");
+			return 0;
+		}
+		printf("Watchpoint\tvalue\texpr\n");
+		while(info != NULL){
+			printf("\t%d\t\t%d\t%s",info->NO,info->old_value,info->expr);
+			info = info -> next;
+		}
+		return 0;
+//		printf("info: w: Command under Construction\n");
 	}
 	else if(strcmp(args,"r") == 0){
 		extern CPU_state cpu;
@@ -109,9 +120,8 @@ static int cmd_x(char *args){
 static int cmd_w(char *args){
 	WP *nwp = new_wp();
 	bool success;
-	Log("ok0");
 	strcpy(nwp -> expr,args);
-	printf("watchpint %d",nwp -> NO);
+	printf("Watchpint %d: ",nwp -> NO);
 	nwp -> old_value = expr(args,&success);
 	return 0;
 }

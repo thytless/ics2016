@@ -76,3 +76,7 @@ void free_wp(WP *wp){
 	}
 	return;
 }
+
+WP* get_head(){
+	return head;
+}
