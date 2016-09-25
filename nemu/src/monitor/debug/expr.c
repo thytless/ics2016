@@ -101,7 +101,7 @@ static bool make_token(char *e) {
 				if(i == MULT)
 					if(last == PLUS || last == SUB || last == MULT || last == DIV || last == LP || last == EQ)
 						i = DEREF;
-				if(strcpy(tokens[nr_token].str,substr_start)){
+				if(strncpy(tokens[nr_token].str,substr_start,substr_len)){
 					last = i;
 					nr_token++;
 				} 
