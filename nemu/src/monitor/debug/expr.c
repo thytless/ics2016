@@ -96,12 +96,15 @@ static bool make_token(char *e) {
 				 * to record the token in the array `tokens'. For certain types
 				 * of tokens, some extra actions should be performed.
 				 */
-				tokens[nr_token].type = i;
+				if(i != NOTYPE)
+					tokens[nr_token].type = i;
 				if(i == MULT)
 					if(last == PLUS || last == SUB || last == MULT || last == DIV || last == LP || last == EQ)
 						i = DEREF;
-				if(strcpy(tokens[nr_token].str,substr_start))
+				if(strcpy(tokens[nr_token].str,substr_start)){
+					last = i;
 					nr_token++;
+				}
 /*				switch(rules[i].token_type) {
 					case NOTYPE : 
 					case PLUS : 
