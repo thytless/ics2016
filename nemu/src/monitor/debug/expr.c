@@ -259,23 +259,22 @@ int eval(int p,int q){
 					return swaddr_read(addr,1);
 					}
 				else{
-					Log("a");
-					disp = p;
+					disp = q;
 					dtype = tokens[disp].type;
-					while(disp <= q && dtype != PLUS && dtype != SUB){
+					while(disp >= p && dtype != PLUS && dtype != SUB){
 		//				dtype = tokens[disp].type;	
-						if(dtype == LP){
+						if(dtype == RP){
 							int t = disp;
-							while(!check_parentheses(disp,t))
-								t++;
+							while(!check_parentheses(t,disp))
+								t--;
 							disp = t;
 							//ignore Parentheses
-							if(disp == q)
+							if(disp == p)
 								break;
 							//parented
 					 	}
-						disp++;
-						if(disp <= q)
+						disp--;
+						if(disp >= p)
 							dtype = tokens[disp].type;	
 					} 
 					if(dtype == PLUS){
@@ -288,18 +287,18 @@ int eval(int p,int q){
 					}
 						//no plus or sub or parented
 					else{
-						Log("d");
-						disp = p;
+						disp = q;
 						dtype = tokens[disp].type;
-						while(disp <= q && dtype != MULT && dtype != DIV){
-							if(dtype == LP){
+						while(disp >= p && dtype != MULT && dtype != DIV){
+							if(dtype == RP){
 								int t = disp;
-								while(!check_parentheses(disp,t))
-									t++;
+								while(!check_parentheses(t,disp))
+									t--;
 								disp = t;
 							}	
-							disp++;
-							dtype = tokens[disp].type;
+							disp--;
+							if(disp >= p)
+								dtype = tokens[disp].type;
 						}		
 						if(dtype == MULT){
 							Log("Log : eval(%d,%d) * eval(%d,%d)",p,disp - 1,disp + 1,q);
