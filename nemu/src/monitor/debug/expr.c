@@ -139,7 +139,7 @@ uint32_t expr(char *e, bool *success) {
 	printf("%s = %d\n",e,ret);
 	
 //	panic("please implement me");
-	return 0;
+	return ret;
 }
 
 int eval(int p,int q){
