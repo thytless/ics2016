@@ -23,18 +23,19 @@ void init_wp_pool() {
 WP* new_wp(){
 	WP *p = free_;
 	WP *pre = p;
-	WP *nwp = p;
+	WP *nwp = free_;
 	if(p == NULL){
 		printf("No vacant watchpoint\n");
 		return NULL;
 	}
 	free_ = free_ -> next;
-
+	Log("ok1");
 	p = head;
 	while(p != NULL && nwp -> NO > p -> NO){
 		pre = p;
 		p = p -> next;
 	}
+	Log("ok2");
 	if(p == head){
 		nwp -> next = head;
 		head = nwp;
@@ -43,6 +44,7 @@ WP* new_wp(){
 		nwp -> next = p;
 		pre -> next = nwp;
 	}
+	Log("okc");
 	return nwp;
 }
 
