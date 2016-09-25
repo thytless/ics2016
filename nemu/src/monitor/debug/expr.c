@@ -81,17 +81,17 @@ static bool make_token(char *e) {
 	
 	nr_token = 0;
 
-	while(e[position] != '\0') {
+	while(e[position]  != '\0') {
 		/* Try all rules one by one. */
-		for(i = 0; i < NR_REGEX; i ++) {
-			if(regexec(&re[i], e + position, 1, &pmatch, 0) == 0 && pmatch.rm_so == 0) {
+		for(i = 0; i <  NR_REGEX; i ++) {
+			if(regexec(& re[i], e + position, 1, &pmatch, 0) == 0 && pmatch.rm_so == 0) {
 				char *substr_start = e + position;
 				int substr_len = pmatch.rm_eo;
 
 				Log("match rules[%d] = \"%s\" at position %d with len %d: %.*s", i, rules[i].regex, position, substr_len, substr_len, substr_start);
 				position += substr_len;
 
-				/* TODO: Now a new token is recognized with rules[i]. Add codes
+				/* TODO:  Now a new token is recognized with rules[i]. Add codes
 				 * to record the token in the array `tokens'. For certain types
 				 * of tokens, some extra actions should be performed.
 				 */
@@ -104,8 +104,8 @@ static bool make_token(char *e) {
 				if(strcpy(tokens[nr_token].str,substr_start)){
 					last = i;
 					nr_token++;
-				}
-/*				switch(rules[i].token_type) {
+				} 
+/*				sw itch(rules[i].token_type) {
 					case NOTYPE : 
 					case PLUS : 
 					case SUB :
@@ -144,8 +144,11 @@ uint32_t expr(char *e, bool *success) {
 		return 0;
 	}
 	int ret;
+	int i = 0;
 	/* TODO: Insert codes to evaluate the expression. */
-	Log("Log : eval(0,%d)\n",nr_token);
+	Log("Log : eval(0,%d)",nr_token);
+	for(;i <= nr_token;i++)
+		Log("%d : %s \n",i,tokens[i].str);
 	ret = eval(0,nr_token);
 	printf("%s = %d\n",e,ret);
 	
@@ -156,11 +159,10 @@ uint32_t expr(char *e, bool *success) {
 int eval(int p,int q){
 	int disp, dtype;
 	if(p > q){  
-		Log("Bad expression.\n");
+		Log("Bad expression.");
 		return -1;
 	} 
  	else if(p == q){
-		Log("Way 2\n");
  		switch(tokens[p].type){
 			case IDE : return 0;
 			case DECI : return atoi(tokens[p].str);
@@ -183,7 +185,7 @@ int eval(int p,int q){
 				else if(strcmp(tokens[p].str,"$edi") == 0)
 					return cpu.edi;
 				else{
-					Log("Bad register : %s\n",tokens[p].str);		
+					Log("Bad register : %s",tokens[p].str);		
 					return -1;
 				}
 			}
@@ -205,7 +207,7 @@ int eval(int p,int q){
 				else if(strcmp(tokens[p].str,"$di") == 0)
 					return cpu.gpr[7]._16;
 				else{
-					Log("Bad register : %s\n",tokens[p].str);		
+					Log("Bad register : %s",tokens[p].str);		
 					return -1;
 				}
 			}
@@ -227,22 +229,19 @@ int eval(int p,int q){
 				else if(strcmp(tokens[p].str,"$bh") == 0)
 					return cpu.gpr[7]._8[1];
 				else{
-					Log("Bad register : %s\n",tokens[p].str);		
+					Log("Bad register : %s",tokens[p].str);		
 					return -1;
 				}
 			}
 
 		}
-		Log("?2");
 	}
 	else  if(p + 1 == q){
-		Log("Way 3\n");
 		assert(tokens[p].type == DEREF);
 		swaddr_t addr = (swaddr_t)strtoul(tokens[q].str,0,0);
 		return swaddr_read(addr,1);
 	}
 	else{ 
-		Log("Way 4\n");
 
 		if(!check_parentheses(p,q)){
 			Log("Parentheses do not match.");
@@ -302,9 +301,8 @@ int eval(int p,int q){
 				}
 			}
 		}
-		Log("?4");
 	}
-	Log("Unknown error\n");
+	Log("Unknown error");
 	return -1;
 }
 
