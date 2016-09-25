@@ -28,7 +28,7 @@ static struct rule {
 	{" +",	NOTYPE},				// spaces
 	{"\\+", '+'},					// plus
 	{"==", EQ},						// equal
-	{"^(0[xX])?[0-9a-fA-F]+", HEX},	// hex
+	{"0[xX][0-9a-fA-F]+", HEX},	// hex
 	{"[0-9]+", DECI},				// decimal
 	{"-", '-'},						// substract
 	{"\\*", '*'},					// multiply
@@ -156,12 +156,13 @@ uint32_t expr(char *e, bool *success) {
 
 int eval(int p,int q){
 	int disp, dtype;
-	if(p > q){
+	if(p > q){  
 		Log("Bad expression.\n");
 		return -1;
-	}
-	else if(p == q){
-		switch(tokens[p].type){
+	} 
+ 	else if(p == q){
+		Log("Way 2\n");
+ 		switch(tokens[p].type){
 			case IDE : return 0;
 			case DECI : return atoi(tokens[p].str);
 			case HEX : return strtoul(tokens[p].str,0,0);
@@ -235,22 +236,29 @@ int eval(int p,int q){
 		}	 
 	}
 	else if(p + 1 == q){
+		Log("Way 3\n");
 		assert(tokens[p].type == DEREF);
 		swaddr_t addr = (swaddr_t)strtoul(tokens[q].str,0,0);
 		return swaddr_read(addr,1);
 	}
-	else{
-		if(!check_parentheses(p,q))
-			panic("Parentheses do not match.");
+	else{ 
+		Log("Way 4\n");
+
+		if(!check_parentheses(p,q)){
+			Log("Parentheses do not match.");
+			return -1;
+		}
 		else{
 			int leq = last_eq(p,q);
 			assert(leq == -1 || ( leq >= p && leq <= q));
-			if(leq == q || leq == p)
-				panic("Syntax error : bad equal sign");	
+			if(leq == q || leq == p){
+				Log("Syntax error : bad equal sign");	
+				return -1;
+			}
 			else if(leq != -1)
 				return (eval(p,leq - 1) == eval(leq + 1,q) ? 1 : 0);
 			//no equal sign
-			else{
+			else{ 
 				disp = p;
 				dtype = tokens[disp].type;
 				while(disp <= q && dtype != PLUS && dtype != SUB){
@@ -294,38 +302,8 @@ int eval(int p,int q){
 				}
 			}
 		}
-/*	 	else if(tokens[p].type == LP){
-			int disp = p;
-			while(disp <= q && tokens[disp].type != RP)
-				disp++;
-			switch(tokens[disp + 1].type){
-				case PLUS : return eval(p + 1,disp - 1) + eval(disp + 2,q);
-				case SUB : return eval(p + 1,disp - 1) + eval(disp + 2,q);
-				case DIV :
-				case MULT : {
-					tokens[disp].type = DECI;
-					strcmp(tokens[disp].str,itoa(eval(p + 1,disp - 1)));
-					return eval(disp,q);
-				} 
-			}
-		}
-		else{
-			int domi = p;
-			while(domi <= q && tokens[domi].type != PLUS && tokens[domi].type != SUB)
-				domi++;
-			if(domi == p){
-				domi = p;
-				while(domi <= q && tokens[domi].type != MULT && tokens[domi].type != DIV)
-					domi++;
-				if(domi == q){
-					assert(p + 1 == q && tokens[p].type == DEREF);
-					uint32_t *addr = (uint32_t *)strtoul(tokens[q].str,0,0);
-					return swaddr_read(addr);
-				}
-			}
-		}
-		*/
 	}
+	Log("Unknown error\n");
 	return -1;
 }
 
