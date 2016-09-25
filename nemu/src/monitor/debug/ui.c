@@ -137,6 +137,7 @@ static int cmd_d(char *args){
 		while(wp != NULL){
 			if(wp -> NO == n){
 				free_wp(wp);
+				printf("Watchpoint %d: %s deleted\n",wp -> NO,wp -> expr);
 				break;
 			}
 			wp = wp -> next;
