@@ -123,8 +123,8 @@ static int cmd_w(char *args){
 	WP *nwp = new_wp();
 	bool success;
 	strcpy(nwp -> expr,args);
-	printf("Watchpint %d: ",nwp -> NO);
 	nwp -> old_value = expr(args,&success);
+	printf("Watchpint %d: %s = %d \n",nwp -> NO,args,nwp -> old_value);
 	return 0;
 }
 
