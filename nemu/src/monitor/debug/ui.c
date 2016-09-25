@@ -109,6 +109,7 @@ static int cmd_x(char *args){
 static int cmd_w(char *args){
 	WP *nwp = new_wp();
 	bool success;
+	Log("ok0");
 	strcpy(nwp -> expr,args);
 	Log("ok1");
 	printf("watchpint %d",nwp -> NO);
