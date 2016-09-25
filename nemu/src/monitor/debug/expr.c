@@ -8,9 +8,8 @@
 #include <stdlib.h>
 
 enum { 
-	LP = '(', RP = ')',
-	NOTYPE = 256, PLUS = '+', SUB = '-', MULT = '*', DIV = '/',
-	DEREF, EQ, HEX, DECI, IDE, REG32, REG16, REG8
+	NOTYPE, PLUS, EQ, HEX, DECI, SUB, MULT, DIV,
+	LP, RP, REG32, REG16, REG8, IDE, DEREF
 
 	/* TODO: Add more token types */
 
@@ -26,15 +25,15 @@ static struct rule {
 	 */
 
 	{" +",	NOTYPE},				// spaces
-	{"\\+", '+'},					// plus
+	{"\\+", PLUS},					// plus
 	{"==", EQ},						// equal
-	{"0[xX][0-9a-fA-F]+", HEX},	// hex
+	{"0[xX][0-9a-fA-F]+", HEX},		// hex
 	{"[0-9]+", DECI},				// decimal
-	{"-", '-'},						// substract
-	{"\\*", '*'},					// multiply
-	{"/", '/'},						// divide
-	{"\\(", '('},					// left bracket
-	{"\\)", ')'},					// right bracket
+	{"-", SUB},						// substract
+	{"\\*", MULT},					// multiply
+	{"/", DIV},						// divide
+	{"\\(", LP},					// left bracket
+	{"\\)", RP},					// right bracket
 	{"\\$e(ax|bx|cx|dx|di|si|bp|sp)", REG32},
 									// 32-bit register
 	{"\\$(bx|cx|ax|dx|di|si|bp|sp)", REG16},
@@ -77,7 +76,7 @@ int nr_token;
 
 static bool make_token(char *e) {
 	int position = 0;
-	int i,last;
+	int i,last = 0;
 	regmatch_t pmatch;
 	
 	nr_token = 0;
@@ -233,9 +232,10 @@ int eval(int p,int q){
 				}
 			}
 
-		}	 
+		}
+		Log("?2");
 	}
-	else if(p + 1 == q){
+	else  if(p + 1 == q){
 		Log("Way 3\n");
 		assert(tokens[p].type == DEREF);
 		swaddr_t addr = (swaddr_t)strtoul(tokens[q].str,0,0);
@@ -302,6 +302,7 @@ int eval(int p,int q){
 				}
 			}
 		}
+		Log("?4");
 	}
 	Log("Unknown error\n");
 	return -1;
