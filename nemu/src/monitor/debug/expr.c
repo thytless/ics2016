@@ -51,7 +51,7 @@ static struct rule {
 static regex_t re[NR_REGEX];
 int eval(int,int);
 bool check_parentheses(int,int);
-int last_eq(int,int);
+int last_token(int,int,int);
 /* Rules are used for many times.
  * Therefore we compile them only once before any usage.
  */
@@ -247,21 +247,37 @@ int eval(int p,int q){
 				}
 			}
 			//deparent (a+b) -> a+b
-			int leq = last_eq(p,q);
+			int leq = last_token(p,q,EQ);
 			assert(leq == -1 || ( leq >= p && leq <= q));
 			if(leq == q || leq == p){
 				Log("Syntax error : bad equal sign");	
 				return -1;	
 			} 
-			else if(leq != -1)
-				return (eval(p,leq - 1) == eval(leq + 1,q) ? 1 : 0);
+			else if(leq != -1){
+				if(tokens[leq].type == EQ)
+					return (eval(p,leq - 1) == eval(leq + 1,q));
+				else
+					return (eval(p,leq - 1) != eval(leq + 1,q));
+			}
 			//no equal sign
 			else{
-				if(tokens[p].type == DEREF && tokens[p + 1].type == LP && tokens[q].type){
-					swaddr_t addr = (swaddr_t)eval(p + 2,q - 1);
-					return swaddr_read(addr,1);
-					}
+				leq = last_token(p,q,AND);
+				if(leq == q || leq == p){
+					Log("Syntax error : bad AND/OR sign");	
+					return -1;	
+				} 
+				else if(leq != -1){
+					if(tokens[leq].type == AND)
+						return (eval(p,leq - 1) && eval(leq + 1,q));
+					else
+						return (eval(p,leq - 1) || eval(leq + 1,q));
+				}
 				else{
+					if(tokens[p].type == DEREF && tokens[p + 1].type == LP && tokens[q].type){
+						swaddr_t addr = (swaddr_t)eval(p + 2,q - 1);
+						return swaddr_read(addr,1);
+					} 
+					else{
 					disp = q;
 					dtype = tokens[disp].type;
 					while(disp >= p && dtype != PLUS && dtype != SUB){
@@ -315,9 +331,10 @@ int eval(int p,int q){
 							}
 						}	
 					}
-				}
+			 	}
 			}
- 		}
+		}
+	}
 	
 	Log("Unknown error");
 	return -1;
@@ -339,11 +356,22 @@ bool check_parentheses(int p,int q){
 	else
 		return false;
 }
-int last_eq(int p,int q){
+int last_token(int p,int q,int type){
 	assert(p < q);
 	int disp,last = -1;
+	switch(type){
+	case EQ:{
 	for(disp = p;disp <= q;disp++)
-		if(tokens[disp].type == EQ)
+		if(tokens[disp].type == EQ || tokens[disp].type == NEQ)
 			last = disp;
+			break;
+			}
+	case AND:{
+	for(disp = p;disp <= q;disp++)
+		if(tokens[disp].type == AND || tokens[disp].type == OR)
+			last = disp;		 
+			 break;
+			 }
+	}
 	return last;	
 }
