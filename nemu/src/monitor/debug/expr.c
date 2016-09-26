@@ -9,7 +9,7 @@
 
 enum { 
 	NOTYPE, PLUS, EQ, HEX, DECI, SUB, MULT, DIV,
-	LP, RP, REG32, REG16, REG8, IDE, DEREF
+	LP, RP, REG32, REG16, REG8, IDE, NEQ, AND, OR, DEREF
 
 	/* TODO: Add more token types */
 
@@ -39,7 +39,10 @@ static struct rule {
 	{"\\$(bx|cx|ax|dx|di|si|bp|sp)", REG16},
 	{"\\$(ah|bh|ch|dh|al|bl|cl|dl)", REG8},
 //	{"(?<=\\+|-|\\*|/|\\()\\*", DEREF},	// dereference
-	{"[_a-zA-Z][_0-9a-zA-Z]*", IDE}		// identifier	
+	{"[_a-zA-Z][_0-9a-zA-Z]*", IDE},	// identifier
+	{"!=", NEQ},
+	{"&&", AND},
+	{"||", OR}
 
 };
 
