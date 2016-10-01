@@ -12,8 +12,10 @@ static void do_execute () {
 	op_dest->val = REG(R_ESP);
 	snprintf(op_dest->str, OP_STR_SIZE, "%s",REG_NAME(R_ESP));
 	
-	OPERAND_W(op_dest,op_dest->val - 4);
+	uint32_t temp = op_dest->val - 4;
 	swaddr_write(op_dest->val,1,cpu.eip);
+	OPERAND_W(op_dest,temp);
+	
 	cpu.eip += op_src->val;
 	print_asm_template2();
 }
