@@ -81,7 +81,10 @@ void cpu_exec(volatile uint32_t n) {
 		while(wp != NULL){
 			nv = expr(wp -> expr,&success);
 			if(wp -> old_value != nv){
-				printf("Watchpoint %d activated : %d -> %d\n",wp -> NO,wp -> old_value,nv);
+				if(nv < 0xffff)
+					printf("Watchpoint %d activated : %d -> %d\n",wp -> NO,wp -> old_value,nv);
+				else	
+					printf("Watchpoint %d activated : 0x%X -> 0x%X\n",wp -> NO,wp -> old_value,nv);
 				wp -> old_value = nv;
 				nemu_state = STOP;
 			}
