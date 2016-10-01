@@ -13,7 +13,7 @@ static void do_execute () {
 	snprintf(op_dest->str, OP_STR_SIZE, "%s",REG_NAME(R_ESP));
 	
 	OPERAND_W(op_dest,op_dest->val - 4);
-	swaddr_write(op_dest->val,1,cpu.eip);
+	swaddr_write(op_dest->val,4,cpu.eip);
 	cpu.eip += op_src->val;
 	print_asm_template2();
 }
