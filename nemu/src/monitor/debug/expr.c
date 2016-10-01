@@ -228,7 +228,7 @@ int eval(int p,int q){
 	else  if(p + 1 == q){
 		assert(tokens[p].type == DEREF);
 		swaddr_t addr = (swaddr_t)strtoul(tokens[q].str,0,0);
-		return swaddr_read(addr,1);
+		return swaddr_read(addr,4);
 	}
 	else{ 
 
