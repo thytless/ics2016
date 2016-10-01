@@ -95,7 +95,10 @@ static int cmd_p(char *args){
 	bool success = true;
 	int value;
 	value = expr(args,&success);
-	printf("%s = %d\n",args,value);
+	if(value >= 0xffff)
+		printf("%s = 0x%X\n",args,value);
+	else
+		printf("%s = %d\n",args,value);
 	if(!success)
 		panic("Making tokens failed\n");
 	return 0;
