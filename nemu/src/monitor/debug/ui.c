@@ -128,8 +128,10 @@ static int cmd_w(char *args){
 	WP *nwp = new_wp();
 	bool success;
 	strcpy(nwp -> expr,args);
-	nwp -> old_value = expr(args,&success);
-	printf("Watchpoint %d: %s = %d \n",nwp -> NO,args,nwp -> old_value);
+	if((nwp -> old_value = expr(args,&success)) < 0xffff)
+		printf("Watchpoint %d: %s = %d \n",nwp -> NO,args,nwp -> old_value);
+	else
+		printf("Watchpoint %d: %s = 0x%X \n",nwp -> NO,args,nwp -> old_value);
 	return 0;
 }
 
