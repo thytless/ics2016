@@ -13,7 +13,7 @@ static void do_execute () {
 	snprintf(op_dest->str, OP_STR_SIZE, "%s",REG_NAME(R_ESP));
 	
 	uint32_t temp = op_dest->val - 4;
-	swaddr_write(op_dest->val,0,cpu.eip);
+	swaddr_write(op_dest->val,4,cpu.eip);
 	OPERAND_W(op_dest,temp);
 	
 	cpu.eip += op_src->val;
