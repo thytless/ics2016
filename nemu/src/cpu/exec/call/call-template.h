@@ -21,18 +21,6 @@ static void do_execute () {
 }
 
 #if DATA_BYTE == 2 || DATA_BYTE == 4
-/*
-make_helper(concat(call_disp_, SUFFIX)) {
-	concat(decode_i_,SUFFIX)(eip);
-	op_dest->type = OP_TYPE_REG;
-	op_dest->reg = R_ESP;
-	op_dest->val = REG(R_ESP);
-	snprintf(op_dest->str, OP_STR_SIZE, "%s",REG_NAME(R_ESP));
-	do_execute();
-	return DATA_BYTE;
-}
-*/
-
 make_instr_helper(i)
 #endif
 
