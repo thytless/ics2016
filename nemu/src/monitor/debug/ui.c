@@ -92,7 +92,7 @@ static int cmd_info(char *args){
 		printf("esi\t\t 0x%x\t %d\n",cpu.esi,cpu.esi);
 		printf("edi\t\t 0x%x\t %d\n",cpu.edi,cpu.edi);
 		printf("eip\t\t 0x%x\t\n",cpu.eip);
-		printf("eflags\t 0x%x\t\n",cpu.eflags.val);
+		printf("eflags\t\t 0x%x\t\n",cpu.eflags.val);
 		printf("------------------------------------\n");
 		printf("| OF | DF | IF | SF | ZF | PF | CF |\n");
 		printf("|  %d |  %d |  %d |  %d |  %d |  %d |  %d |\n",
