@@ -5,7 +5,7 @@ make_helper(ret_near){
 	op_src->reg = R_ESP;
 	op_src->val = REG(R_ESP);
 
-	cpu.eip = swaddr_read(op_src->val,4);
+	cpu.eip = swaddr_read(op_src->val,4) - 1;
 	uint32_t temp = op_src->val + 4;
 	OPERAND_W(op_src,temp);
 	return 1;
