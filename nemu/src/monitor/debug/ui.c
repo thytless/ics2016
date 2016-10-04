@@ -95,8 +95,9 @@ static int cmd_info(char *args){
 		printf("eflags\t 0x%x\t\n",cpu.eflags.val);
 		printf("------------------------------------\n");
 		printf("| OF | DF | IF | SF | ZF | PF | CF |\n");
-		printf("| %d | %d | %d | %d | %d | %d | %d |\n",
+		printf("|  %d |  %d |  %d |  %d |  %d |  %d |  %d |\n",
 				 tof, tdf, tif, tsf, tzf, tpf, tcf);
+		printf("------------------------------------\n");
 
 	}
 	else{
