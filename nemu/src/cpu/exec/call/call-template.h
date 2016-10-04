@@ -21,7 +21,12 @@ static void do_execute () {
 }
 
 #if DATA_BYTE == 2 || DATA_BYTE == 4
-make_instr_helper(i)
+make_helper(concat(call_i_,SUFFIX)){
+	int len = concat(decode_i_,SUFFIX)(cpu.eip + 1);
+	cpu.eip += len + 1;
+	do_execute();
+	return 0;
+}
 #endif
 
 #include "cpu/exec/template-end.h"
