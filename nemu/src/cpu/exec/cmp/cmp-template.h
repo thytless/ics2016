@@ -20,7 +20,7 @@ static void do_execute(){
 	cpu.eflags._pf = (n % 2) ? 1 : 0;
 }
 
-make_instr_helper(i2rm);
+make_instr_helper(si2rm);
 
 #include<cpu/exec/template-end.h>
 
