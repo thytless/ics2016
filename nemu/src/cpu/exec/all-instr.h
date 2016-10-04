@@ -31,3 +31,5 @@
 #include "test/test.h"
 
 #include "jump/jz.h"
+
+#include "cmp/cmp.h"
