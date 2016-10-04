@@ -27,7 +27,10 @@
 #include "special/special.h"
 
 #include "call/call.h"
+
 #include "pushpop/push.h"
+#include "pushpop/pop.h"
+
 #include "test/test.h"
 
 #include "jump/jz.h"
