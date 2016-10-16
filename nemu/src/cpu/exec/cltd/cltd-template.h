@@ -11,7 +11,7 @@ make_helper(cltd){
 			OPERAND_W(op_dest,0xFFFF);	
 		else
 			OPERAND_W(op_dest,0);
-	print_asm("cltd cwd");	
+	print_asm("cwtl");	
 	}
 	else{
 		op_dest->type = OP_TYPE_REG;
@@ -21,7 +21,7 @@ make_helper(cltd){
 			OPERAND_W(op_dest,0xFFFFFFFF);	
 		else
 			OPERAND_W(op_dest,0);
-	print_asm("cltd cdq");
+	print_asm("cltd");
 	}
 	return 1;
 }

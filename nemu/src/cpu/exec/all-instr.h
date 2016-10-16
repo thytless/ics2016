@@ -36,7 +36,10 @@
 #include "test/test.h"
 
 #include "jump/jz.h"
+#include "jump/jnz.h"
 #include "jump/jmp.h"
+#include "jump/jl.h"
+#include "jump/jle.h"
 
 #include "cmp/cmp.h"
 
