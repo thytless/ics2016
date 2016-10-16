@@ -1,7 +1,7 @@
-#ifndef __JE_H__
-#define __JE_H__
+#ifndef __JZ_H__
+#define __JZ_H__
 
 make_helper(jz_i_b);
-make_helper(jz_i_l);
+make_helper(jz_i_v);
 
 #endif
