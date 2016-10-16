@@ -3,8 +3,9 @@
 #define instr jl
 
 static void do_execute(){
+	int32_t disp = op_src->val;
 	if(cpu.eflags._sf != cpu.eflags._of)
-		cpu.eip += op_src->val;
+		cpu.eip += disp;
 	print_asm_template1();
 }
 

@@ -16,7 +16,8 @@ static void do_execute () {
 	swaddr_write(temp,4,cpu.eip);
 	OPERAND_W(op_dest,temp);
 	
-	cpu.eip += op_src->val;
+	int32_t disp = op_src->val;
+	cpu.eip += disp;
 	print_asm_template1();
 }
 
