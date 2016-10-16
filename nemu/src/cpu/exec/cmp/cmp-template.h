@@ -6,7 +6,9 @@
 static void do_execute(){
 	int32_t temp = op_src->val;
 	uint32_t utemp = temp;
-	uint32_t sub = utemp - op_dest->val;
+//	uint32_t sub = utemp - op_dest->val;
+	uint32_t sub = op_dest->val - utemp;
+
 	cpu.eflags._zf = sub ? 0 : 1;
 	cpu.eflags._cf = (sub >= 0) ? 0 : 1;
 	cpu.eflags._sf = cpu.eflags._cf;
