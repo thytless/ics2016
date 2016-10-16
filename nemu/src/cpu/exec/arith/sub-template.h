@@ -26,6 +26,7 @@ static void do_execute(){
 		if(sub & 0x1)
 			n++;
 	cpu.eflags._pf = (n % 2) ? 1 : 0;
+	print_asm_template2();
 }
 
 #if DATA_BYTE == 2 || DATA_BYTE == 4
