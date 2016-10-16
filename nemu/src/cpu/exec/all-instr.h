@@ -31,6 +31,7 @@
 
 #include "call/call.h"
 #include "call/ret.h"
+#include "call/leave.h"
 
 #include "pushpop/push.h"
 #include "pushpop/pop.h"
