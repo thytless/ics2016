@@ -13,7 +13,7 @@ make_helper(leave){
 	op_src->reg = R_EBP;
 	op_src->val = REG(R_EBP);
 
-	uint32_t temp = swaddr_read(op_src->val,4) - 1;
+	uint32_t temp = swaddr_read(op_src->val,4);
 	OPERAND_W(op_src,temp);
 	temp = op_dest->val + 4;
 	OPERAND_W(op_dest,temp);
