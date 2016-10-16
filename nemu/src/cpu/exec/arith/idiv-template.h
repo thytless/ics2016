@@ -3,7 +3,7 @@
 #define instr idiv
 
 make_helper(concat(idiv_rm2a_,SUFFIX)){
-	int len = concat(decode_rm_imm_,SUFFIX)(eip);
+	int len = concat(decode_rm2r_,SUFFIX)(eip);
 	assert(op_src->val);
 
 	DATA_TYPE_S divisor = op_src->val;
