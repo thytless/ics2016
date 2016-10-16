@@ -7,7 +7,7 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 
-#define MAX_INSTR_TO_PRINT 1000
+#define MAX_INSTR_TO_PRINT 10000
 void cpu_exec(uint32_t);
 
 /* We use the `readline' library to provide more flexibility to read from stdin. */
