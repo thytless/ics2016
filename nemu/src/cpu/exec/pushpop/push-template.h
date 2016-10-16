@@ -17,7 +17,7 @@ make_helper(concat(push_,regname)){
 	uint32_t temp = op_dest->val - 4;
 	swaddr_write(temp,4,op_src->val);
 	OPERAND_W(op_dest,temp);
-	print_asm("push" str(SUFFIX) "%%%s",REG_NAME(SRC_REG));
+	print_asm("push" str(SUFFIX) " %%%s",REG_NAME(SRC_REG));
 
 	return 1;
 }
