@@ -7,16 +7,25 @@
  *FI
 */
 static void do_execute(){
-	if(op_src->type == 1){
-		int32_t temp = op_src->val;
-		temp = op_dest->val - temp;
-		OPERAND_W(op_dest,temp);
-	}
-	else{
-		uint32_t utemp = op_src->val;
-		utemp = op_dest->val - utemp;
-		OPERAND_W(op_dest,utemp);
-	}	
+	int32_t temp = op_src->val;
+	uint32_t utemp = temp;
+	uint32_t sub = op_dest->val - utemp;
+	OPERAND_W(op_dest,sub);
+
+	cpu.eflags._zf = sub ? 0 : 1;
+	cpu.eflags._cf = (sub >= 0) ? 0 : 1;
+	cpu.eflags._sf = cpu.eflags._cf;
+	if(op_src->val > 0 && op_dest->val < 0 && sub < 0)
+		cpu.eflags._of = 1;
+	else if(op_src->val < 0 && op_dest->val > 0 && sub > 0)
+		cpu.eflags._of = 1;
+	else
+		cpu.eflags._of = 0;
+	int n = 0,i;
+	for(i = 0;i < 8;i++,sub = sub >> 1)
+		if(sub & 0x1)
+			n++;
+	cpu.eflags._pf = (n % 2) ? 1 : 0;
 }
 
 #if DATA_BYTE == 2 || DATA_BYTE == 4

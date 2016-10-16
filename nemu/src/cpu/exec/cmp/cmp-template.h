@@ -3,7 +3,9 @@
 #define instr cmp
 
 static void do_execute(){
-	int sub = op_src->val - op_dest->val;
+	int32_t temp = op_src->val;
+	uint32_t utemp = temp;
+	uint32_t sub = utemp - op_dest->val;
 	cpu.eflags._zf = sub ? 0 : 1;
 	cpu.eflags._cf = (sub >= 0) ? 0 : 1;
 	cpu.eflags._sf = cpu.eflags._cf;
