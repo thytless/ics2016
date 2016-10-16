@@ -3,8 +3,7 @@
 #define instr jle
 
 static void do_execute(){
-	int8_t disp8 = op_src->val;
-	int32_t disp = disp8;
+	int32_t disp = op_src->val;
 	assert(disp < 0);
 	if(cpu.eflags._of != cpu.eflags._sf || cpu.eflags._zf)
 		cpu.eip += disp;
