@@ -3,7 +3,7 @@
 #define instr jnz
 
 static void do_execute(){
-	int32_t disp = op_src->val;
+	int32_t disp = (DATA_TYPE_S)op_src->val;
 	if(!cpu.eflags._zf)
 		cpu.eip += disp;
 	print_asm_template1();
