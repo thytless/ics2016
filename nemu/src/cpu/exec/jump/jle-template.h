@@ -4,7 +4,7 @@
 
 static void do_execute(){
 	int32_t disp = op_src->val;
-	assert(op_src->val == 0xa3);
+	assert(disp == 0xa3);
 	if(cpu.eflags._of != cpu.eflags._sf || cpu.eflags._zf)
 		cpu.eip += disp;
 	print_asm_template1();
