@@ -65,12 +65,12 @@ make_group(group2_cl_v,
 /* 0xf6 */
 make_group(group3_b,
 	inv, inv, inv, inv, 
-	inv, inv, inv, inv)
+	inv, inv, inv, idiv_rm_b)
 
 /* 0xf7 */
 make_group(group3_v,
 	inv, inv, inv, inv, 
-	inv, inv, inv, idiv_rm2a_v)
+	inv, inv, inv, idiv_rm_v)
 
 /* 0xfe */
 make_group(group4,
