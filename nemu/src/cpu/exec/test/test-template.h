@@ -12,7 +12,8 @@ static void do_execute(){
 		if(test & 0x1)
 			n++;
 	cpu.eflags._pf = (n % 2 == 0) ? 1 : 0;
-	cpu.eflags._sf = ((test >> 23) & 0x1) ? 1 : 0;	
+	cpu.eflags._sf = ((test >> 23) & 0x1) ? 1 : 0;
+	print_asm_template2();
 }
 
 make_instr_helper(rm);
