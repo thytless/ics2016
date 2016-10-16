@@ -7,9 +7,8 @@
  *FI
 */
 static void do_execute(){
-	int32_t temp = op_src->val;
-	uint32_t utemp = temp;
-	uint32_t sub = op_dest->val - utemp;
+	DATA_TYPE_S temp = (op_src->size == 8) ? (int8_t)op_src->val : op_src->val;
+	DATA_TYPE_S sub = op_dest->val - temp;
 	OPERAND_W(op_dest,sub);
 
 	cpu.eflags._zf = sub ? 0 : 1;
