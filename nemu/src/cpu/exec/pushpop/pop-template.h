@@ -18,6 +18,7 @@ make_helper(concat(pop_,regname)){
 	uint32_t temp = op_src->val + 4;
 	OPERAND_W(op_src,temp);
 
+	print_asm("pop" str(SUFFIX) " %%%s", REG_NAME(DEST_REG));
 	return 1;
 }
 #endif

@@ -8,6 +8,7 @@ make_helper(ret_near){
 	cpu.eip = swaddr_read(op_src->val,4) - 1;
 	uint32_t temp = op_src->val + 4;
 	OPERAND_W(op_src,temp);
+	print_asm("ret");
 	return 1;
 }
 
