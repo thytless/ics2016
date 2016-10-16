@@ -17,7 +17,7 @@ static void do_execute () {
 	OPERAND_W(op_dest,temp);
 	
 	cpu.eip += op_src->val;
-	print_asm_template2();
+	print_asm_template1();
 }
 
 #if DATA_BYTE == 2 || DATA_BYTE == 4
