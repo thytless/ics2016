@@ -48,7 +48,7 @@ make_helper(concat(idiv_rm2a_,SUFFIX)){
 #endif				
 
 	print_asm_template1();
-	return len + 1;
+	return len + 2;
 }
 
 #include<cpu/exec/template-end.h>
