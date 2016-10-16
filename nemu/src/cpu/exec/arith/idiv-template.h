@@ -6,7 +6,6 @@ make_helper(concat(idiv_rm2a_,SUFFIX)){
 	int len = concat(decode_rm_,SUFFIX)(eip);
 	assert(op_src->val);
 
-	op_dest->type = OP_TYPE_REG;
 	DATA_TYPE_S divisor = op_src->val;
 	assert(divisor);
 
