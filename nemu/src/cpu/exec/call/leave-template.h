@@ -14,7 +14,8 @@ make_helper(leave){
 	assert(op_src->val == 0x7ffffe8);
 
 	OPERAND_W(op_dest,op_src->val);
-	
+	assert(op_dest->val == 0x7ffffe8);
+
 	uint32_t temp = swaddr_read(op_dest->val,4);
 	OPERAND_W(op_src,temp);
 	temp = op_dest->val + 4;
