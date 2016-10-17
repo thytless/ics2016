@@ -43,6 +43,7 @@
 #include "jump/jmp.h"
 #include "jump/jl.h"
 #include "jump/jle.h"
+#include "jump/jg.h"
 
 #include "cmp/cmp.h"
 
