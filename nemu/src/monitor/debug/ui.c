@@ -134,7 +134,11 @@ static int cmd_x(char *args){
 	uint32_t addr = (uint32_t)expr(address,&success);
 	int i = 0;
 		for(;i < len;i++){
-		printf("0x%x : \t 0x%x\n",addr + i * sizeof(uint32_t),swaddr_read(addr + i * sizeof(uint32_t),sizeof(uint32_t)));
+			uint32_t temp = swaddr_read(addr + i * sizeof(uint32_t),sizeof(uint32_t));
+			if(temp >= 0xffff)
+				printf("0x%x : \t 0x%x\n",addr + i * sizeof(uint32_t),temp);
+			else
+				printf("0x%x : \t %d\n",addr + i * sizeof(uint32_t),temp);
 	}
 	return 0;
 }
