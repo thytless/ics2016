@@ -9,6 +9,7 @@ static void do_execute(){
 	uint32_t temp = op_dest->val - 4;
 	swaddr_write(temp,4,op_src->val);
 	OPERAND_W(op_dest,temp);
+	print_asm_template1();
 }
 make_instr_helper(i);
 #else

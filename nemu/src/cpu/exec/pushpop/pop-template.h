@@ -1,23 +1,26 @@
 #include "cpu/exec/template-start.h"
-
+#ifndef _POP_R_
 #define instr pop
-
-
-#ifdef _POP_R_
-make_helper(concat(pop_,regname)){
-	op_src->type = OP_TYPE_REG;
-	op_src->reg = R_ESP;
-	op_src->val = REG(R_ESP);
-	
+static void do_execute(){
 	op_dest->type = OP_TYPE_REG;
-	op_dest->reg = DEST_REG;
-	op_dest->val = REG(DEST_REG);
+	op_dest->reg = R_ESP;
+	op_dest->val = REG(R_ESP);
 
-	uint32_t read = swaddr_read(op_src->val,4);
-	OPERAND_W(op_dest,read);
-	uint32_t temp = op_src->val + 4;
-	OPERAND_W(op_src,temp);
+	uint32_t read = swaddr_read(op_dest->val,4);
+	OPERAND_W(op_src,read);
+	uint32_t temp = op_dest->val + 4;
+	OPERAND_W(op_dest,temp);
+	print_asm_template1();
+}
+make_instr_helper(i);
+#else
+make_helper(concat4(pop_,regname,_,SUFFIX)){
+	
+	op_src->type = OP_TYPE_REG;
+	op_src->reg = DEST_REG;
+	op_src->val = REG(DEST_REG);
 
+	do_execute();
 	print_asm("pop" str(SUFFIX) " %%%s", REG_NAME(DEST_REG));
 	return 1;
 }

@@ -2,13 +2,12 @@
 #define __POP_H__
 
 
-make_helper(pop_eax);
-make_helper(pop_ecx);
-make_helper(pop_edx);
-make_helper(pop_ebx);
-make_helper(pop_esp);
-make_helper(pop_ebp);
-make_helper(pop_esi);
-make_helper(pop_edi);
-
+make_helper(pop_eax_v);
+make_helper(pop_ecx_v);
+make_helper(pop_edx_v);
+make_helper(pop_ebx_v);
+make_helper(pop_esp_v);
+make_helper(pop_ebp_v);
+make_helper(pop_esi_v);
+make_helper(pop_edi_v);
 #endif
