@@ -18,7 +18,7 @@ make_helper(leave){
 	OPERAND_W(op_src,temp);
 	temp = op_dest->val + 4;
 	OPERAND_W(op_dest,temp);
-
+	print_asm("leave");
 	return 1;
 }
 
