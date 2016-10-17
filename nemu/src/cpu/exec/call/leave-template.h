@@ -11,6 +11,7 @@ make_helper(leave){
 	op_src->type = OP_TYPE_REG;
 	op_src->reg = R_EBP;
 	op_src->val = REG(R_EBP);
+	assert(op_src->val == 0x7ffffe8);
 
 	OPERAND_W(op_dest,op_src->val);
 	
