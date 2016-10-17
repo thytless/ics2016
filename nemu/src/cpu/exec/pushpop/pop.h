@@ -10,4 +10,5 @@ make_helper(pop_esp_v);
 make_helper(pop_ebp_v);
 make_helper(pop_esi_v);
 make_helper(pop_edi_v);
+make_helper(pop_rm_v);
 #endif

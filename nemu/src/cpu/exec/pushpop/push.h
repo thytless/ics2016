@@ -12,4 +12,5 @@ make_helper(push_esi_v);
 make_helper(push_edi_v);
 make_helper(push_i_v);
 make_helper(push_i_b);
+make_helper(push_rm_v);
 #endif
