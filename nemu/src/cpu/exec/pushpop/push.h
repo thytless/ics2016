@@ -2,13 +2,14 @@
 #define __PUSH_H__
 
 
-make_helper(push_eax);
-make_helper(push_ecx);
-make_helper(push_edx);
-make_helper(push_ebx);
-make_helper(push_esp);
-make_helper(push_ebp);
-make_helper(push_esi);
-make_helper(push_edi);
-
+make_helper(push_eax_v);
+make_helper(push_ecx_v);
+make_helper(push_edx_v);
+make_helper(push_ebx_v);
+make_helper(push_esp_v);
+make_helper(push_ebp_v);
+make_helper(push_esi_v);
+make_helper(push_edi_v);
+make_helper(push_i_v);
+make_helper(push_i_b);
 #endif
