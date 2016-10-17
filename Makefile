@@ -55,7 +55,8 @@ clean: clean-cpp
 
 #USERPROG := obj/testcase/mov-c
 #USERPROG := obj/testcase/wanshu
-USERPROG := obj/testcase/bubble-sort
+#USERPROG := obj/testcase/bubble-sort
+USERPROG := obj/testcase/bit
 ENTRY := $(USERPROG)
 
 entry: $(ENTRY)
