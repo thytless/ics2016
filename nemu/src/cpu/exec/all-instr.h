@@ -38,6 +38,7 @@
 
 #include "test/test.h"
 
+#include "jump/jbe.h"
 #include "jump/jz.h"
 #include "jump/jnz.h"
 #include "jump/jmp.h"
