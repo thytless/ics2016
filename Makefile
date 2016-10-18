@@ -67,8 +67,7 @@ clean: clean-cpp
 
 # g USERPROG := obj/testcase/matrix-mul-small
 # g USERPROG := obj/testcase/matrix-mul
-USERPROG := obj/testcase/max
-
+# g USERPROG := obj/testcase/max
 # u USERPROG := obj/testcase/min3
 # u USERPROG := obj/testcase/movsx
 # u USERPROG := obj/testcase/mul-longlong
@@ -78,7 +77,7 @@ USERPROG := obj/testcase/max
 # u USERPROG := obj/testcase/switch
 # u USERPROG := obj/testcase/quick-sort
 # u USERPROG := obj/testcase/select-sort
-# b USERPROG := obj/testcase/shuixianhua
+USERPROG := obj/testcase/shuixianhua
 
 # b USERPROG := obj/testcase/sub-longlong
 
