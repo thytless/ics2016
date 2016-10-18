@@ -69,11 +69,11 @@ clean: clean-cpp
 #USERPROG := obj/testcase/max							 
 #USERPROG := obj/testcase/min3					
 #USERPROG := obj/testcase/movsx					#b
-USERPROG := obj/testcase/mul-longlong			#u
+#USERPROG := obj/testcase/mul-longlong			#b
 #USERPROG := obj/testcase/pascal						 
 #USERPROG := obj/testcase/prime							 
 #USERPROG := obj/testcase/sum
-#USERPROG := obj/testcase/switch				#u
+USERPROG := obj/testcase/switch		       	#u
 #USERPROG := obj/testcase/quick-sort			#u
 #USERPROG := obj/testcase/select-sort			#u
 #USERPROG := obj/testcase/shuixianhua			
