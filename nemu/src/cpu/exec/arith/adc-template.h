@@ -3,8 +3,8 @@
 #define instr adc
 
 static void do_execute(){
-	DATA_TYPE temp = (op_src->size == 1) ? (int8_t)op_src->val : op_src->val;
-	DATA_TYPE sum = op_dest->val + temp + cpu.eflags._cf;
+	DATA_TYPE_S temp = (op_src->size == 1) ? (int8_t)op_src->val : op_src->val;
+	DATA_TYPE_S sum = op_dest->val + temp + cpu.eflags._cf;
 	OPERAND_W(op_dest,sum);
 
 	cpu.eflags._zf = sum ? 0 : 1;
