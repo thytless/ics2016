@@ -14,12 +14,18 @@ make_instr_helper(rm);
 #endif
 #else
 make_helper(concat4(push_,regname,_,SUFFIX)){
-
+/*
 	op_src->type = OP_TYPE_REG;
 	op_src->reg = SRC_REG;
 	op_src->val = REG(SRC_REG);
 
 	do_execute();
+	*/
+	uint32_t temp = cpu.esp - 4;
+	swaddr_write(temp,4,REG(SRC_REG));
+	cpu.esp -= 4;
+	print_asm_template1();
+	
 	print_asm("push" str(SUFFIX) " %%%s",REG_NAME(SRC_REG));
 
 	return 1;
