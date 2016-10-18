@@ -7,7 +7,7 @@
  *FI
 */
 static void do_execute(){
-	DATA_TYPE_S temp = (op_src->size == 8) ? (int8_t)op_src->val : op_src->val;
+	DATA_TYPE_S temp = (op_src->size == 1) ? (int8_t)op_src->val : op_src->val;
 	DATA_TYPE_S sub = op_dest->val - temp - cpu.eflags._cf;
 	OPERAND_W(op_dest,sub);
 

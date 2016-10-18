@@ -8,7 +8,7 @@ static void do_execute(){
 	OPERAND_W(op_dest,sum);
 
 	cpu.eflags._zf = sum ? 0 : 1;
-	cpu.eflags._sf = sum >> (op_src->size * 8 - 1);
+	cpu.eflags._sf = sum >> (DATA_BYTE * 8 - 1);
 
 	if(op_src->val > 0 && op_dest->val > 0 && sum < op_src->val)
 		cpu.eflags._cf = 1;
