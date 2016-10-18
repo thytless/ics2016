@@ -62,8 +62,11 @@ clean: clean-cpp
 #USERPROG := obj/testcase/fact
 #USERPROG := obj/testcase/fib
 #USERPROG := obj/testcase/gotbaha
-USERPROG := obj/testcase/if-else
-#USERPROG := obj/testcase/integral
+#USERPROG := obj/testcase/if-else
+# USERPROG := obj/testcase/integral
+#USERPROG := obj/testcase/leap-year
+USERPROG := obj/testcase/matrix-mul-small
+
 
 ENTRY := $(USERPROG)
 
