@@ -2,14 +2,10 @@
 #ifndef _POP_R_
 #define instr pop
 static void do_execute(){
-	op_dest->type = OP_TYPE_REG;
-	op_dest->reg = R_ESP;
-	op_dest->val = REG(R_ESP);
 
-	uint32_t read = swaddr_read(op_dest->val,4);
+	uint32_t read = swaddr_read(cpu.esp,4);
 	OPERAND_W(op_src,read);
-	uint32_t temp = op_dest->val + 4;
-	OPERAND_W(op_dest,temp);
+	cpu.esp += 4;
 	print_asm_template1();
 }
 make_instr_helper(i);

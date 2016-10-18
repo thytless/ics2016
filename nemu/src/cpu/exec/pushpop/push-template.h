@@ -2,13 +2,10 @@
 #ifndef _PUSH_R_
 #define instr push
 static void do_execute(){
-	op_dest->type = OP_TYPE_REG;
-	op_dest->reg = R_ESP;
-	op_dest->val = REG(R_ESP);
 
-	uint32_t temp = op_dest->val - 4;
+	uint32_t temp = cpu.esp - 4;
 	swaddr_write(temp,4,op_src->val);
-	OPERAND_W(op_dest,temp);
+	cpu.esp -= 4;
 	print_asm_template1();
 }
 make_instr_helper(i);
