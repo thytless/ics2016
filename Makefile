@@ -52,36 +52,33 @@ clean: clean-cpp
 
 
 ##### some convinient rules #####
-
-# g USERPROG := obj/testcase/mov-c
-# g USERPROG := obj/testcase/wanshu
-# g USERPROG := obj/testcase/bubble-sort
-# g USERPROG := obj/testcase/add
-# g USERPROG := obj/testcase/add-longlong
-# g USERPROG := obj/testcase/bit
-# g USERPROG := obj/testcase/fact
-# g USERPROG := obj/testcase/fib
-# g USERPROG := obj/testcase/gotbaha
-# g USERPROG := obj/testcase/if-else
-USERPROG := obj/testcase/leap-year
-
-# g USERPROG := obj/testcase/matrix-mul-small
-# g USERPROG := obj/testcase/matrix-mul
-# g USERPROG := obj/testcase/max
-# u USERPROG := obj/testcase/min3
-# u USERPROG := obj/testcase/movsx
-# u USERPROG := obj/testcase/mul-longlong
-# g USERPROG := obj/testcase/pascal
-# g USERPROG := obj/testcase/prime
-# g USERPROG := obj/testcase/sum
-# u USERPROG := obj/testcase/switch
-# u USERPROG := obj/testcase/quick-sort
-# u USERPROG := obj/testcase/select-sort
-# b USERPROG := obj/testcase/shuixianhua
-
-# b USERPROG := obj/testcase/sub-longlong
-
-# u USERPROG := obj/testcase/to-lower-case
+		
+#USERPROG := obj/testcase/mov-c							 
+#USERPROG := obj/testcase/wanshu						 
+#USERPROG := obj/testcase/bubble-sort					 
+#USERPROG := obj/testcase/add							 
+#USERPROG := obj/testcase/add-longlong					 
+#USERPROG := obj/testcase/bit							 
+#USERPROG := obj/testcase/fact							 
+#USERPROG := obj/testcase/fib							 
+#USERPROG := obj/testcase/gotbaha						 
+#USERPROG := obj/testcase/if-else						
+#USERPROG := obj/testcase/leap-year				#b
+#USERPROG := obj/testcase/matrix-mul-small				 
+#USERPROG := obj/testcase/matrix-mul					 
+#USERPROG := obj/testcase/max							 
+#USERPROG := obj/testcase/min3					#u
+#USERPROG := obj/testcase/movsx					#u
+#USERPROG := obj/testcase/mul-longlong			#u
+#USERPROG := obj/testcase/pascal						 
+#USERPROG := obj/testcase/prime							 
+#USERPROG := obj/testcase/sum
+#USERPROG := obj/testcase/switch				#u
+#USERPROG := obj/testcase/quick-sort			#u
+#USERPROG := obj/testcase/select-sort			#u
+#USERPROG := obj/testcase/shuixianhua			#b
+#USERPROG := obj/testcase/sub-longlong			#b
+#USERPROG := obj/testcase/to-lower-case
 
 # f USERPROG := obj/testcase/struct
 # f USERPROG := obj/testcase/string
