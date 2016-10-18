@@ -77,9 +77,9 @@ clean: clean-cpp
 # u USERPROG := obj/testcase/switch
 # u USERPROG := obj/testcase/quick-sort
 # u USERPROG := obj/testcase/select-sort
-USERPROG := obj/testcase/shuixianhua
+# b USERPROG := obj/testcase/shuixianhua
 
-# b USERPROG := obj/testcase/sub-longlong
+USERPROG := obj/testcase/sub-longlong
 
 # u USERPROG := obj/testcase/to-lower-case
 
