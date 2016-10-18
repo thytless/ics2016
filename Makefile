@@ -72,8 +72,8 @@ clean: clean-cpp
 # u USERPROG := obj/testcase/min3
 # u USERPROG := obj/testcase/movsx
 # u USERPROG := obj/testcase/mul-longlong
-USERPROG := obj/testcase/pascal
-#USERPROG := obj/testcase/prime
+#USERPROG := obj/testcase/pascal
+USERPROG := obj/testcase/prime
 #USERPROG := obj/testcase/sum
 #USERPROG := obj/testcase/switch
 
