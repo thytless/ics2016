@@ -53,30 +53,43 @@ clean: clean-cpp
 
 ##### some convinient rules #####
 
-#USERPROG := obj/testcase/mov-c
-#USERPROG := obj/testcase/wanshu
-#USERPROG := obj/testcase/bubble-sort
-#USERPROG := obj/testcase/add
-#USERPROG := obj/testcase/add-longlong
-#USERPROG := obj/testcase/bit
-#USERPROG := obj/testcase/fact
-#USERPROG := obj/testcase/fib
-#USERPROG := obj/testcase/gotbaha
-#USERPROG := obj/testcase/if-else
-# ? USERPROG := obj/testcase/integral
+# g USERPROG := obj/testcase/mov-c
+# g USERPROG := obj/testcase/wanshu
+# g USERPROG := obj/testcase/bubble-sort
+# g USERPROG := obj/testcase/add
+# g USERPROG := obj/testcase/add-longlong
+# g USERPROG := obj/testcase/bit
+# g USERPROG := obj/testcase/fact
+# g USERPROG := obj/testcase/fib
+# g USERPROG := obj/testcase/gotbaha
+# g USERPROG := obj/testcase/if-else
 # b USERPROG := obj/testcase/leap-year
 #USERPROG := obj/testcase/matrix-mul-small
 #   USERPROG := obj/testcase/matrix-mul
-
 # b USERPROG := obj/testcase/max
 # u USERPROG := obj/testcase/min3
 # u USERPROG := obj/testcase/movsx
 # u USERPROG := obj/testcase/mul-longlong
-#USERPROG := obj/testcase/pascal
-#USERPROG := obj/testcase/prime
-#USERPROG := obj/testcase/sum
-USERPROG := obj/testcase/switch
+# g USERPROG := obj/testcase/pascal
+# g USERPROG := obj/testcase/prime
+# g USERPROG := obj/testcase/sum
+# u USERPROG := obj/testcase/switch
+USERPROG := obj/testcase/quick-sort
+# g USERPROG := obj/testcase/select-sort
+# g USERPROG := obj/testcase/shuixianhua
+# g USERPROG := obj/testcase/sub-longlong
+# g USERPROG := obj/testcase/to-lower-case
 
+# f USERPROG := obj/testcase/struct
+# f USERPROG := obj/testcase/string
+# f USERPROG := obj/testcase/hello-str
+
+
+# n USERPROG := obj/testcase/hello
+# n USERPROG := obj/testcase/hello-inline-asm
+# n USERPROG := obj/testcase/integral
+# n USERPROG := obj/testcase/quadratic-eq
+# n USERPROG := obj/testcase/print-FLOAT
 ENTRY := $(USERPROG)
 
 entry: $(ENTRY)
