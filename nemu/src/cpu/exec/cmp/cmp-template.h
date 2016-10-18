@@ -10,9 +10,11 @@ static void do_execute(){
 	cpu.eflags._zf = sub ? 0 : 1;
 	cpu.eflags._cf = (sub >= 0) ? 0 : 1;
 	cpu.eflags._sf = cpu.eflags._cf;
-	if(op_src->val <= 0 && op_dest->val >= 0 && cpu.eflags._sf)
+	bool src_sign = op_src->val >> (op_src->size * 8 - 1);
+	bool dest_sign = op_dest->val >> (op_dest->size * 8 - 1);
+	if(src_sign && !dest_sign && cpu.eflags._sf)
 		cpu.eflags._of = 1;
-	else if(op_src->val >= 0 && op_dest->val <= 0 && !cpu.eflags._sf)
+	else if(!src_sign && dest_sign && !cpu.eflags._sf)
 		cpu.eflags._of = 1;
 	else
 		cpu.eflags._of = 0;
