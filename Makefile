@@ -53,8 +53,8 @@ clean: clean-cpp
 
 ##### some convinient rules #####
 
-USERPROG := obj/testcase/mov-c
-#USERPROG := obj/testcase/wanshu
+#USERPROG := obj/testcase/mov-c
+USERPROG := obj/testcase/wanshu
 #USERPROG := obj/testcase/bubble-sort
 #USERPROG := obj/testcase/add
 #USERPROG := obj/testcase/add-longlong
