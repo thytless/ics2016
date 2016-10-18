@@ -3,12 +3,14 @@
 #define instr add
 
 static void do_execute(){
-	DATA_TYPE temp = (op_src->size == 1) ? (int8_t)op_src->val : op_src->val;
-	DATA_TYPE sum = op_dest->val + temp;
+	DATA_TYPE_S temp = (op_src->size == 1) ? (int8_t)op_src->val : op_src->val;
+//	DATA_TYPE_S temp = (op_src->size == 8) ? (int8_t)op_src->val : op_src->val;
+	DATA_TYPE_S sum = op_dest->val + temp;
 	OPERAND_W(op_dest,sum);
 
 	cpu.eflags._zf = sum ? 0 : 1;
 	cpu.eflags._sf = sum >> (op_src->size * 8 - 1);
+//	cpu.eflags._sf = sum >> (DATA_BYTE * 8 - 1);
 
 	if(op_src->val > 0 && op_dest->val > 0 && sum < op_src->val)
 		cpu.eflags._cf = 1;
