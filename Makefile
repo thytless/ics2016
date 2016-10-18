@@ -63,7 +63,7 @@ clean: clean-cpp
 # g USERPROG := obj/testcase/fib
 # g USERPROG := obj/testcase/gotbaha
 # g USERPROG := obj/testcase/if-else
-# b USERPROG := obj/testcase/leap-year
+USERPROG := obj/testcase/leap-year
 
 # g USERPROG := obj/testcase/matrix-mul-small
 # g USERPROG := obj/testcase/matrix-mul
@@ -79,7 +79,7 @@ clean: clean-cpp
 # u USERPROG := obj/testcase/select-sort
 # b USERPROG := obj/testcase/shuixianhua
 
-USERPROG := obj/testcase/sub-longlong
+# b USERPROG := obj/testcase/sub-longlong
 
 # u USERPROG := obj/testcase/to-lower-case
 
