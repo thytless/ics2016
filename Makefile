@@ -64,12 +64,12 @@ clean: clean-cpp
 #USERPROG := obj/testcase/gotbaha
 #USERPROG := obj/testcase/if-else
 # ? USERPROG := obj/testcase/integral
-USERPROG := obj/testcase/leap-year
+# b USERPROG := obj/testcase/leap-year
 #USERPROG := obj/testcase/matrix-mul-small
 #   USERPROG := obj/testcase/matrix-mul
 
-#USERPROG := obj/testcase/max
-#USERPROG := obj/testcase/min3
+# b USERPROG := obj/testcase/max
+USERPROG := obj/testcase/min3
 # u USERPROG := obj/testcase/movsx
 #USERPROG := obj/testcase/mul-longlong
 #USERPROG := obj/testcase/pascal
