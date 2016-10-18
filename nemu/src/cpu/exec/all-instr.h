@@ -52,3 +52,5 @@
 #include "cmp/cmp.h"
 
 #include "cltd/cltd.h"
+
+#include "setcc/setnz.h"
