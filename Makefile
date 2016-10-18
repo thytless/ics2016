@@ -57,7 +57,7 @@ clean: clean-cpp
 #USERPROG := obj/testcase/wanshu						 
 #USERPROG := obj/testcase/bubble-sort					 
 #USERPROG := obj/testcase/add							 
-USERPROG := obj/testcase/add-longlong					 
+#USERPROG := obj/testcase/add-longlong					 
 #USERPROG := obj/testcase/bit							 
 #USERPROG := obj/testcase/fact							 
 #USERPROG := obj/testcase/fib							 
@@ -76,7 +76,7 @@ USERPROG := obj/testcase/add-longlong
 #USERPROG := obj/testcase/switch				#u
 #USERPROG := obj/testcase/quick-sort			#u
 #USERPROG := obj/testcase/select-sort			#u
-#USERPROG := obj/testcase/shuixianhua			#b
+USERPROG := obj/testcase/shuixianhua			#b
 #USERPROG := obj/testcase/sub-longlong			#b
 #USERPROG := obj/testcase/to-lower-case
 
