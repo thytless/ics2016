@@ -80,8 +80,9 @@ clean: clean-cpp
 # u USERPROG := obj/testcase/select-sort
 # b USERPROG := obj/testcase/shuixianhua
 
-USERPROG := obj/testcase/sub-longlong
-# g USERPROG := obj/testcase/to-lower-case
+# b USERPROG := obj/testcase/sub-longlong
+
+USERPROG := obj/testcase/to-lower-case
 
 # f USERPROG := obj/testcase/struct
 # f USERPROG := obj/testcase/string
