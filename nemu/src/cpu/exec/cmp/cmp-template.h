@@ -4,12 +4,13 @@
 
 
 static void do_execute(){
-	DATA_TYPE_S temp = (op_src->type == 1) ? (int8_t)op_src->val : op_src->val;
+//	DATA_TYPE_S temp = (op_src->type == 8) ? (int8_t)op_src->val : op_src->val;//must be 8
+	DATA_TYPE_S temp = (ops_decoded.opcode == 0x83) ? (int8_t)op_src->val : op_src->val;
 	DATA_TYPE_S sub = op_dest->val - temp;
 
 	cpu.eflags._zf = sub ? 0 : 1;
-	cpu.eflags._cf = (sub >= 0) ? 0 : 1;
-	cpu.eflags._sf = cpu.eflags._cf;
+	cpu.eflags._sf = sub >> (DATA_BYTE * 8 - 1);
+	cpu.eflags._cf = ((DATA_TYPE)op_dest->val < (DATA_TYPE)temp);
 	bool src_sign = op_src->val >> (op_src->size * 8 - 1);
 	bool dest_sign = op_dest->val >> (op_dest->size * 8 - 1);
 	if(src_sign && !dest_sign && cpu.eflags._sf)

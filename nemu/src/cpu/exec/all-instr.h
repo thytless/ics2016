@@ -3,6 +3,7 @@
 #include "data-mov/mov.h"
 #include "data-mov/xchg.h"
 #include "data-mov/movz.h"
+#include "data-mov/movsx.h"
 
 #include "arith/dec.h"
 #include "arith/inc.h"
@@ -41,6 +42,7 @@
 
 #include "test/test.h"
 
+#include "jump/ja.h"
 #include "jump/jbe.h"
 #include "jump/jz.h"
 #include "jump/jnz.h"
@@ -48,6 +50,7 @@
 #include "jump/jl.h"
 #include "jump/jle.h"
 #include "jump/jg.h"
+#include "jump/jge.h"
 
 #include "cmp/cmp.h"
 
