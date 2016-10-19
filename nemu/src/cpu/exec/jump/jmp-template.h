@@ -12,7 +12,7 @@ make_helper(concat(jmp_i_,SUFFIX)){
 
 #if DATA_BYTE == 2 || DATA_BYTE == 4
 make_helper(concat(jmp_rm_,SUFFIX)){
-	int len = concat(decode_rm_,SUFFIX)(eip + 1);
+	int len = concat(decode_rm_,SUFFIX)(eip);
 	cpu.eip = (DATA_BYTE == 2) ? 0x0000FFFF & op_src->val : op_src->val;
 	print_asm("jmp" str(SUFFIX) " %d",cpu.eip);
 	return len + 1;
