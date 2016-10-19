@@ -8,7 +8,7 @@ static void do_execute(){
 		case 0xeb:case 0xe9:
 			cpu.eip += temp;break;
 		case 0xFF:
-			cpu.eip = temp;
+			cpu.eip = temp - 2;
 	}
 	print_asm("jmp" str(SUFFIX) " %x",cpu.eip);
 }
