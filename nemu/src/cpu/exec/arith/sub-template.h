@@ -13,8 +13,8 @@ static void do_execute(){
 	OPERAND_W(op_dest,sub);
 
 	cpu.eflags._zf = sub ? 0 : 1;
-	cpu.eflags._cf = sub >> (DATA_BYTE * 8 - 1);
-	cpu.eflags._sf = cpu.eflags._cf;
+	cpu.eflags._sf = sub >> (DATA_BYTE * 8 - 1);
+	cpu.eflags._cf = ((DATA_TYPE)op_dest->val < (DATA_TYPE)temp);
 	bool src_sign = op_src->val >> (op_src->size * 8 - 1);
 	bool dest_sign = op_dest->val >> (op_dest->size * 8 - 1);
 	if(src_sign && !dest_sign && cpu.eflags._sf)
