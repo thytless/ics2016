@@ -66,8 +66,8 @@ clean: clean-cpp
 #USERPROG := obj/testcase/leap-year				
 #USERPROG := obj/testcase/matrix-mul-small				 
 #USERPROG := obj/testcase/matrix-mul					 
-USERPROG := obj/testcase/max
-#USERPROG := obj/testcase/min3					#u
+#USERPROG := obj/testcase/max
+USERPROG := obj/testcase/min3					
 #USERPROG := obj/testcase/movsx					#u
 #USERPROG := obj/testcase/mul-longlong			#u
 #USERPROG := obj/testcase/pascal						 
