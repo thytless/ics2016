@@ -3,25 +3,19 @@
 #define instr cltd
 
 make_helper(cltd){
-	if(!(REG(R_EAX)&0xFFFF0000)){
-		op_dest->type = OP_TYPE_REG;
-		op_dest->reg = R_DX;
-		op_dest->val = REG(R_DX);
-		if(REG(R_AX) < 0)
-			OPERAND_W(op_dest,0xFFFF);	
+	if(ops_decoded.is_operand_size_16){
+		if(REG(R_AX) >> 0xf)
+			cpu.edx |= 0x0000FFFF;
 		else
-			OPERAND_W(op_dest,0);
-	print_asm("cwtl");	
+			cpu.edx &= 0xFFFF0000; 
+		print_asm("cwtl");	
 	}
 	else{
-		op_dest->type = OP_TYPE_REG;
-		op_dest->reg = R_EDX;
-		op_dest->val = REG(R_EDX);
-		if(REG(R_EAX) < 0)
-			OPERAND_W(op_dest,0xFFFFFFFF);	
+		if(REG(R_EAX) >> 0x1f)
+			cpu.edx = 0xFFFFFFFF;
 		else
-			OPERAND_W(op_dest,0);
-	print_asm("cltd");
+			cpu.edx = 0; 
+		print_asm("cltd");
 	}
 	return 1;
 }
