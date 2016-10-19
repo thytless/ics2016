@@ -66,7 +66,7 @@ clean: clean-cpp
 #USERPROG := obj/testcase/leap-year				
 #USERPROG := obj/testcase/matrix-mul-small				 
 #USERPROG := obj/testcase/matrix-mul					 
-USERPROG := obj/testcase/max							 
+#USERPROG := obj/testcase/max							 
 #USERPROG := obj/testcase/min3					
 #USERPROG := obj/testcase/movsx					#b
 #USERPROG := obj/testcase/mul-longlong			#b
@@ -77,7 +77,7 @@ USERPROG := obj/testcase/max
 #USERPROG := obj/testcase/quick-sort			#e
 #USERPROG := obj/testcase/select-sort			
 #USERPROG := obj/testcase/shuixianhua			
-#USERPROG := obj/testcase/sub-longlong			#b
+USERPROG := obj/testcase/sub-longlong			#b
 #USERPROG := obj/testcase/to-lower-case
 
 # f USERPROG := obj/testcase/struct
