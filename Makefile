@@ -63,10 +63,10 @@ clean: clean-cpp
 #USERPROG := obj/testcase/fib							 
 #USERPROG := obj/testcase/gotbaha						 
 #USERPROG := obj/testcase/if-else						
-USERPROG := obj/testcase/leap-year				
+#USERPROG := obj/testcase/leap-year				
 #USERPROG := obj/testcase/matrix-mul-small				 
 #USERPROG := obj/testcase/matrix-mul					 
-#USERPROG := obj/testcase/max					#b			 
+USERPROG := obj/testcase/max
 #USERPROG := obj/testcase/min3					#u
 #USERPROG := obj/testcase/movsx					#u
 #USERPROG := obj/testcase/mul-longlong			#u
