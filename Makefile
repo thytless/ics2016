@@ -77,10 +77,10 @@ clean: clean-cpp
 #USERPROG := obj/testcase/quick-sort			#e
 #USERPROG := obj/testcase/select-sort			
 #USERPROG := obj/testcase/shuixianhua			
-#USERPROG := obj/testcase/sub-longlong			#b
+USERPROG := obj/testcase/sub-longlong			#b
 #USERPROG := obj/testcase/to-lower-case
 
-USERPROG := obj/testcase/struct
+# f USERPROG := obj/testcase/struct
 # f USERPROG := obj/testcase/string
 # f USERPROG := obj/testcase/hello-str
 
