@@ -69,7 +69,7 @@ clean: clean-cpp
 #USERPROG := obj/testcase/max							 
 #USERPROG := obj/testcase/min3					
 #USERPROG := obj/testcase/movsx					
-#USERPROG := obj/testcase/mul-longlong			#b
+USERPROG := obj/testcase/mul-longlong			#b
 #USERPROG := obj/testcase/pascal						 
 #USERPROG := obj/testcase/prime							 
 #USERPROG := obj/testcase/sum
@@ -77,7 +77,7 @@ clean: clean-cpp
 #USERPROG := obj/testcase/quick-sort			
 #USERPROG := obj/testcase/select-sort			
 #USERPROG := obj/testcase/shuixianhua			
-USERPROG := obj/testcase/sub-longlong			
+#USERPROG := obj/testcase/sub-longlong			
 #USERPROG := obj/testcase/to-lower-case
 
 # f USERPROG := obj/testcase/struct
