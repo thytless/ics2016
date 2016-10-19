@@ -4,6 +4,7 @@
 
 static void do_execute () {
 	DATA_TYPE_S temp = (DATA_TYPE_S)op_src->val;
+	assert(temp == 0x000000f0);
 	DATA_TYPE result = temp & op_dest->val;
 	OPERAND_W(op_dest, result);
 
