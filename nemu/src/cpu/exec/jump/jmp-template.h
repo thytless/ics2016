@@ -2,15 +2,21 @@
 
 #define instr jmp
 
-static void do_execute(){
+make_helper(concat(jmp_i_,SUFFIX)){
+	int len = concat(decode_i_,SUFFIX)(eip);
 	int32_t disp = (DATA_TYPE_S)op_src->val;
 	cpu.eip += disp;
-	print_asm_template1();
+	print_asm("jmp" str(SUFFIX) " %d",cpu.eip);
+	return len + 1;
 }
 
-make_instr_helper(i);
 #if DATA_BYTE == 2 || DATA_BYTE == 4
-make_instr_helper(rm);
+make_helper(concat(jmp_rm_,SUFFIX)){
+	int len = concat(decode_rm_,SUFFIX)(eip);
+	cpu.eip = (DATA_BYTE == 2) ? 0x0000FFFF & op_src->val : op_src->val;
+	print_asm("jmp" str(SUFFIX) " %d",cpu.eip);
+	return len + 1;
+}
 #endif
 
 #include<cpu/exec/template-end.h>
