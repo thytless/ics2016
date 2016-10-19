@@ -54,7 +54,7 @@ clean: clean-cpp
 ##### some convinient rules #####
 		
 #USERPROG := obj/testcase/mov-c							 
-#USERPROG := obj/testcase/wanshu						 
+USERPROG := obj/testcase/wanshu						 
 #USERPROG := obj/testcase/bubble-sort					 
 #USERPROG := obj/testcase/add							 
 #USERPROG := obj/testcase/add-longlong					 
@@ -73,11 +73,11 @@ clean: clean-cpp
 #USERPROG := obj/testcase/pascal						 
 #USERPROG := obj/testcase/prime							 
 #USERPROG := obj/testcase/sum
-USERPROG := obj/testcase/switch				#u
+#USERPROG := obj/testcase/switch				
 #USERPROG := obj/testcase/quick-sort			#u
 #USERPROG := obj/testcase/select-sort			#u
 
-#USERPROG := obj/testcase/shuixianhua			#b
+#USERPROG := obj/testcase/shuixianhua			
 #USERPROG := obj/testcase/sub-longlong			#b
 #USERPROG := obj/testcase/to-lower-case
 
