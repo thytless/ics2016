@@ -4,7 +4,7 @@
 static void do_execute(){
 
 	uint32_t temp = cpu.esp - 4;
-	swaddr_write(temp,4,op_src->val);
+	swaddr_write(temp,DATA_BYTE,op_src->val);
 	cpu.esp -= 4;
 	print_asm_template1();
 }
