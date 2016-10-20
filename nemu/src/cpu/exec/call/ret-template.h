@@ -12,4 +12,11 @@ make_helper(ret_near){
 	return 1;
 }
 
+make_helper(ret_i_near){
+	int len = decode_i_w(eip);
+	cpu.eip = swaddr_read(cpu.esp,4) - len - 1;
+	cpu.esp += (int16_t)op_src->val;
+	print_asm("ret 0x%x" , op_src->val);
+	return len + 1;
+}
 #include "cpu/exec/template-end.h"
