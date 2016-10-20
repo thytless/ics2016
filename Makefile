@@ -74,7 +74,7 @@ clean: clean-cpp
 #USERPROG := obj/testcase/prime							 
 #USERPROG := obj/testcase/sum
 #USERPROG := obj/testcase/switch				
-#USERPROG := obj/testcase/quick-sort
+USERPROG := obj/testcase/quick-sort
 #USERPROG := obj/testcase/select-sort
 
 #USERPROG := obj/testcase/shuixianhua			
