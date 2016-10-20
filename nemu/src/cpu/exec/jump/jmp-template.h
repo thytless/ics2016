@@ -10,7 +10,7 @@ static void do_execute(){
 		case 0xFF:
 			cpu.eip = temp - 2;
 	}
-	print_asm("jmp" str(SUFFIX) " %x",cpu.eip);
+	print_asm("jmp" str(SUFFIX) " %x",cpu.eip + 2);
 }
 
 make_instr_helper(i);
