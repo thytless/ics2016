@@ -6,6 +6,7 @@ make_helper(concat(scas_,SUFFIX)){
 	DATA_TYPE d = (DATA_TYPE)swaddr_read(cpu.edi,DATA_BYTE);
 	DATA_TYPE sub = s - d;
 	
+	cpu.edi += DATA_BYTE;
 	cpu.eflags._zf = sub ? 0 : 1;
 	cpu.eflags._sf = sub >> (DATA_BYTE * 8 - 1);
 	cpu.eflags._cf = (s < d);
