@@ -2,10 +2,10 @@
 #ifndef _POP_R_
 #define instr pop
 static void do_execute(){
-
-	uint32_t read = swaddr_read(cpu.esp,4);
+	int disp = (DATA_BYTE == 2) ? 2 : 4;
+	uint32_t read = swaddr_read(cpu.esp,disp);
 	OPERAND_W(op_src,read);
-	cpu.esp += 4;
+	cpu.esp += disp;
 	print_asm_template1();
 }
 make_instr_helper(i);

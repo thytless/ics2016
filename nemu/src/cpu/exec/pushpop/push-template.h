@@ -2,9 +2,9 @@
 #ifndef _PUSH_R_
 #define instr push
 static void do_execute(){
-
-	cpu.esp -= 4;
-	swaddr_write(cpu.esp,4,op_src->val);
+	int disp = (DATA_BYTE == 2) ? 2 : 4;
+	cpu.esp -= disp;
+	swaddr_write(cpu.esp,disp,op_src->val);
 	print_asm_template1();
 }
 make_instr_helper(i);
