@@ -3,9 +3,9 @@
 #define instr pop
 static void do_execute(){
 
-	uint32_t read = swaddr_read(cpu.esp,4);
+	uint32_t read = swaddr_read(cpu.esp,DATA_BYTE);
 	OPERAND_W(op_src,read);
-	cpu.esp += 4;
+	cpu.esp += DATA_BYTE;
 	print_asm_template1();
 }
 make_instr_helper(i);
