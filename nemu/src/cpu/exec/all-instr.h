@@ -27,8 +27,6 @@
 #include "logic/shr.h"
 #include "logic/shrd.h"
 
-#include "string/rep.h"
-
 #include "misc/misc.h"
 
 #include "special/special.h"
@@ -55,5 +53,8 @@
 #include "cmp/cmp.h"
 
 #include "cltd/cltd.h"
+
+#include "string/rep.h"
+#include "string/movs.h"
 
 #include "setcc/setnz.h"
