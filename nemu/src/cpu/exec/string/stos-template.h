@@ -2,7 +2,7 @@
 
 #define instr stos
 make_helper(concat(stos_,SUFFIX)){
-	cpu.edi = (DATA_TYPE)cpu.eax;
+	swaddr_write(cpu.edi,DATA_BYTE,(DATA_TYPE)cpu.eax);
 	cpu.edi += DATA_BYTE;
 	print_asm("stos" str(SUFFIX));
 	return 1;

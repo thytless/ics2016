@@ -26,7 +26,7 @@ make_helper(rep) {
 				);
 
 			/* TODO: Jump out of the while loop if necessary. */
-			if(!cpu.eflags._zf && ops_decoded.opcode != 0xa4 && ops_decoded.opcode != 0xa5)
+			if(!cpu.eflags._zf && (ops_decoded.opcode == 0xa6 || ops_decoded.opcode == 0xa7))
 				break;
 		}
 		len = 1;

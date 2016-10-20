@@ -3,7 +3,7 @@
 #define instr scas
 make_helper(concat(scas_,SUFFIX)){
 	DATA_TYPE s = (DATA_TYPE)cpu.eax;
-	DATA_TYPE d = (DATA_TYPE)cpu.edi;
+	DATA_TYPE d = (DATA_TYPE)swaddr_read(cpu.edi,DATA_BYTE);
 	DATA_TYPE sub = s - d;
 	
 	cpu.eflags._zf = sub ? 0 : 1;
