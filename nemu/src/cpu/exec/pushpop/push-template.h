@@ -4,7 +4,7 @@
 static void do_execute(){
 	int disp = (DATA_BYTE == 2) ? 2 : 4;
 	cpu.esp -= disp;
-	assert(op_src->type == OP_TYPE_REG);
+	assert(op_dest->type == OP_TYPE_REG);
 	if(op_src->reg == R_ESP)
 		op_src->val -= disp;
 	swaddr_write(cpu.esp,disp,op_src->val);
