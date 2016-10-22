@@ -4,8 +4,6 @@
 static void do_execute(){
 	int disp = (DATA_BYTE == 2) ? 2 : 4;
 	cpu.esp -= disp;
-	if(op_src->reg == R_ESP)
-		op_src->val -= disp;
 	swaddr_write(cpu.esp,disp,op_src->val);
 	print_asm_template1();
 }
