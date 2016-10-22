@@ -4,9 +4,10 @@
 static void do_execute(){
 	int disp = (DATA_BYTE == 2) ? 2 : 4;
 	cpu.esp -= disp;
-	DATA_TYPE temp = (ops_decoded.opcode == 0xFF)? swaddr_read(op_src->val,DATA_BYTE) : op_src->val;
+//	DATA_TYPE temp = (ops_decoded.opcode == 0xFF)? swaddr_read(op_src->val,DATA_BYTE) : op_src->val;
 
-	swaddr_write(cpu.esp,disp,temp);
+//	swaddr_write(cpu.esp,disp,temp);
+	swaddr_write(cpu.esp,disp,op_src->val);
 	print_asm_template1();
 }
 make_instr_helper(i);
