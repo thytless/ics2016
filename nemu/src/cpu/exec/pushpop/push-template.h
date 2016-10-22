@@ -7,7 +7,7 @@ static void do_execute(){
 //	DATA_TYPE temp = (ops_decoded.opcode == 0xFF)? swaddr_read(op_src->val,DATA_BYTE) : op_src->val;
 
 //	swaddr_write(cpu.esp,disp,temp);
-	swaddr_write(temp,disp,op_src->val);
+	swaddr_write(cpu.esp,disp,op_src->val);
 	cpu.esp = temp;
 	print_asm_template1();
 }
