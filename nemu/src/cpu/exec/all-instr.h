@@ -40,15 +40,27 @@
 
 #include "test/test.h"
 
-#include "jump/ja.h"
-#include "jump/jbe.h"
+#include "jump/jmp.h"
+
+#include "jump/jo.h"
+#include "jump/jno.h"
+#include "jump/jb.h"
+#include "jump/jae.h"
+
 #include "jump/jz.h"
 #include "jump/jnz.h"
-#include "jump/jmp.h"
+#include "jump/jbe.h"
+#include "jump/ja.h"
+
+#include "jump/js.h"
+#include "jump/jns.h"
+#include "jump/jp.h"
+#include "jump/jnp.h"
+
 #include "jump/jl.h"
+#include "jump/jge.h"
 #include "jump/jle.h"
 #include "jump/jg.h"
-#include "jump/jge.h"
 
 #include "cmp/cmp.h"
 
