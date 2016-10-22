@@ -4,8 +4,8 @@
 static void do_execute(){
 	int disp = (DATA_BYTE == 2) ? 2 : 4;
 	cpu.esp -= disp;
-//	swaddr_write(cpu.esp,disp,(DATA_TYPE_S)op_src->val);
-	swaddr_write(cpu.esp,disp,op_src->val);
+	swaddr_write(cpu.esp,disp,(DATA_TYPE_S)op_src->val);
+//	swaddr_write(cpu.esp,disp,op_src->val);
 	print_asm_template1();
 }
 make_instr_helper(i);
