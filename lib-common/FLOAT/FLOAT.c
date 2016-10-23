@@ -1,7 +1,6 @@
 #include "FLOAT.h"
-
 FLOAT F_mul_F(FLOAT a, FLOAT b) {
-	int64_t temp = (a * b) >> 0x10;
+	long long int temp = (a * b) >> 0x10;
 	return (FLOAT)temp;
 }
 
@@ -23,11 +22,13 @@ FLOAT F_div_F(FLOAT a, FLOAT b) {
 	 * It is OK not to use the template above, but you should figure
 	 * out another way to perform the division.
 	 */
-	int _edx = (a >> 31);
-	FLOAT ret;
-	asm volatile ("idiv %2" : "=a"(ret), "=d"(cpu.edx) : "r"(b), "a"(a), "d"(_edx));
-	cpu.eax = ret;
-	return ret;
+	int _eax = a >> 0x10; 
+	int _edx = a << 0x10;
+	int eax_;
+	int edx_;
+	asm volatile ("idiv %2" : "=a"(eax_), "=d"(edx_) : "r"(b), "a"(_eax), "d"(_edx));
+	
+	return eax_;
 }
 
 FLOAT f2F(float a) {
@@ -40,11 +41,13 @@ FLOAT f2F(float a) {
 	 * stack. How do you retrieve it to another variable without
 	 * performing arithmetic operations on it directly?
 	 */
-	int s = (a >> 0x1f) & 0x1;
-	int8_t exp = (a >> 0x17) & 0xff - 0x7f;
-	int sig = a & 0x7fffff;
-	if(exp)
-		sig |= (0x1 << 0x17);
+	int *a_= &a;	
+	int _a = *a_;
+ 	int s = (_a >> 0x1f) & 0x1;
+ 	signed char exp = (_a >> 0x17) & 0xff - 0x7f;
+ 	int sig = _a & 0x7fffff;
+ 	if(exp)
+ 		sig |= (0x1 << 0x17);
 	int shift = exp - 7;
 	if(shift > 0)
 		return sig << shift;
