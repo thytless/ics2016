@@ -13,9 +13,11 @@ static void do_execute(){
 	cpu.eflags._cf = ((DATA_TYPE)op_dest->val < (DATA_TYPE)temp);
 	bool src_sign = op_src->val >> (op_src->size * 8 - 1);
 	bool dest_sign = op_dest->val >> (op_dest->size * 8 - 1);
-	if(src_sign && !dest_sign && cpu.eflags._sf)
+//	if(src_sign && !dest_sign && cpu.eflags._sf)
+	if(!src_sign && dest_sign && cpu.eflags._sf)
 		cpu.eflags._of = 1;
-	else if(!src_sign && dest_sign && !cpu.eflags._sf)
+//	else if(!src_sign && dest_sign && !cpu.eflags._sf)
+	else if(src_sign && !dest_sign && !cpu.eflags._sf)
 		cpu.eflags._of = 1;
 	else
 		cpu.eflags._of = 0;
