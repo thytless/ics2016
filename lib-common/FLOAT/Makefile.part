@@ -6,14 +6,16 @@ FLOAT_VFPRINTF_O := $(dir $(FLOAT))FLOAT_vfprintf.o
 FLOAT_A_OBJ := $(FLOAT_O) $(FLOAT_VFPRINTF_O)
 
 FLOAT_O_DIR := ~/ics2016/obj/lib-common
-FLOAT_CFLAGS :=  -I$(LIB_COMMON_DIR) -m32 -O2 -fno-builtin -c -fno-stack-protector
+FLOAT_CFLAGS :=  -I$(LIB_COMMON_DIR) -m32 -O2 -fno-builtin -c -fno-stack-protector -U_FORTIFY_SOURCE
 $(FLOAT): $(FLOAT_A_OBJ)
 	ar r $@ $^
 
 # TODO: complete the following rules
 
 $(FLOAT_O): $(LIB_COMMON_DIR)/FLOAT/FLOAT.c
-	gcc $(FLOAT_CFLAGS) $(LIB_COMMON_DIR)/FLOAT/FLOAT.c -o obj/lib-common/FLOAT.o
-$(FLOAT_VFPRINTF_O): $(LIB_COMMON_DIR)/FLOAT/FLOAT_vfprintf.c
-	gcc $(FLOAT_CFLAGS) $(LIB_COMMON_DIR)/FLOAT/FLOAT_vfprintf.c -o obj/lib-common/FLOAT_vfprintf.o
+	@mkdir -p obj/lib-common/FLOAT
+	gcc $(FLOAT_CFLAGS) $(LIB_COMMON_DIR)/FLOAT/FLOAT.c -o $(FLOAT_O)
+$(FLOAT_VFPRINTF_O): $(LIB_COMMON_DIR)/FLOAT/FLOAT_vfprintf.c	
+	@mkdir -p obj/lib-common/FLOAT
+	gcc $(FLOAT_CFLAGS) $(LIB_COMMON_DIR)/FLOAT/FLOAT_vfprintf.c -o $(FLOAT_VFPRINTF_O)
 
