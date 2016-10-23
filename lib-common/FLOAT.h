@@ -4,7 +4,10 @@
 #include "trap.h"
 
 typedef int FLOAT;
-
+typedef union F{
+	float _float;
+	int _int;
+}Float;
 static inline int F2int(FLOAT a) {
 	return (a >> 0x10);
 }
