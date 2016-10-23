@@ -57,7 +57,7 @@ clean: clean-cpp
 #USERPROG := obj/testcase/wanshu						 
 #USERPROG := obj/testcase/bubble-sort					 
 #USERPROG := obj/testcase/add							 
-#USERPROG := obj/testcase/add-longlong					 
+USERPROG := obj/testcase/add-longlong					 
 #USERPROG := obj/testcase/bit							 
 #USERPROG := obj/testcase/fact							 
 #USERPROG := obj/testcase/fib							 
@@ -88,7 +88,7 @@ clean: clean-cpp
 
 # n USERPROG := obj/testcase/hello
 # n USERPROG := obj/testcase/hello-inline-asm
-USERPROG := obj/testcase/integral
+#USERPROG := obj/testcase/integral
 #USERPROG := obj/testcase/quadratic-eq
 # n USERPROG := obj/testcase/print-FLOAT
 ENTRY := $(USERPROG)
