@@ -24,8 +24,7 @@ FLOAT F_div_F(FLOAT a, FLOAT b) {
 	 */
 	int _eax = a >> 0x10; 
 	int _edx = a << 0x10;
-	int eax_;
-	int edx_;
+	int eax_, edx_;
 	asm volatile ("idiv %2" : "=a"(eax_), "=d"(edx_) : "r"(b), "a"(_eax), "d"(_edx));
 	
 	return eax_;
