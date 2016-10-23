@@ -6,7 +6,7 @@ FLOAT_VFPRINTF_O := $(dir $(FLOAT))FLOAT_vfprintf.o
 FLOAT_A_OBJ := $(FLOAT_O) $(FLOAT_VFPRINTF_O)
 
 FLOAT_O_DIR := ~/ics2016/obj/lib-common
-FLOAT_CFLAGS :=  -I$(LIB_COMMON_DIR) -m32 -O2 -fno-builtin -c -fno-stack-protector -U_FORTIFY_SOURCE
+FLOAT_CFLAGS :=  -I$(LIB_COMMON_DIR) -m32 -O2 -fno-builtin -c -fno-stack-protector -U_FORTIFY_SOURCE -march=i386
 $(FLOAT): $(FLOAT_A_OBJ)
 	ar r $@ $^
 
