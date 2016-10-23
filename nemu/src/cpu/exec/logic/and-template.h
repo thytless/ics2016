@@ -3,10 +3,8 @@
 #define instr and
 
 static void do_execute () {
-//	DATA_TYPE_S temp = (op_src->size == 4) ? (int8_t)op_src->val : op_src->simm;
 	DATA_TYPE_S temp = (ops_decoded.opcode == 0x83) ? (int8_t)op_src->val : op_src->val;
 	
-//	DATA_TYPE_S temp = (int8_t)op_src->val;
 	DATA_TYPE result = temp & op_dest->val;
 	OPERAND_W(op_dest, result);
 

@@ -3,7 +3,8 @@
 #define instr xor
 
 static void do_execute () {
-	DATA_TYPE result = op_dest->val ^ op_src->val;
+	DATA_TYPE_S temp = (ops_decoded.opcode == 0x83) ? (int8_t)op_src->val : op_src->val;
+	DATA_TYPE result = op_dest->val ^ temp;
 	OPERAND_W(op_dest, result);
 	
 	cpu.eflags._cf = 0;
