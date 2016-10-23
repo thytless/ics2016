@@ -6,17 +6,14 @@ FLOAT_VFPRINTF_O := $(dir $(FLOAT))FLOAT_vfprintf.o
 FLOAT_A_OBJ := $(FLOAT_O) $(FLOAT_VFPRINTF_O)
 
 FLOAT_O_DIR := ~/ics2016/obj/lib-common
-
+FLOAT_CFLAGS :=  -C$(FLOAT_O_DIR) -I lib-common -m32 -O2 -fno-builtin
 $(FLOAT): $(FLOAT_A_OBJ)
 	ar r $@ $^
 
 # TODO: complete the following rules
 
 $(FLOAT_O): FLOAT/FLOAT.c
-	mkdir -p $(FLOAT_O_DIR)
-	$(call make_command, $(CC), -C$(FLOAT_O_DIR) -I$(LIB_COMMON_DIR) -m32 -O2 -fno-builtin, cc $@, $<)
-
+	$(call make_command, $(CC), $(FLOAT_CFLAGS), cc $@, $<)
 $(FLOAT_VFPRINTF_O):FLOAT/FLOAT_vfprintf.c
-	mkdir -p $(FLOAT_O_DIR)
-	$(call make_command, $(CC), -C$(FLOAT_O_DIR) -I$(LIB_COMMON_DIR) -m32 -O2 -fno-builtin, cc $@, $<)
+	$(call make_command, $(CC), $(FLOAT_CFLAGS), cc $@, $<)
 
