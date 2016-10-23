@@ -78,12 +78,12 @@ clean: clean-cpp
 #USERPROG := obj/testcase/select-sort
 
 #USERPROG := obj/testcase/shuixianhua			
-USERPROG := obj/testcase/sub-longlong
+#USERPROG := obj/testcase/sub-longlong
 #USERPROG := obj/testcase/to-lower-case
 
 #USERPROG := obj/testcase/struct
 #USERPROG := obj/testcase/string
-#USERPROG := obj/testcase/hello-str
+USERPROG := obj/testcase/hello-str
 
 
 # n USERPROG := obj/testcase/hello
