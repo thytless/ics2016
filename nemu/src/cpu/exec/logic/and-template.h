@@ -3,9 +3,8 @@
 #define instr and
 
 static void do_execute () {
-	DATA_TYPE_S temp = (ops_decoded.opcode == 0x83) ? (int8_t)op_src->val : op_src->val;
 	
-	DATA_TYPE result = temp & op_dest->val;
+	DATA_TYPE result = op_src->val & op_dest->val;
 	OPERAND_W(op_dest, result);
 
 	cpu.eflags._cf = 0;

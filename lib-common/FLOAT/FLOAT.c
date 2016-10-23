@@ -1,8 +1,8 @@
 #include "FLOAT.h"
 
 FLOAT F_mul_F(FLOAT a, FLOAT b) {
-	nemu_assert(0);
-	return 0;
+	int64_t temp = (a * b) >> 0x10;
+	return (FLOAT)temp;
 }
 
 FLOAT F_div_F(FLOAT a, FLOAT b) {
@@ -23,9 +23,11 @@ FLOAT F_div_F(FLOAT a, FLOAT b) {
 	 * It is OK not to use the template above, but you should figure
 	 * out another way to perform the division.
 	 */
-
-	nemu_assert(0);
-	return 0;
+	int _edx = (a >> 31);
+	FLOAT ret;
+	asm volatile ("idiv %2" : "=a"(ret), "=d"(cpu.edx) : "r"(b), "a"(a), "d"(_edx));
+	cpu.eax = ret;
+	return ret;
 }
 
 FLOAT f2F(float a) {
