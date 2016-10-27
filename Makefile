@@ -66,7 +66,7 @@ clean: clean-cpp
 #USERPROG := obj/testcase/leap-year				
 #USERPROG := obj/testcase/matrix-mul-small				 
 #USERPROG := obj/testcase/matrix-mul					 
-USERPROG := obj/testcase/max
+#USERPROG := obj/testcase/max
 #USERPROG := obj/testcase/min3					
 #USERPROG := obj/testcase/movsx					
 #USERPROG := obj/testcase/mul-longlong
@@ -88,7 +88,7 @@ USERPROG := obj/testcase/max
 
 # n USERPROG := obj/testcase/hello
 # n USERPROG := obj/testcase/hello-inline-asm
-#USERPROG := obj/testcase/integral
+USERPROG := obj/testcase/integral
 #USERPROG := obj/testcase/quadratic-eq
 # n USERPROG := obj/testcase/print-FLOAT
 ENTRY := $(USERPROG)
