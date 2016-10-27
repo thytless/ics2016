@@ -83,14 +83,14 @@ clean: clean-cpp
 
 #USERPROG := obj/testcase/struct
 #USERPROG := obj/testcase/string
-USERPROG := obj/testcase/hello-str
+#USERPROG := obj/testcase/hello-str
 
 
 # n USERPROG := obj/testcase/hello
 # n USERPROG := obj/testcase/hello-inline-asm
 #USERPROG := obj/testcase/integral
 #USERPROG := obj/testcase/quadratic-eq
-# n USERPROG := obj/testcase/print-FLOAT
+USERPROG := obj/testcase/print-FLOAT
 ENTRY := $(USERPROG)
 
 entry: $(ENTRY)
