@@ -51,7 +51,7 @@ FLOAT f2F(float a) {
 	a_._float = a;
 	int _a = a_._int;
  	int s = (_a >> 0x1f) & 0x1;
- 	signed char exp = (_a >> 0x17) & 0xff - 0x7f;
+ 	signed char exp =((_a >> 0x17) & 0xff) - 0x7f;
  	int sig = _a & 0x7fffff;
  	if(exp)
  		sig |= (0x1 << 0x17);
@@ -63,6 +63,7 @@ FLOAT f2F(float a) {
 		ret = sig >> (-shift);
 	else
 		ret = sig;
+//	return s ? -ret : ret;
 	return ret | (s << 0x1f);
 }
 
