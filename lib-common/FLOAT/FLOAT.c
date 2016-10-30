@@ -49,9 +49,9 @@ FLOAT f2F(float a) {
 	a_._float = a;
 	unsigned int _a = a_._int;
  	int s = (_a >> 0x1f) & 0x1;
-	unsigned char exp =((_a >> 0x17) & 0xff) - 0x7f;
+	signed char exp =((_a >> 0x17) & 0xff) - 0x7f;
  	int sig = _a & 0x7fffff;
- 	if(exp)
+ 	if(exp == -0x7f)
  		sig |= (0x1 << 0x17);
 	int shift = exp - 7;
 	FLOAT ret;
