@@ -27,8 +27,8 @@ FLOAT F_div_F(FLOAT a, FLOAT b) {
 	 * It is OK not to use the template above, but you should figure
 	 * out another way to perform the division.
 	 */
-	int _edx = a >> 0x10; 
-	int _eax = a << 0x10;
+	int _eax = a >> 0x10; 
+	int _edx = a << 0x10;
 	int eax_, edx_;
 	asm volatile ("idiv %2" : "=a"(eax_), "=d"(edx_) : "r"(b), "a"(_eax), "d"(_edx));
 	
