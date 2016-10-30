@@ -32,8 +32,8 @@ make_helper(concat(call_i_,SUFFIX)){
 }
 #endif
 #if DATA_BYTE == 4
-make_helper(call_r_l){
-	int len = decode_r_l(eip + 1);
+make_helper(call_rm_l){
+	int len = decode_rm_l(eip + 1);
 	cpu.eip += len + 1;
 	do_execute();
 	cpu.eip -= len + 1;
