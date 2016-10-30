@@ -63,8 +63,7 @@ FLOAT f2F(float a) {
 		ret = sig >> (-shift);
 	else
 		ret = sig;
-//	return s ? -ret : ret;
-	return ret | (s << 0x1f);
+	return s ? -ret : ret;
 }
 
 FLOAT Fabs(FLOAT a) {
