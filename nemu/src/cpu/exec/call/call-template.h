@@ -3,16 +3,6 @@
 #define instr call
 
 static void do_execute () {
-	//push eip
-	//that is
-	//esp -= 4
-	//*esp = eip
-//	op_dest->type = OP_TYPE_REG;
-//	op_dest->reg = R_ESP;
-//	op_dest->val = REG(R_ESP);
-//	snprintf(op_dest->str, OP_STR_SIZE, "%s",REG_NAME(R_ESP));
-	
-//	uint32_t temp = op_dest->val - 4;
 	uint32_t temp = cpu.esp - 4;
 	swaddr_write(temp,4,cpu.eip);
 	cpu.esp = temp;
@@ -28,6 +18,11 @@ make_helper(concat(call_i_,SUFFIX)){
 	cpu.eip += len + 1;
 	do_execute();
 	cpu.eip -= len + 1;
+	
+	int32_t disp = op_src->val;
+	cpu.eip += disp;
+	print_asm_template1();
+
 	return len + 1;
 }
 #endif
@@ -37,6 +32,11 @@ make_helper(call_rm_l){
 	cpu.eip += len + 1;
 	do_execute();
 	cpu.eip -= len + 1;
+
+	int32_t r = op_src->val;
+	cpu.eip = r;
+	print_asm_template1();
+
 	return len + 1;
 }
 #endif
