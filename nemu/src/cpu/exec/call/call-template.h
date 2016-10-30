@@ -13,12 +13,12 @@ make_helper(concat(call_i_,SUFFIX)){
 	int len = concat(decode_i_,SUFFIX)(eip + 1);
 	cpu.eip += len + 1;
 	do_execute();
-	cpu.eip -= len + 1;
 	
 	int32_t disp = op_src->val;
 	cpu.eip += disp;
 	print_asm_template1();
 
+	cpu.eip -= len + 1;
 	return len + 1;
 }
 #endif
