@@ -47,7 +47,7 @@ FLOAT f2F(float a) {
 	 */
 	Float a_;
 	a_._float = a;
-	int _a = a_._int;
+	unsigned int _a = a_._int;
  	int s = (_a >> 0x1f) & 0x1;
 	unsigned char exp =((_a >> 0x17) & 0xff) - 0x7f;
  	int sig = _a & 0x7fffff;
