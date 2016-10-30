@@ -18,7 +18,7 @@ FLOAT computeT(int n, FLOAT a, FLOAT b, FLOAT (*fun)(FLOAT)) {
 	for(k = 1; k < n; k ++) {
 		s += fun(a + F_mul_int(h, k));
 		if(k == 1)
-			nemu_assert(f2F(-0.8) == a + F_mul_int(h, k));
+			nemu_assert(Fabs(f2F(0.2) - F_mul_int(h, k)) < f2F(1e-4));
 //			nemu_assert(Fabs(fun(f2F(-0.8)) - f2F(0.0588235)) < f2F(1e-4));
 	}
 	s = F_mul_F(s, h);
