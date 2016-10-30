@@ -5,11 +5,7 @@
 static void do_execute () {
 	uint32_t temp = cpu.esp - 4;
 	swaddr_write(temp,4,cpu.eip);
-	cpu.esp = temp;
-	
-	int32_t disp = op_src->val;
-	cpu.eip += disp;
-	print_asm_template1();
+	cpu.esp = temp;	
 }
 
 #if DATA_BYTE == 2 || DATA_BYTE == 4
