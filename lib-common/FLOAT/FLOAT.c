@@ -5,7 +5,16 @@ FLOAT F_mul_F(FLOAT a, FLOAT b) {
 	FLOAT sign_r = sign_a ^ sign_b;
 	FLOAT abs_a = sign_a ? -a : a;
 	FLOAT abs_b = sign_b ? -b : b;
-	FLOAT abs = (abs_a >> 0x8) * (abs_b >> 0x8);
+//	FLOAT abs = (abs_a >> 0x8) * (abs_b >> 0x8);
+	unsigned short ah = abs_a >> 0x16;
+	unsigned short al = abs_a & 0xffff;
+	unsigned short bh = abs_b >> 0x16;
+	unsigned short bl = abs_b & 0xffff;
+
+	unsigned int pl = al * bl;
+	unsigned int pm = al * bh + ah * bl;
+	unsigned int ph = ah * bh;
+	FLOAT abs = pm + pl >> 0x16 + ph << 0x16;
 	return sign_r ? -abs : abs;
 }
 
