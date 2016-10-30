@@ -27,12 +27,12 @@ make_helper(call_rm_l){
 	int len = decode_rm_l(eip + 1);
 	cpu.eip += len + 1;
 	do_execute();
-	cpu.eip -= len + 1;
 
 	int32_t r = op_src->val;
 	cpu.eip = r;
 	print_asm_template1();
 
+	cpu.eip -= len + 1;
 	return len + 1;
 }
 #endif
