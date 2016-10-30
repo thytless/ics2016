@@ -1,7 +1,14 @@
 #include "FLOAT.h"
 FLOAT F_mul_F(FLOAT a, FLOAT b) {
-	long long int temp = (a * b) >> 0x10;
-	return (FLOAT)temp;
+	int sign_a = (a < 0);
+	int sign_b = (b < 0);
+	FLOAT sign_r = sign_a ^ sign_b;
+	FLOAT abs_a = sign_a ? -a : a;
+	FLOAT abs_b = sign_b ? -b : b;
+	long long int abs = (abs_a * abs_b) >> 0x10;
+	FLOAT abs_r = (FLOAT)abs;
+	FLOAT ret = sign_r ? -abs : abs;
+	return ret;
 }
 
 FLOAT F_div_F(FLOAT a, FLOAT b) {
@@ -22,8 +29,8 @@ FLOAT F_div_F(FLOAT a, FLOAT b) {
 	 * It is OK not to use the template above, but you should figure
 	 * out another way to perform the division.
 	 */
-	int _eax = a >> 0x10; 
-	int _edx = a << 0x10;
+	int _edx = a >> 0x10; 
+	int _eax = a << 0x10;
 	int eax_, edx_;
 	asm volatile ("idiv %2" : "=a"(eax_), "=d"(edx_) : "r"(b), "a"(_eax), "d"(_edx));
 	
@@ -49,12 +56,14 @@ FLOAT f2F(float a) {
  	if(exp)
  		sig |= (0x1 << 0x17);
 	int shift = exp - 7;
+	FLOAT ret;
 	if(shift > 0)
-		return sig << shift;
+		ret = sig << shift;
 	else if(shift < 0)
-		return sig >> (-shift);
+		ret = sig >> (-shift);
 	else
-		return sig;
+		ret = sig;
+	return ret | (s << 0x1f);
 }
 
 FLOAT Fabs(FLOAT a) {
