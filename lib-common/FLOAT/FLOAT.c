@@ -5,7 +5,7 @@ FLOAT F_mul_F(FLOAT a, FLOAT b) {
 	FLOAT sign_r = sign_a ^ sign_b;
 	FLOAT abs_a = sign_a ? -a : a;
 	FLOAT abs_b = sign_b ? -b : b;
-	long long int abs = (abs_a * abs_b) >> 0x10;
+	long long abs = (abs_a * abs_b) >> 0x10;
 	FLOAT abs_r = abs;
 	FLOAT ret = sign_r ? -abs : abs;
 	return ret;
