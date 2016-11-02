@@ -397,6 +397,7 @@ uint32_t getIDEaddr(char *ide){
 		Log("%x",(uint32_t)addr);
 		if(!strcmp(ide,addr))
 			return symtab[i].st_value;
+		i++;
 	}
 	return 0;
 }
