@@ -140,7 +140,7 @@ uint32_t expr(char *e, bool *success) {
 					tokens[i].type = DEREF;	
 			}
 		}
-	//	Log("%d : %s \n",i,tokens[i].str);
+		Log("%d : %s \n",i,tokens[i].str);
 	}
 	ret = eval(0,nr_token);
 //	printf("%s = %d\n",e,ret);
