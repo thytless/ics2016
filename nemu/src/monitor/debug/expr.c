@@ -158,6 +158,7 @@ int eval(int p,int q){
  	else if(p == q){
  		switch(tokens[p].type){
 			case IDE :{
+						  Log("1\n");
 						  int ret = (uint32_t)getIDEaddr(tokens[p].str);
 						  if(!ret)
 							  printf("No identifier named with %s\n",tokens[p].str);
