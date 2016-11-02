@@ -1,4 +1,5 @@
 #include "nemu.h"
+#include "elf.h"
 
 /* We use the POSIX regex functions to process regular expressions.
  * Type 'man regex' for more information about POSIX regex functions.
@@ -52,6 +53,9 @@ static regex_t re[NR_REGEX];
 int eval(int,int);
 bool check_parentheses(int,int);
 int last_token(int,int,int);
+char* getIDEaddr(char *);
+char *getStrtab();
+Elf32_Sym *getSymtab();
 /* Rules are used for many times.
  * Therefore we compile them only once before any usage.
  */
@@ -153,7 +157,12 @@ int eval(int p,int q){
 	} 
  	else if(p == q){
  		switch(tokens[p].type){
-			case IDE : return 0;
+			case IDE :{
+						  int ret = (uint32_t)getIDEaddr(tokens[p].str);
+						  if(!ret)
+							  printf("No identifier named with %s\n",tokens[p].str);
+						  return ret;
+					  }
 			case DECI : return atoi(tokens[p].str);
 			case HEX : return strtoul(tokens[p].str,0,0);
 			case REG32 : {
@@ -374,4 +383,17 @@ int last_token(int p,int q,int type){
 			 }
 	}
 	return last;	
+}
+char* getIDEaddr(char *ide){
+	char *strtab = getStrtab();
+	Elf32_Sym *symtab = getSymtab();
+	int i = 0;
+	while(symtab[i].st_info != STT_OBJECT)
+		i++;
+	while(symtab[i].st_info == STT_OBJECT){
+		char* addr = symtab[i].st_name + strtab;
+		if(!strcmp(ide,addr))
+			return addr;
+	}
+	return NULL;
 }
