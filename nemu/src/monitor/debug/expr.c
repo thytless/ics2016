@@ -53,7 +53,7 @@ static regex_t re[NR_REGEX];
 int eval(int,int);
 bool check_parentheses(int,int);
 int last_token(int,int,int);
-char* getIDEaddr(char *);
+uint32_t getIDEaddr(char *);
 char *getStrtab();
 Elf32_Sym *getSymtab();
 /* Rules are used for many times.
@@ -159,7 +159,7 @@ int eval(int p,int q){
  		switch(tokens[p].type){
 			case IDE :{
 						  Log("1\n");
-						  int ret = (uint32_t)getIDEaddr(tokens[p].str);
+						  int ret = getIDEaddr(tokens[p].str);
 						  if(!ret)
 							  printf("No identifier named with %s\n",tokens[p].str);
 						  return ret;
@@ -385,16 +385,18 @@ int last_token(int p,int q,int type){
 	}
 	return last;	
 }
-char* getIDEaddr(char *ide){
+uint32_t getIDEaddr(char *ide){
 	char *strtab = getStrtab();
+	Log("%x",(uint32_t)strtab);
 	Elf32_Sym *symtab = getSymtab();
 	int i = 0;
 	while(symtab[i].st_info != STT_OBJECT)
 		i++;
 	while(symtab[i].st_info == STT_OBJECT){
 		char* addr = symtab[i].st_name + strtab;
+		Log("%x",(uint32_t)addr);
 		if(!strcmp(ide,addr))
-			return addr;
+			return symtab[i].st_value;
 	}
-	return NULL;
+	return 0;
 }
