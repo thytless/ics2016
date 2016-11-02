@@ -389,6 +389,7 @@ uint32_t getIDEaddr(char *ide){
 	char *strtab = getStrtab();
 	Log("%x",(uint32_t)strtab);
 	Elf32_Sym *symtab = getSymtab();
+	Log("%x",(uint32_t)symtab);
 	int i = 0;
 	while(symtab[i].st_info != STT_OBJECT)
 		i++;
