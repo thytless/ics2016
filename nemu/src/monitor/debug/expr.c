@@ -387,20 +387,26 @@ int last_token(int p,int q,int type){
 }
 uint32_t getIDEaddr(char *ide){
 	char *strtab = getStrtab();
-	Log("%x",(uint32_t)strtab);
 	Elf32_Sym *symtab = getSymtab();
-	Log("%x",(uint32_t)symtab);
 	int entry = getSymtableEntry();
-	Log("%x",entry);
 	int i = 0;
-	while(symtab[i].st_info != STT_OBJECT)
+	/*
+	while(symtab[i].st_info & 0xf != STT_OBJECT)
 		i++;
-	while(symtab[i].st_info == STT_OBJECT){
+	while(symtab[i].st_info & 0xf == STT_OBJECT){
 		char* addr = symtab[i].st_name + strtab;
 		Log("%x",(uint32_t)addr);
 		if(!strcmp(ide,addr))
 			return symtab[i].st_value;
 		i++;
+	}
+	*/
+	for(i = 0;i < entry;i++){
+		if((symtab[i].st_info & 0xf) == STT_OBJECT){
+			char* addr = symtab[i].st_name + strtab;
+			if(!strcmp(ide,addr))
+				return symtab[i].st_value;
+		}
 	}
 	return 0;
 }
