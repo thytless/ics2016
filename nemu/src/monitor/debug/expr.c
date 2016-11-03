@@ -107,6 +107,7 @@ static bool make_token(char *e) {
 				if(i == NOTYPE)
 					continue;
 				tokens[nr_token].type = i;
+				memset(tokens[nr_token].str,'\0',32);
 				strncpy(tokens[nr_token].str,substr_start,substr_len);
 				nr_token++;
 				break;
