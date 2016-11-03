@@ -14,6 +14,10 @@ char* getStrtab(){
 Elf32_Sym *getSymtab(){
 	return symtab;
 }
+
+int getSymtableEntry(){
+	return nr_symtab_entry;
+}
 void load_elf_tables(int argc, char *argv[]) {
 	int ret;
 	Assert(argc == 2, "run NEMU with format 'nemu [program]'");

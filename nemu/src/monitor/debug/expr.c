@@ -56,6 +56,7 @@ int last_token(int,int,int);
 uint32_t getIDEaddr(char *);
 char *getStrtab();
 Elf32_Sym *getSymtab();
+int getSymtableEntry();
 /* Rules are used for many times.
  * Therefore we compile them only once before any usage.
  */
@@ -389,6 +390,8 @@ uint32_t getIDEaddr(char *ide){
 	Log("%x",(uint32_t)strtab);
 	Elf32_Sym *symtab = getSymtab();
 	Log("%x",(uint32_t)symtab);
+	int entry = getSymtableEntry();
+	Log("%x",entry);
 	int i = 0;
 	while(symtab[i].st_info != STT_OBJECT)
 		i++;
