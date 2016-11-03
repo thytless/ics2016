@@ -226,8 +226,11 @@ static int cmd_help(char *args) {
 }
 
 void ui_mainloop() {
+	char *str = NULL;
 	while(1) {
-		char *str = rl_gets();
+		if(str)
+			memset(str,'\0',strlen(str));
+		str = rl_gets();
 		char *str_end = str + strlen(str);
 
 		/* extract the first token as the command */
