@@ -140,7 +140,7 @@ uint32_t expr(char *e, bool *success) {
 					tokens[i].type = DEREF;	
 			}
 		}
-		Log("%d : %s\n",i,tokens[i].str);
+//		Log("%d : %s\n",i,tokens[i].str);
 	}
 	ret = eval(0,nr_token);
 //	printf("%s = %d\n",e,ret);
@@ -158,7 +158,6 @@ int eval(int p,int q){
  	else if(p == q){
  		switch(tokens[p].type){
 			case IDE :{
-						  Log("1\n");
 						  int ret = getIDEaddr(tokens[p].str);
 						  if(!ret)
 							  printf("No identifier named with %s\n",tokens[p].str);
