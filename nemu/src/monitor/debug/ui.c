@@ -211,9 +211,9 @@ static int cmd_bt(char *args){
 				}
 			}
 		}
-		
+	
 		printf("#%d $ebp:0x%x \t <%s> \t",i,ebp,name);
-
+/*
 		printf("args:");
 		int j = 1;
 		for(;j < 4;j++){
@@ -223,7 +223,7 @@ static int cmd_bt(char *args){
 			else
 				printf("$%d = %d  ",j,arg);
 		}
-
+*/
 		printf("\n");
 
 		i++;
