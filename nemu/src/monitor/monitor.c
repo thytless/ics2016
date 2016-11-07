@@ -35,7 +35,6 @@ void init_monitor(int argc, char *argv[]) {
 	/* Compile the regular expressions. */
 	init_regex();
 
-	assert(0);
 	/* Initialize the watchpoint pool. */
 	init_wp_pool();
 

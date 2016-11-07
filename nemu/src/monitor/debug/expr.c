@@ -7,7 +7,7 @@
 #include <sys/types.h>
 #include <regex.h>
 #include <stdlib.h>
-
+#include <assert.h>
 enum { 
 	NOTYPE, PLUS, EQ, HEX, DECI, SUB, MULT, DIV,
 	LP, RP, REG32, REG16, REG8, IDE, NEQ, AND, OR, DEREF
@@ -72,6 +72,7 @@ void init_regex() {
 			Assert(ret == 0, "regex compilation failed: %s\n%s", error_msg, rules[i].regex);
 		}
 	}
+	assert(0);
 }
 
 typedef struct token { 
