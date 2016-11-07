@@ -31,10 +31,11 @@ void init_monitor(int argc, char *argv[]) {
 
 	/* Load the string table and symbol table from the ELF file for future use. */
 	load_elf_tables(argc, argv);
-	assert(0);
+
 	/* Compile the regular expressions. */
 	init_regex();
 
+	assert(0);
 	/* Initialize the watchpoint pool. */
 	init_wp_pool();
 
