@@ -178,7 +178,7 @@ static int cmd_d(char *args){
 typedef struct partofStackFrame{
 	swaddr_t prev_ebp;
 	swaddr_t ret_addr;
-	uint32_t args[4];
+	uint32_t *args;
 }SF;
 
 char *getStrtab();
@@ -188,25 +188,53 @@ int getSymtableEntry();
 static int cmd_bt(char *args){
 	/* print ebp, function name and first four args */
 	
-//	char *strtab = getStrtab();
-//	Elf32_Sym *symtab = getSymtab();
-//	int entry = getSymtableEntry();
+	char *strtab = getStrtab();
+	Elf32_Sym *symtab = getSymtab();
+	int entry = getSymtableEntry();
 
 	swaddr_t ebp = cpu.ebp;
+	swaddr_t eip = cpu.eip;
 	int i = 1;
 	do{
-
 		SF sf;
-		if(ebp)
-			sf.prev_ebp = swaddr_read(ebp,4);
-		sf.ret_addr = ebp + 4;
-//		sf.args = ebp + 8;
-	
-//		printf("#%d $ebp:0x%x \t <%s> ",i,ebp,name);
-		i++;
+		sf.args = (uint32_t *)ebp + 8;
+
+		int k = 0;
+		char *name;
+		for(k = 0;k < entry;k++){
+			if((symtab[k].st_info & 0xf) == STT_FUNC){
+				int start = symtab[k].st_value;
+				int end = symtab[k].st_value + symtab[k].st_size;
+				if(eip >= start && eip <= end){
+					name = symtab[k].st_name + strtab;
+					break;
+				}
+			}
+		}
 		
-		if(ebp)
+		printf("#%d $ebp:0x%x \t <%s> \t",i,ebp,name);
+
+		printf("args:");
+		int j = 1;
+		for(;j < 4;j++){
+			uint32_t arg = sf.args[j];
+			if(arg > 0xffff)
+				printf("$%d = 0x%x  ",j,arg);
+			else
+				printf("$%d = %d  ",j,arg);
+		}
+
+		printf("\n");
+
+		i++;
+		if(ebp){
+			/* return to old function */
+
+			sf.prev_ebp = swaddr_read(ebp,4);
+			sf.ret_addr = ebp + 4;
 			ebp = sf.prev_ebp;
+			eip = sf.ret_addr;
+		}
 		else
 			break;
 
