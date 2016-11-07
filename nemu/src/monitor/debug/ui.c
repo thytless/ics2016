@@ -233,7 +233,7 @@ static int cmd_bt(char *args){
 			sf.prev_ebp = swaddr_read(ebp,4);
 			sf.ret_addr = ebp + 4;
 			ebp = sf.prev_ebp;
-			eip = sf.ret_addr;
+			eip = swaddr_read(sf.ret_addr,4);
 		}
 		else
 			break;
