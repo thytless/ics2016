@@ -211,31 +211,31 @@ static int cmd_bt(char *args){
 				}
 			}
 		}
-	
-		printf("#%d $ebp:0x%x \t <%s> \t",i,ebp,name);
-/*
+		if(i)
+			printf("#%d  0x%x in %s \(",i,eip,name);
+		else
+			printf("#%d  %s (",i,name);
+
 		printf("args:");
 		int j = 1;
 		for(;j < 4;j++){
-			uint32_t arg = sf.args[j];
+			uint32_t arg = *(sf.args + 4*j);
 			if(arg > 0xffff)
 				printf("$%d = 0x%x  ",j,arg);
 			else
 				printf("$%d = %d  ",j,arg);
 		}
-*/
-		printf("\n");
+
+		printf(")\n");
 
 		i++;
-		if(ebp){
-			/* return to old function */
+		/* return to old function */
 
-			sf.prev_ebp = swaddr_read(ebp,4);
-			sf.ret_addr = ebp + 4;
-			ebp = sf.prev_ebp;
-			eip = swaddr_read(sf.ret_addr,4);
-		}
-		else
+		sf.prev_ebp = swaddr_read(ebp,4);
+		sf.ret_addr = ebp + 4;
+		ebp = sf.prev_ebp;
+		eip = swaddr_read(sf.ret_addr,4);
+		if(!ebp)
 			break;
 
 	}while(1);
