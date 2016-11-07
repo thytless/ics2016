@@ -79,7 +79,6 @@ void load_elf_tables(int argc, char *argv[]) {
 			strtab = malloc(sh[i].sh_size);
 			fseek(fp, sh[i].sh_offset, SEEK_SET);
 			ret = fread(strtab, sh[i].sh_size, 1, fp);
-			printf("%x",(uint32_t)strtab);
 			assert(ret == 1);
 		}
 	}
