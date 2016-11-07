@@ -197,7 +197,7 @@ static int cmd_bt(char *args){
 	int i = 1;
 	do{
 		SF sf;
-		sf.args = (uint32_t *)ebp + 8;
+		sf.args = (uint32_t *)(ebp + 8);
 
 		int k = 0;
 		char *name;
