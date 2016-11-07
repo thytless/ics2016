@@ -6,6 +6,7 @@
 #include <stdlib.h>
 #include <readline/readline.h>
 #include <readline/history.h>
+#include <elf.h>
 
 #define MAX_INSTR_TO_PRINT 100000
 void cpu_exec(uint32_t);
@@ -174,8 +175,42 @@ static int cmd_d(char *args){
 	return 0;
 }
 
-static int cmd_bt(char *args){
+typedef struct partofStackFrame{
+	swaddr_t prev_ebp;
+	swaddr_t ret_addr;
+	uint32_t args[4];
+}SF;
 
+char *getStrtab();
+Elf32_Sym *getSymtab();
+int getSymtableEntry();
+
+static int cmd_bt(char *args){
+	/* print ebp, function name and first four args */
+	
+//	char *strtab = getStrtab();
+//	Elf32_Sym *symtab = getSymtab();
+//	int entry = getSymtableEntry();
+
+	swaddr_t ebp = cpu.ebp;
+	int i = 1;
+	do{
+
+		SF sf;
+		if(ebp)
+			sf.prev_ebp = swaddr_read(ebp,4);
+		sf.ret_addr = ebp + 4;
+//		sf.args = ebp + 8;
+	
+//		printf("#%d $ebp:0x%x \t <%s> ",i,ebp,name);
+		i++;
+		
+		if(ebp)
+			ebp = sf.prev_ebp;
+		else
+			break;
+
+	}while(1);
 	return 0;
 }
 
