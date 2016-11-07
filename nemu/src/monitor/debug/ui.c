@@ -216,7 +216,7 @@ static int cmd_bt(char *args){
 		else
 			printf("#%d  %s (",i,name);
 
-		printf("  args:");
+		printf("  ");
 		int j = 0;
 		for(;j < 4;j++){
 			uint32_t arg = swaddr_read(sf.args + 4*j,4);
