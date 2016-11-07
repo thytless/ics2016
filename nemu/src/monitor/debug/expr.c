@@ -62,6 +62,7 @@ int getSymtableEntry();
  */
 void init_regex() {
 	int i;
+	assert(0);
 	char error_msg[128];
 	int ret;
 
@@ -72,7 +73,6 @@ void init_regex() {
 			Assert(ret == 0, "regex compilation failed: %s\n%s", error_msg, rules[i].regex);
 		}
 	}
-	assert(0);
 }
 
 typedef struct token { 
