@@ -178,7 +178,7 @@ static int cmd_d(char *args){
 typedef struct partofStackFrame{
 	swaddr_t prev_ebp;
 	swaddr_t ret_addr;
-	uint32_t *args;
+	uint32_t args;
 }SF;
 
 char *getStrtab();
@@ -197,7 +197,7 @@ static int cmd_bt(char *args){
 	int i = 1;
 	do{
 		SF sf;
-		sf.args = (uint32_t *)(ebp + 8);
+		sf.args = ebp + 8;
 
 		int k = 0;
 		char *name;
@@ -219,7 +219,7 @@ static int cmd_bt(char *args){
 		printf("args:");
 		int j = 1;
 		for(;j < 4;j++){
-			uint32_t arg = *(sf.args + 4*j);
+			uint32_t arg = swaddr_read(sf.args + 4*j,4);
 			if(arg > 0xffff)
 				printf("$%d = 0x%x  ",j,arg);
 			else
