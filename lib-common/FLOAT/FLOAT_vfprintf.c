@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdint.h>
 #include "FLOAT.h"
+#include <sys/mman.h>
 
 extern char _vfprintf_internal;
 extern char _fpmaxtostr;
@@ -50,6 +51,16 @@ static void modify_vfprintf() {
 	 * `_fpmaxtostr'. When this function returns, the action of the
 	 * code above should do the following:
 	 */
+
+	
+	uint32_t *call_addr = (uint32_t *)&_vfprintf_internal + (0x8048854 - 0x804854e);
+	uint32_t disp = (int)format_FLOAT - (int)&_fpmaxtostr;
+
+//	mprotect((void *)((int)(call_addr - 0x64) & 0xfffff000),4096 * 2,PROT_READ | PROT_WRITE | PROT_EXEC);
+
+	*(call_addr + 1) += disp;
+
+
 
 #if 0
 	else if (ppfs->conv_num <= CONV_A) {  /* floating point */
