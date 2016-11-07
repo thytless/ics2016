@@ -91,7 +91,9 @@ USERPROG := obj/testcase/add
 #USERPROG := obj/testcase/integral
 #USERPROG := obj/testcase/quadratic-eq
 #USERPROG := obj/testcase/print-FLOAT
-ENTRY := $(USERPROG)
+
+#ENTRY := $(USERPROG)
+ENTRY := $(kernel_BIN)
 
 entry: $(ENTRY)
 	objcopy -S -O binary $(ENTRY) entry
