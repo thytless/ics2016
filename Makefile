@@ -90,8 +90,8 @@ clean: clean-cpp
 # n USERPROG := obj/testcase/hello-inline-asm
 #USERPROG := obj/testcase/integral
 #USERPROG := obj/testcase/quadratic-eq
-# n USERPROG := obj/testcase/print-FLOAT
-USERPROG := obj/testcase/print-FLOAT-linux
+USERPROG := obj/testcase/print-FLOAT
+#USERPROG := obj/testcase/print-FLOAT-linux
 
 #ENTRY := $(USERPROG)
 ENTRY := $(kernel_BIN)
