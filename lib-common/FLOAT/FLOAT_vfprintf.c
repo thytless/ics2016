@@ -138,10 +138,14 @@ static void modify_ppfs_setargs() {
 
 	/* replace float instr with nop */
 	uint8_t *f_instr[4] = {
-		(uint8_t *)((uint32_t) &_ppfs_setargs + (0x26a - 0x1ce)),
-		(uint8_t *)((uint32_t) &_ppfs_setargs + (0x26f - 0x1ce)),
-		(uint8_t *)((uint32_t) &_ppfs_setargs + (0x28d - 0x1ce)),
-		(uint8_t *)((uint32_t) &_ppfs_setargs + (0x295 - 0x1ce))
+//		(uint8_t *)((uint32_t) &_ppfs_setargs + (0x26a - 0x1ce)),
+		(uint8_t *)((uint32_t) &_ppfs_setargs + (0x2c8 - 0x254)),
+//		(uint8_t *)((uint32_t) &_ppfs_setargs + (0x26f - 0x1ce)),
+		(uint8_t *)((uint32_t) &_ppfs_setargs + (0x2cd - 0x254)),
+//		(uint8_t *)((uint32_t) &_ppfs_setargs + (0x28d - 0x1ce)),
+		(uint8_t *)((uint32_t) &_ppfs_setargs + (0x2eb - 0x254)),
+//		(uint8_t *)((uint32_t) &_ppfs_setargs + (0x295 - 0x1ce))
+		(uint8_t *)((uint32_t) &_ppfs_setargs + (0x2f3 - 0x254))
 	};
 
 	/* 0x23d + 2 + disp = 0x271 */
