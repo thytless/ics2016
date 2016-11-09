@@ -135,15 +135,15 @@ static void modify_ppfs_setargs() {
 	 */
 	
 	uint8_t *jmp_addr = (uint8_t *)((uint32_t) &_ppfs_setargs + (0x23d - 0x1ce));
-/*
-	 replace float instr with nop 
+
+	/* replace float instr with nop */
 	uint8_t *f_instr[4] = {
 		(uint8_t *)((uint32_t) &_ppfs_setargs + (0x26a - 0x1ce)),
 		(uint8_t *)((uint32_t) &_ppfs_setargs + (0x26f - 0x1ce)),
 		(uint8_t *)((uint32_t) &_ppfs_setargs + (0x28d - 0x1ce)),
 		(uint8_t *)((uint32_t) &_ppfs_setargs + (0x295 - 0x1ce))
 	};
-*/
+
 	/* 0x23d + 2 + disp = 0x271 */
 	
 	int8_t disp = 0x32;
@@ -154,16 +154,16 @@ static void modify_ppfs_setargs() {
 	/* 804823d:    74 32		je 8049271*/
 	*jmp_addr = 0x74;
 	*(jmp_addr + 1) = disp;
-/*	
+	
 	int i = 0;
-	printf("%x\n",(int)&_ppfs_setargs);
-	printf("%x\n",(int)&_ppfs_setargs & 0xfffff000);
+//	printf("%x\n",(int)&_ppfs_setargs);
+//	printf("%x\n",(int)&_ppfs_setargs & 0xfffff000);
 	for(;i < 4;i++){
-		printf("%x\n",(int)f_instr[i]);
+//		printf("%x\n",(int)f_instr[i]);
 		*f_instr[i] = 0x90;
 		*(f_instr[i] + 1) = 0x90;
 	}
-*/
+
 
 
 #if 0
