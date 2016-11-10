@@ -96,20 +96,20 @@ static void modify_vfprintf() {
 	uint8_t *call_addr =(uint8_t *)((uint32_t)&_vfprintf_internal + 0x306);
 	int32_t disp = (int)format_FLOAT - (int)&_fpmaxtostr;
 
-//	mprotect((void *)((int)(call_addr - 100) & 0xfffff000),4096 * 2,PROT_READ | PROT_WRITE | PROT_EXEC);
+//	mprotect((void *)((int)(&_vfprintf_internal) & 0xfffff000),65536,PROT_READ | PROT_WRITE | PROT_EXEC);
 
 	/* STEP 1: modify call displacement */
 	*(uint32_t *)(call_addr + 1) += disp;
 
 	/* STEP 2: modify arguments */
-																	// sub $0xc,%esp		83 ec 0c
 	uint8_t *arg1_addr = (uint8_t *)call_addr + (0x4a - 0x54);		// fstpt (%esp)			db 3c 24	->	push (%edx) ff 32 90
-	uint8_t *nop_addr = arg1_addr + 2;								// 0x24 -> 0x90		
-	uint8_t *arg2_addr = nop_addr + 1;								// pushl 0x18c(%esp)	ff b4 24 8c 01 00 00
+	uint8_t *nop_addr = (uint8_t *)call_addr + (0xee4 - 0xf02);		
 
 	*arg1_addr = 0xff;
 	*(arg1_addr + 1) = 0x32;
+	*(arg1_addr + 2) = 0x90;
 	*nop_addr = 0x90;
+	*(nop_addr + 1) = 0x90;
 	*(arg1_addr - 1) = 0x8;
 
 #if 0
