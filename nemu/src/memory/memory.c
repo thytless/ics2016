@@ -2,14 +2,21 @@
 
 uint32_t dram_read(hwaddr_t, size_t);
 void dram_write(hwaddr_t, size_t, uint32_t);
-
+uint32_t cache_read(swaddr_t, size_t, bool *);
+void cache_write(swaddr_t, size_t, uint32_t);
 /* Memory accessing interfaces */
 
 uint32_t hwaddr_read(hwaddr_t addr, size_t len) {
-	return dram_read(addr, len) & (~0u >> ((4 - len) << 3));
+	bool success = true;
+	uint32_t ret = cache_read(addr,len,&success);
+	if(success)
+		return ret;
+	else
+		return dram_read(addr, len) & (~0u >> ((4 - len) << 3));
 }
 
 void hwaddr_write(hwaddr_t addr, size_t len, uint32_t data) {
+	cache_write(addr, len, data);
 	dram_write(addr, len, data);
 }
 

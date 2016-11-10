@@ -9,6 +9,7 @@
  */
 #define CACHE_LINE_BITS 6
 #define CACHE_LINE_SIZE (1 << CACHE_LINE_BITS)
+#define CACHE_LINE_MASK (CACHE_LINE_SIZE - 1)
 #define ADDR_BITS 32
 #define TAG_BITS ADDR_BITS - CACHE_LINE_BITS
 
@@ -40,8 +41,9 @@ typedef	struct {
 static CacheSlot cache[SET_NUM][WAY_NUM];
 
 void cache_init(CacheSlot *);
-CacheSlot* cache_read(swaddr_t addr);
-void cache_write(swaddr_t addr);
+uint32_t cache_read(swaddr_t, size_t, bool *);
+void cache_write(swaddr_t, size_t, uint32_t);
+void load_cache(swaddr_t);
 extern uint32_t swaddr_read(swaddr_t,size_t);
 /* |0000 0000 0000 0000 0000 0000 0000 0000|
  *                                 |00 0000| 	-> 64B A Slot
