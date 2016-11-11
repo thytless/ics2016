@@ -44,7 +44,7 @@ void cache_init(CacheSlot *);
 uint32_t cache_read(swaddr_t, size_t, bool *);
 void cache_write(swaddr_t, size_t, uint32_t);
 void load_cache(swaddr_t);
-extern uint32_t swaddr_read(swaddr_t,size_t);
+extern uint32_t dram_read(hwaddr_t,size_t);
 /* |0000 0000 0000 0000 0000 0000 0000 0000|
  *                                 |00 0000| 	-> 64B A Slot
  *                        |0 0000 00|			-> 128 * 64B A Way
