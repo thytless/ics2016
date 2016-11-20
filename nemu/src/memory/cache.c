@@ -83,14 +83,18 @@ void load_cache(swaddr_t temptag){
 	for(;i < WAY_NUM;i++){
 		CacheSlot *cs = &cache[temptag & SET_MASK][i];
 		if(!cs->valid){
-			cs->valid = 1;			
+			cs->valid = 1;
+			cs->tag = temptag;
 			for(j = 0;j < CACHE_LINE_SIZE / 4;j++)
 				cs->data32[j] = dram_read(start + 4 * j,4);
+			return;
 		}
 	}
 	int random = temptag & WAY_MASK;
 	CacheSlot *cs = &cache[temptag & SET_MASK][random];
 	assert(cs->valid);
+	cs->tag = temptag;
 	for(j = 0;j < CACHE_LINE_SIZE / 4;j++)
 		cs->data32[j] = dram_read(start + 4 * j,4);
+	return;
 }

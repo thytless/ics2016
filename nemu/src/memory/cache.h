@@ -49,8 +49,8 @@ extern uint32_t dram_read(hwaddr_t,size_t);
  *                                 |00 0000| 	-> 64B A Slot
  *                        |0 0000 00|			-> 128 * 64B A Way
  *
- * To an address, first we match its [6,11] bits with 128 sets.
- * If hit, match its [12,31]bits with every tag of 8 ways.
+ * To an address, first we match its [6,12] bits with 128 sets.
+ * If hit, match its [13,31]bits with every tag of 8 ways.
 */
 
 #endif
