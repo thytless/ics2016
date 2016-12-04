@@ -21,6 +21,7 @@ uint32_t hwaddr_read(hwaddr_t addr, size_t len) {
 }
 
 void hwaddr_write(hwaddr_t addr, size_t len, uint32_t data) {
+	Log("!");
 	cache_write(addr, len, data);
 	bool success = true;
 	int temp = cache_read(addr, len, &success);
