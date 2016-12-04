@@ -30,7 +30,7 @@ uint32_t cache_read(swaddr_t addr, size_t size, bool *success){
 				return 0;
 				*/
 				*success = false;
-				return 0;
+				return -1;
 			}
 			else{
 				*success = true;
@@ -45,7 +45,7 @@ uint32_t cache_read(swaddr_t addr, size_t size, bool *success){
 	}
 	*success = false;
 	load_cache(longtag);
-	return 0;
+	return -1;
 }
 
 void cache_write(swaddr_t addr, size_t size, uint32_t data){
