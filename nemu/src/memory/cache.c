@@ -33,8 +33,9 @@ uint32_t cache_read(swaddr_t addr, size_t size, bool *success){
 				switch(size){
 					case 1: return unalign_rw((uint8_t *)cs->data + disp,1);
 					case 2: return unalign_rw((uint8_t *)cs->data + disp,2);
+					case 3: return unalign_rw((uint8_t *)cs->data + disp,3);
 					case 4: return unalign_rw((uint8_t *)cs->data + disp,4);
-					default:panic("Bad Size!");
+					default:panic("Bad Size in cache_read!");
 				}
 			}
 		}
@@ -66,7 +67,7 @@ void cache_write(swaddr_t addr, size_t size, uint32_t data){
 					case 2: unalign_rw((uint8_t *)cs->data + disp,2) = data & 0xffff;break;
 					case 3: unalign_rw((uint8_t *)cs->data + disp,3) = data & 0xffffff;break;
 					case 4: unalign_rw((uint8_t *)cs->data + disp,4) = data;break;
-					default:panic("Bad Size!");break;
+					default:panic("Bad Size in cache_write!");break;
 				}
 				return;
 			}
