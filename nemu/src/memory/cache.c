@@ -88,8 +88,8 @@ void load_cache(swaddr_t longtag){
 		if(!cs->valid){
 			cs->valid = 1;
 			cs->tag = longtag >> SET_BITS;
-			for(j = 0;j < CACHE_LINE_SIZE;j++)
-				cs->data[j] = dram_read(start + j,1);
+			for(j = 0;j < CACHE_LINE_SIZE / 4;j++)
+				cs->data[j] = dram_read(start + j * 4,4);
 			return;
 		}
 	}
@@ -97,7 +97,7 @@ void load_cache(swaddr_t longtag){
 	CacheSlot *cs = &cache[longtag & SET_MASK][random];
 	assert(cs->valid);
 	cs->tag = longtag >> SET_BITS;
-	for(j = 0;j < CACHE_LINE_SIZE;j++)
-		cs->data[j] = dram_read(start + j,1);
+	for(j = 0;j < CACHE_LINE_SIZE / 4;j++)
+		cs->data[j] = dram_read(start + j * 4,4);
 	return;
 }
