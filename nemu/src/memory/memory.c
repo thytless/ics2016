@@ -13,7 +13,7 @@ uint32_t hwaddr_read(hwaddr_t addr, size_t len) {
 	if(!success)Log("miss!");
 	if(success){
 		if(cache_ret != dram_ret)
-			Log("R:%x %x len:%d",cache_ret,dram_ret,len);
+			Log("R:%x %x addr:%x len:%d",cache_ret,dram_ret,addr,len);
 		return cache_ret;
 	}
 	else
@@ -25,7 +25,7 @@ void hwaddr_write(hwaddr_t addr, size_t len, uint32_t data) {
 	bool success = true;
 	int temp = cache_read(addr, len, &success);
 	if(temp != data)
-		Log("W:%x %x len:%d",temp,data,len);
+		Log("W:%x %x addr:%x len:%d",temp,data,addr,len);
 	dram_write(addr, len, data);
 }
 
