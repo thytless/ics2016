@@ -93,8 +93,8 @@ clean: clean-cpp
 USERPROG := obj/testcase/print-FLOAT
 #USERPROG := obj/testcase/print-FLOAT-linux
 
-ENTRY := $(USERPROG)
-#ENTRY := $(kernel_BIN)
+#ENTRY := $(USERPROG)
+ENTRY := $(kernel_BIN)
 
 entry: $(ENTRY)
 	objcopy -S -O binary $(ENTRY) entry
