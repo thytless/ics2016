@@ -12,7 +12,8 @@ uint32_t hwaddr_read(hwaddr_t addr, size_t len) {
 	uint32_t dram_ret = dram_read(addr, len) & (~0u >> ((4 - len) << 3));
 	if(!success)Log("miss!");
 	if(success){
-		Log("%x %x",cache_ret,dram_ret);
+		if(cache_ret != dram_ret)
+			Log("%x %x",cache_ret,dram_ret);
 		return cache_ret;
 	}
 	else
