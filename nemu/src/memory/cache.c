@@ -85,8 +85,11 @@ void load_cache(swaddr_t longtag){
 		if(!cs->valid){
 			cs->valid = 1;
 			cs->tag = longtag >> SET_BITS;
-			for(j = 0;j < CACHE_LINE_SIZE / 4;j++)
-				cs->data[j] = dram_read(start + j * 4,4);
+			for(j = 0;j < CACHE_LINE_SIZE / 4;j++){
+				int ret = dram_read(start + j * 4,4);
+				Log("%x",ret);
+				cs->data[j] = ret;
+			}
 			return;
 		}
 	}
