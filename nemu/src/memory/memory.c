@@ -13,7 +13,7 @@ uint32_t hwaddr_read(hwaddr_t addr, size_t len) {
 	if(!success)Log("miss!");
 	if(success){
 		if(cache_ret != dram_ret)
-			Log("%x %x",cache_ret,dram_ret);
+			Log("%x %x len:%d",cache_ret,dram_ret,len);
 		return cache_ret;
 	}
 	else
