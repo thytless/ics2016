@@ -8,11 +8,14 @@ void cache_write(swaddr_t, size_t, uint32_t);
 
 uint32_t hwaddr_read(hwaddr_t addr, size_t len) {
 	bool success = true;
-	uint32_t ret = cache_read(addr,len,&success);
-	if(success)
-		return ret;
+	uint32_t cache_ret = cache_read(addr,len,&success);
+	uint32_t dram_ret = dram_read(addr, len) & (~0u >> ((4 - len) << 3));
+	if(success){
+		assert(cache_ret == dram_ret);
+		return cache_ret;
+	}
 	else
-		return dram_read(addr, len) & (~0u >> ((4 - len) << 3));
+		return dram_ret;
 }
 
 void hwaddr_write(hwaddr_t addr, size_t len, uint32_t data) {
