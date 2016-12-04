@@ -14,23 +14,19 @@ uint32_t cache_read(swaddr_t addr, size_t size, bool *success){
 		if(cs->valid && (longtag >> SET_BITS) == cs->tag){
 			uint32_t disp = addr & CACHE_LINE_MASK;
 			if(disp + size > CACHE_LINE_SIZE){
-			/*
-				int lsize = CACHE_LINE_SIZE - disp - 1;
+				int lsize = CACHE_LINE_SIZE - disp;
 				int rsize = size - lsize;
-				assert(rsize);
+				assert(lsize > 0 && rsize > 0);
 				int ldata = 0;
 				int rdata = 0;
-				if(lsize)
-					ldata = cache_read(addr,lsize,success);
+				ldata = cache_read(addr,lsize,success);
 				if(*success){
 					rdata = cache_read(addr + lsize,rsize,success);
 					if(*success)
-						return (ldata << (lsize * 8)) + rdata;
+						return (rdata << (lsize * 8)) + ldata;
 				}
-				return 0;
-				*/
-				*success = false;
 				return -1;
+
 			}
 			else{
 				*success = true;
@@ -60,8 +56,8 @@ void cache_write(swaddr_t addr, size_t size, uint32_t data){
 				int rsize = size - lsize;
 				int mask = (1 << rsize * 8) - 1;
 				assert(rsize);
-				cache_write(addr,lsize,data >> (rsize * 8));
-				cache_write(addr+lsize,rsize,data & mask);
+				cache_write(addr,lsize,data & mask);
+				cache_write(addr+lsize,rsize,data >> (rsize * 8));
 				return;
 			}
 			else{
