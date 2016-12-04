@@ -21,13 +21,12 @@ uint32_t hwaddr_read(hwaddr_t addr, size_t len) {
 }
 
 void hwaddr_write(hwaddr_t addr, size_t len, uint32_t data) {
-	Log("!");
+	dram_write(addr, len, data);
 	cache_write(addr, len, data);
 	bool success = true;
 	int temp = cache_read(addr, len, &success);
 	if(temp != data)
 		Log("W:%x %x addr:%x len:%d",temp,data,addr,len);
-	dram_write(addr, len, data);
 }
 
 uint32_t lnaddr_read(lnaddr_t addr, size_t len) {
