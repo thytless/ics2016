@@ -10,10 +10,9 @@ uint32_t hwaddr_read(hwaddr_t addr, size_t len) {
 	bool success = true;
 	uint32_t cache_ret = cache_read(addr,len,&success);
 	uint32_t dram_ret = dram_read(addr, len) & (~0u >> ((4 - len) << 3));
-	if(!success)Log("miss!");
 	if(success){
-		if(cache_ret != dram_ret)
-			Log("R:%x %x addr:%x len:%d",cache_ret,dram_ret,addr,len);
+//		if(cache_ret != dram_ret)
+//			Log("R:%x %x addr:%x len:%d",cache_ret,dram_ret,addr,len);
 		return cache_ret;
 	}
 	else
@@ -23,10 +22,11 @@ uint32_t hwaddr_read(hwaddr_t addr, size_t len) {
 void hwaddr_write(hwaddr_t addr, size_t len, uint32_t data) {
 	dram_write(addr, len, data);
 	cache_write(addr, len, data);
-	bool success = true;
+/*	bool success = true;
 	int temp = cache_read(addr, len, &success);
 	if(temp != data)
 		Log("W:%x %x addr:%x len:%d",temp,data,addr,len);
+*/
 }
 
 uint32_t lnaddr_read(lnaddr_t addr, size_t len) {
