@@ -58,12 +58,12 @@ uint32_t loader() {
 
 #ifdef IA32_PAGE
 			/* Record the program break for future use. */
-			uint32_t va = ph->p_vaddr;
-			va = mm_malloc(ph->p_vaddr, ph->p_memsz);
+			mm_malloc(ph->p_vaddr, ph->p_memsz);
 			extern uint32_t cur_brk, max_brk;
 			uint32_t new_brk = ph->p_vaddr + ph->p_memsz - 1;
 			if(cur_brk < new_brk) { max_brk = cur_brk = new_brk; }
 #endif
+
 		}
 	}
 
