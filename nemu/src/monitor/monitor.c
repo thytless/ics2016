@@ -80,6 +80,15 @@ void restart() {
 	/* Read the file with name `argv[1]' into ramdisk. */
 	init_ramdisk();
 #endif
+	/* Initialize CR0 */
+	cpu.cr0.val = 0x0;
+
+	/* Initialize CS */
+	cpu.cs.sd.base_15_0 = 0x0;
+	cpu.cs.sd.base_23_16 = 0x0;
+	cpu.cs.sd.base_31_24 = 0x0;
+	cpu.cs.sd.limit_15_0 = 0xffff;
+	cpu.cs.sd.limit_19_16 = 0xf;
 
 	/* Read the entry code into memory. */
 	load_entry();
