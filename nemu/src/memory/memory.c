@@ -1,15 +1,11 @@
 #include "common.h"
-
+#include "cpu/reg.h"
 uint32_t dram_read(hwaddr_t, size_t);
 void dram_write(hwaddr_t, size_t, uint32_t);
 uint32_t cache_read(swaddr_t, size_t, bool *);
 void cache_write(swaddr_t, size_t, uint32_t);
 /* Memory accessing interfaces */
-
-hwaddr_t page_translate(lnaddr_t addr){
-	return 0;
-}
-
+hwaddr_t page_translate(lnaddr_t addr);
 uint32_t hwaddr_read(hwaddr_t addr, size_t len) {
 	bool success = true;
 	uint32_t cache_ret = cache_read(addr,len,&success);
@@ -34,6 +30,8 @@ void hwaddr_write(hwaddr_t addr, size_t len, uint32_t data) {
 }
 
 uint32_t lnaddr_read(lnaddr_t addr, size_t len) {
+	if(!cpu.cr0.paging)
+		return hwaddr_read(addr, len);
 	assert(len == 1 || len == 2 || len == 4);
 	if((addr >> 3) != ((addr + len) >> 3)){
 		Log("data cross the page boundry!");
@@ -46,6 +44,10 @@ uint32_t lnaddr_read(lnaddr_t addr, size_t len) {
 }
 
 void lnaddr_write(lnaddr_t addr, size_t len, uint32_t data) {
+	if(!cpu.cr0.paging){
+		hwaddr_write(addr, len, data);
+		return;
+	}
 	assert(len == 1 || len == 2 || len == 4);
 	if((addr >> 3) != ((addr + len) >> 3)){
 		Log("data cross the page boundry!");
@@ -71,3 +73,14 @@ void swaddr_write(swaddr_t addr, size_t len, uint32_t data) {
 	lnaddr_write(addr, len, data);
 }
 
+hwaddr_t page_translate(lnaddr_t addr){
+	uint32_t pdoff = addr >> 22;
+	uint32_t ptoff = (addr >> 12) & 0x3ff;
+	uint32_t poffset = addr & PAGE_MASK;
+	uint32_t pdbase = cpu.cr3.page_directory_base;
+	uint32_t pte = dram_read(pdbase + pdoff * 4,4);
+	assert(pte & 0x1);
+	uint32_t phy = dram_read(pte + ptoff * 4,4);
+	assert(phy & 0x1);
+	return ((phy >> 12) << 12) + poffset;
+}
