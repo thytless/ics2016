@@ -34,7 +34,7 @@ make_helper(mov_r_cr){
 	int cr = (modrm >> 3) & 0x7;
 	int r = modrm & 0x7;
 	switch(cr){
-		case 0:cpu.cr0.val = REG(r);
+		case 0:cpu.cr0.val = REG(r);break;
 		default: Log("error cr number!");
 	}
 	print_asm("mov %%%s,%%cr%d", REG_NAME(r), cr);
@@ -46,7 +46,7 @@ make_helper(mov_cr_r){
 	int cr = (modrm >> 3) & 0x7;
 	int r = modrm & 0x7;
 	switch(cr){
-		case 0: REG(r) = cpu.cr0.val;
+		case 0: REG(r) = cpu.cr0.val;break;
 		default: Log("error cr number!");
 	}
 	print_asm("mov %%cr%d,%%%s", cr, REG_NAME(r));
