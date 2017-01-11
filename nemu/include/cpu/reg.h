@@ -123,20 +123,7 @@ typedef struct {
 		uint16_t gdtLimit;
 		uint32_t gdtBase;
 	} GDTR;
-/*
-	union{
-		struct{
-			unsigned _pe:1;//Protection Enabled
-			unsigned _mp:1;//coprocessor not present		
-			unsigned _em:1;//Enable Monitor coprocessor
-			unsigned _ts:1;//Task Switch
-			unsigned _et:1;//presence of 80387
-			unsigned _undefined:26;
-			unsigned _pe:1;//Page Enabled
-		};
-		uint32_t val;
-	} CR0;
-*/	
+
 	SReg cs,ss,ds,es;
 	CR0 cr0;
 } CPU_state;

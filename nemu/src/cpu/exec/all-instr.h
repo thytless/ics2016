@@ -73,3 +73,5 @@
 #include "string/stos.h"
 
 #include "setcc/setnz.h"
+
+#include "lgdt/lgdt.h"
