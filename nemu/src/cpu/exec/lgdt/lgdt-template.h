@@ -3,7 +3,7 @@
 #define instr lgdt
 
 make_helper(lgdt){
-	uint32_t addr = swaddr_read(eip + 3,4);
+	uint32_t addr = swaddr_read(eip + 2,4);
 	Log("0x%x",addr);
 	cpu.GDTR.gdtLimit = swaddr_read(addr,2);
 	cpu.GDTR.gdtBase = swaddr_read(addr + 2,4);
