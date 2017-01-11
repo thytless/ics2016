@@ -29,7 +29,7 @@ make_helper(concat(mov_moffs2a_, SUFFIX)) {
 }
 
 #if DATA_BYTE == 4
-make_helper(mov_r_cr){
+make_helper(mov_r2cr){
 	uint8_t modrm = swaddr_read(eip + 1,1);
 	int cr = (modrm >> 3) & 0x7;
 	int r = modrm & 0x7;
@@ -41,7 +41,7 @@ make_helper(mov_r_cr){
 	return 2;
 }
 
-make_helper(mov_cr_r){
+make_helper(mov_cr2r){
 	uint8_t modrm = swaddr_read(eip + 1,1);
 	int cr = (modrm >> 3) & 0x7;
 	int r = modrm & 0x7;
@@ -50,6 +50,30 @@ make_helper(mov_cr_r){
 		default: Log("error cr number!");
 	}
 	print_asm("mov %%cr%d,%%%s", cr, REG_NAME(r));
+	return 2;
+}
+#endif
+
+#if DATA_BYTE == 2
+make_helper(mov_r2sr_w){
+	uint8_t modrm = swaddr_read(eip + 1,1);
+	int r = modrm & 0x7;
+	int seg = (modrm >> 3) & 0x7;
+	SReg *sreg;
+	switch(seg){
+		case 0:sreg = &cpu.es;break;
+		case 2:sreg = &cpu.ss;break;
+		case 3:sreg = &cpu.ds;break;
+		default:Log("Bad SReg!");return 2;
+	}
+	sreg->ss.val = (REG(r) & 0xffff);
+	uint16_t index = sreg->ss._index;
+	lnaddr_t addr = cpu.GDTR.gdtBase + sizeof(SegDesc) * index;
+	sreg->sd.limit_15_0 = lnaddr_read(addr,2);
+	sreg->sd.base_15_0 = lnaddr_read(addr+2,2);
+	sreg->sd.base_23_16 = lnaddr_read(addr+4,1);
+	sreg->sd.limit_19_16 = lnaddr_read(addr+6,1) & 0xf;
+	sreg->sd.base_31_24 = lnaddr_read(addr+7,1);
 	return 2;
 }
 #endif
