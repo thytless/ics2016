@@ -28,7 +28,7 @@ make_helper(concat(mov_moffs2a_, SUFFIX)) {
 	return 5;
 }
 
-#if DATA_BYTE == 4
+#if DATA_BYTE == 1
 make_helper(mov_r_cr){
 	uint8_t modrm = swaddr_read(eip + 1,1);
 	int cr = (modrm >> 3) & 0x7;
