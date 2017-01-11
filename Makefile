@@ -97,7 +97,7 @@ USERPROG := obj/testcase/print-FLOAT
 ENTRY := $(kernel_BIN)
 
 entry: $(ENTRY)
-	objcopy -S -O binary $(ENTRY) entry
+	objcopy -S -O0 binary $(ENTRY) entry
 
 run: $(nemu_BIN) $(USERPROG) entry
 	$(call git_commit, "run")
