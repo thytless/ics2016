@@ -35,6 +35,6 @@ typedef union {
 #define false 0
 #define true 1
 
-volatile static int dummy;
+//volatile static int dummy = 0;
 
 #endif

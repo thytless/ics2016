@@ -80,6 +80,8 @@ void restart() {
 	/* Read the file with name `argv[1]' into ramdisk. */
 	init_ramdisk();
 #endif
+	/* Initialize CR0 */
+	cpu.cr0.val = 0x0;
 
 	/* Read the entry code into memory. */
 	load_entry();
