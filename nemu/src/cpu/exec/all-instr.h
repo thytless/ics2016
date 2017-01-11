@@ -62,6 +62,8 @@
 #include "jump/jle.h"
 #include "jump/jg.h"
 
+#include "jump/ljmp.h"
+
 #include "cmp/cmp.h"
 
 #include "cltd/cltd.h"

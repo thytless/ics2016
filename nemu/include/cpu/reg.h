@@ -73,7 +73,7 @@ typedef struct {
 	
 	struct{
 		uint16_t gdtLimit;
-		uint32_t gdtBase;
+		lnaddr_t gdtBase;
 	} GDTR;
 
 	SReg cs,ss,ds,es;
