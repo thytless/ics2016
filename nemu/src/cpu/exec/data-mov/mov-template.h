@@ -28,4 +28,30 @@ make_helper(concat(mov_moffs2a_, SUFFIX)) {
 	return 5;
 }
 
+#if DATA_BYTE == 4
+make_helper(mov_r_cr){
+	uint8_t modrm = swaddr_read(eip + 2,1);
+	int cr = (modrm >> 3) & 0x7;
+	int r = modrm & 0x7;
+	switch(cr){
+		case 0:cpu.cr0.val = REG(r);
+		default: Log("error cr number!");
+	}
+	print_asm("mov %%%s,%%cr%d", REG_NAME(r), cr);
+	return 3;
+}
+
+make_helper(mov_cr_r){
+	uint8_t modrm = swaddr_read(eip + 2,1);
+	int cr = (modrm >> 3) & 0x7;
+	int r = modrm & 0x7;
+	switch(cr){
+		case 0: REG(r) = cpu.cr0.val;
+		default: Log("error cr number!");
+	}
+	print_asm("mov %%cr%d,%%%s", cr, REG_NAME(r));
+	return 3;
+}
+#endif
+
 #include "cpu/exec/template-end.h"
