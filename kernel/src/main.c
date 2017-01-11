@@ -41,7 +41,7 @@ void init_cond() {
 #ifdef IA32_INTR
 	/* Reset the GDT, since the old GDT in start.S cannot be used in the future. */
 	init_segment();
-
+	
 	/* Set the IDT by setting up interrupt and exception handlers.
 	 * Note that system call is the only exception implemented in NEMU.
 	 */
@@ -65,6 +65,7 @@ void init_cond() {
 #ifdef IA32_PAGE
 	/* Initialize the memory manager. */
 	init_mm();
+
 #endif
 
 	/* Output a welcome message.
@@ -80,6 +81,7 @@ void init_cond() {
 
 	/* Load the program. */
 	uint32_t eip = loader();
+	
 	
 #if defined(IA32_PAGE) && defined(HAS_DEVICE)
 	/* Read data in the video memory to check whether 
