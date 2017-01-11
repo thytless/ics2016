@@ -30,7 +30,7 @@ make_helper(concat(mov_moffs2a_, SUFFIX)) {
 
 #if DATA_BYTE == 4
 make_helper(mov_r_cr){
-	uint8_t modrm = swaddr_read(eip + 2,1);
+	uint8_t modrm = swaddr_read(eip + 1,1);
 	int cr = (modrm >> 3) & 0x7;
 	int r = modrm & 0x7;
 	switch(cr){
@@ -42,7 +42,7 @@ make_helper(mov_r_cr){
 }
 
 make_helper(mov_cr_r){
-	uint8_t modrm = swaddr_read(eip + 2,1);
+	uint8_t modrm = swaddr_read(eip + 1,1);
 	int cr = (modrm >> 3) & 0x7;
 	int r = modrm & 0x7;
 	switch(cr){
