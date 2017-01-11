@@ -6,6 +6,10 @@ uint32_t cache_read(swaddr_t, size_t, bool *);
 void cache_write(swaddr_t, size_t, uint32_t);
 /* Memory accessing interfaces */
 
+hwaddr_t page_translate(lnaddr_t addr){
+	return 0;
+}
+
 uint32_t hwaddr_read(hwaddr_t addr, size_t len) {
 	bool success = true;
 	uint32_t cache_ret = cache_read(addr,len,&success);
@@ -30,11 +34,27 @@ void hwaddr_write(hwaddr_t addr, size_t len, uint32_t data) {
 }
 
 uint32_t lnaddr_read(lnaddr_t addr, size_t len) {
-	return hwaddr_read(addr, len);
+	assert(len == 1 || len == 2 || len == 4);
+	if((addr >> 3) != ((addr + len) >> 3)){
+		Log("data cross the page boundry!");
+		assert(0);
+	}
+	else{
+		hwaddr_t hwaddr = page_translate(addr);
+		return hwaddr_read(hwaddr, len);
+	}
 }
 
 void lnaddr_write(lnaddr_t addr, size_t len, uint32_t data) {
-	hwaddr_write(addr, len, data);
+	assert(len == 1 || len == 2 || len == 4);
+	if((addr >> 3) != ((addr + len) >> 3)){
+		Log("data cross the page boundry!");
+		assert(0);
+	}
+	else{
+		hwaddr_t hwaddr = page_translate(addr);
+		hwaddr_write(hwaddr, len, data);
+	}
 }
 
 uint32_t swaddr_read(swaddr_t addr, size_t len) {
